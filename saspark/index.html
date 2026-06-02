@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SaSpark — Crowdfunding for South African Startups</title>
+  <meta name="description" content="SaSpark is South Africa's crowdfunding platform for groundbreaking startups solving real problems. Fund the future from R1. List your startup and raise from the crowd." />
+  <meta name="theme-color" content="#7c3aed" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="nav"></div>
+
+  <!-- ─── HERO ─────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <span class="eyebrow fade-up">Crowdfunding for SA startups</span>
+      <h1 class="fade-up d1">
+        Fund the ideas <br />
+        <span class="gradient-text">that shape the future.</span>
+      </h1>
+      <p class="lede fade-up d2">
+        From safety apps that protect women, to solar kits that beat loadshedding,
+        to fintech that lifts the unbanked — back the founders solving South Africa's biggest problems.
+        Start funding from <strong>R1</strong>.
+      </p>
+      <div class="hero-ctas fade-up d3">
+        <a href="explore.html" class="btn btn-primary btn-lg">Explore startups →</a>
+        <a href="list.html" class="btn btn-ghost btn-lg">Start a campaign</a>
+      </div>
+
+      <div class="hero-stats fade-up d3" id="hero-stats">
+        <!-- filled by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TRENDING ──────────────────────────────────────────── -->
+  <section>
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: end; margin-bottom: 32px; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <span class="eyebrow">🔥 Trending now</span>
+          <h2 style="margin-top: 14px;">Startups gaining momentum</h2>
+        </div>
+        <a href="explore.html" class="btn btn-ghost btn-sm">View all →</a>
+      </div>
+      <div class="startup-grid" id="trending-grid"></div>
+    </div>
+  </section>
+
+  <!-- ─── HOW IT WORKS ─────────────────────────────────────── -->
+  <section id="how" class="section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">How it works</span>
+        <h2>Three steps. No barriers.</h2>
+        <p>Built for first-time founders and first-time funders alike.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>List or browse</h3>
+          <p>Founders submit a pitch, problem, solution and verification documents. Funders explore verified startups by cause, location, or trend.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Fund from R1</h3>
+          <p>Back any startup with as little as R1. Pay by card, instant EFT, SnapScan, or mobile wallet. Every cent is tracked and routed through a regulated trust account.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Watch the impact</h3>
+          <p>Founders post updates as they hit milestones. You see exactly how your contribution turned into installed cameras, trained tutors, or distributed solar kits.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CATEGORIES ─────────────────────────────────────────── -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Causes that matter</span>
+        <h2>Where do you want to make a dent?</h2>
+        <p>Pick a category — back the founders working on it tonight.</p>
+      </div>
+      <div class="cat-grid" id="cat-grid"></div>
+    </div>
+  </section>
+
+  <!-- ─── NEW & VERIFIED ─────────────────────────────────────── -->
+  <section style="background: var(--slate-50);">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: end; margin-bottom: 32px; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <span class="eyebrow">Verified founders</span>
+          <h2 style="margin-top: 14px;">Newly launched campaigns</h2>
+        </div>
+        <a href="explore.html" class="btn btn-ghost btn-sm">View all →</a>
+      </div>
+      <div class="startup-grid" id="new-grid"></div>
+    </div>
+  </section>
+
+  <!-- ─── FOUNDER CTA ─────────────────────────────────────────── -->
+  <section>
+    <div class="container container-narrow">
+      <div style="background: var(--grad-brand); border-radius: var(--r-xl); padding: 60px 40px; text-align: center; color: white; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: rgba(255,255,255,0.1); border-radius: 50%;"></div>
+        <div style="position: absolute; bottom: -60px; left: -60px; width: 280px; height: 280px; background: rgba(255,255,255,0.08); border-radius: 50%;"></div>
+        <div style="position: relative;">
+          <h2 style="color: white; margin-bottom: 14px;">Have a groundbreaking idea?</h2>
+          <p style="font-size: 1.1rem; opacity: 0.95; margin-bottom: 28px; max-width: 540px; margin-left: auto; margin-right: auto;">
+            List your startup in 10 minutes. We verify your documents within 48 hours and your campaign goes live to thousands of backers.
+          </p>
+          <a href="list.html" class="btn btn-secondary btn-lg" style="background: white; color: var(--violet-deep);">Start your campaign →</a>
+          <div style="margin-top: 18px; font-size: 0.88rem; opacity: 0.85;">No fees if you don't raise. 4% on successful campaigns.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    app.renderNav('home');
+    app.renderFooter();
+
+    // ─── Hero stats ───
+    const all = app.getStartups();
+    const totalRaised = all.reduce((s, x) => s + x.amountRaised, 0);
+    const totalFunders = all.reduce((s, x) => s + x.fundersCount, 0);
+    const totalGoal = all.reduce((s, x) => s + x.fundingGoal, 0);
+    document.getElementById('hero-stats').innerHTML = `
+      <div class="hero-stat"><div class="v">${app.fmtZAR(totalRaised)}</div><div class="l">Raised so far</div></div>
+      <div class="hero-stat"><div class="v">${all.length}</div><div class="l">Active startups</div></div>
+      <div class="hero-stat"><div class="v">${app.fmtNum(totalFunders)}</div><div class="l">South Africans backing</div></div>
+      <div class="hero-stat"><div class="v">R1</div><div class="l">Minimum to fund</div></div>
+    `;
+
+    // ─── Trending ───
+    const trending = [...all]
+      .filter((s) => s.trending)
+      .sort((a, b) => app.trendingScore(b) - app.trendingScore(a))
+      .slice(0, 6);
+    document.getElementById('trending-grid').innerHTML = trending.map(app.startupCardHTML).join('');
+
+    // ─── Categories ───
+    document.getElementById('cat-grid').innerHTML = app.CATEGORIES
+      .filter((c) => c.id !== 'other')
+      .map((c) => {
+        const count = all.filter((s) => s.category === c.id).length;
+        return `
+          <a href="explore.html?cat=${c.id}" class="cat-card">
+            <div class="cat-icon">${c.icon}</div>
+            <div class="cat-card-name">${c.name}</div>
+            <div class="cat-card-count">${count} startup${count === 1 ? '' : 's'}</div>
+          </a>
+        `;
+      }).join('');
+
+    // ─── Newly launched ───
+    const newest = [...all]
+      .filter((s) => s.verified)
+      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+      .slice(0, 3);
+    document.getElementById('new-grid').innerHTML = newest.map(app.startupCardHTML).join('');
+  </script>
+</body>
+</html>

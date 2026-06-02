@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Explore startups — SaSpark</title>
+  <meta name="description" content="Browse every startup raising on SaSpark. Filter by cause, sort by trending, and back the founders solving South Africa's biggest problems." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="nav"></div>
+
+  <section style="padding: 110px 0 30px; background: var(--slate-50); border-bottom: 1px solid var(--slate-200);">
+    <div class="container">
+      <span class="eyebrow">Explore</span>
+      <h1 style="margin-top: 14px; font-size: clamp(2rem, 4vw, 3rem);">
+        Find a startup <span class="gradient-text">to back tonight.</span>
+      </h1>
+      <p class="muted" style="font-size: 1.05rem; margin-top: 10px; max-width: 640px;">
+        <span id="result-count">—</span> verified campaigns active. From R1 to as much as you can spare — every contribution moves the needle.
+      </p>
+    </div>
+  </section>
+
+  <section style="padding-top: 36px;">
+    <div class="container">
+
+      <div class="toolbar">
+        <div class="search">
+          <input type="text" id="search" placeholder="Search by name, problem, or location…" />
+        </div>
+        <select id="sort">
+          <option value="trending">🔥 Trending</option>
+          <option value="newest">🆕 Newest</option>
+          <option value="closing">⏰ Closing soon</option>
+          <option value="raised">💰 Most funded</option>
+          <option value="funders">👥 Most backers</option>
+        </select>
+        <select id="verified-only">
+          <option value="any">All campaigns</option>
+          <option value="verified">✓ Verified only</option>
+        </select>
+      </div>
+
+      <div class="cat-chips" id="cat-chips"></div>
+
+      <div class="startup-grid" id="grid"></div>
+      <div id="empty" class="empty" style="display: none;">
+        <div class="empty-icon">🔍</div>
+        <h3>No startups match those filters yet</h3>
+        <p style="margin-top: 8px;">Try a different category or clear your search.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div id="footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    app.renderNav('explore');
+    app.renderFooter();
+
+    const state = {
+      cat: app.qs('cat') || 'all',
+      query: '',
+      sort: 'trending',
+      verified: 'any',
+    };
+
+    // ─── Chips ───
+    function renderChips() {
+      const all = [{ id: 'all', name: 'All causes', icon: '✨' }].concat(app.CATEGORIES);
+      const html = all.map((c) => `
+        <button class="cat-chip ${state.cat === c.id ? 'active' : ''}" data-cat="${c.id}">
+          ${c.icon} ${c.name}
+        </button>
+      `).join('');
+      document.getElementById('cat-chips').innerHTML = html;
+      document.querySelectorAll('.cat-chip').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          state.cat = btn.dataset.cat;
+          renderChips();
+          render();
+        });
+      });
+    }
+
+    function applyFilters() {
+      let list = app.getStartups();
+      if (state.cat !== 'all') list = list.filter((s) => s.category === state.cat);
+      if (state.verified === 'verified') list = list.filter((s) => s.verified);
+      if (state.query) {
+        const q = state.query.toLowerCase();
+        list = list.filter((s) =>
+          (s.name + ' ' + s.tagline + ' ' + (s.problem || '') + ' ' + (s.location || '')).toLowerCase().includes(q)
+        );
+      }
+      switch (state.sort) {
+        case 'trending': list.sort((a, b) => app.trendingScore(b) - app.trendingScore(a)); break;
+        case 'newest':   list.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); break;
+        case 'closing':  list.sort((a, b) => a.daysLeft - b.daysLeft); break;
+        case 'raised':   list.sort((a, b) => b.amountRaised - a.amountRaised); break;
+        case 'funders':  list.sort((a, b) => b.fundersCount - a.fundersCount); break;
+      }
+      return list;
+    }
+
+    function render() {
+      const list = applyFilters();
+      document.getElementById('result-count').textContent = list.length;
+      const grid = document.getElementById('grid');
+      const empty = document.getElementById('empty');
+      if (list.length === 0) {
+        grid.innerHTML = '';
+        empty.style.display = 'block';
+      } else {
+        empty.style.display = 'none';
+        grid.innerHTML = list.map(app.startupCardHTML).join('');
+      }
+    }
+
+    document.getElementById('search').addEventListener('input', (e) => {
+      state.query = e.target.value.trim();
+      render();
+    });
+    document.getElementById('sort').addEventListener('change', (e) => { state.sort = e.target.value; render(); });
+    document.getElementById('verified-only').addEventListener('change', (e) => { state.verified = e.target.value; render(); });
+
+    renderChips();
+    render();
+  </script>
+</body>
+</html>

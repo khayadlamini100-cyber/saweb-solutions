@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leaderboard — SaSpark</title>
+  <meta name="description" content="The top 100 trending startups and most generous funders on SaSpark." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="nav"></div>
+
+  <section style="padding: 110px 0 30px; background: var(--slate-50); border-bottom: 1px solid var(--slate-200);">
+    <div class="container text-center">
+      <span class="eyebrow">🏆 Leaderboard</span>
+      <h1 style="margin-top: 14px; font-size: clamp(2rem, 4vw, 3rem);">
+        The startups and people <span class="gradient-text">shaping South Africa.</span>
+      </h1>
+      <p class="muted" style="font-size: 1.05rem; margin-top: 12px; max-width: 600px; margin-left: auto; margin-right: auto;">
+        Updated live. The top 100 trending startups, plus the South Africans putting their money where their mouths are.
+      </p>
+
+      <div class="lb-tabs" id="lb-tabs">
+        <button class="lb-tab active" data-tab="startups">🚀 Top 100 startups</button>
+        <button class="lb-tab" data-tab="funders">💰 Top 100 funders</button>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top: 50px;">
+    <div class="container">
+
+      <!-- Startups tab -->
+      <div id="tab-startups">
+        <div class="toolbar" style="margin-bottom: 28px;">
+          <div style="font-weight: 700; padding: 0 8px; font-size: 0.9rem; color: var(--slate-700);">Rank by:</div>
+          <select id="startup-sort">
+            <option value="trending">🔥 Trending score</option>
+            <option value="raised">💰 Amount raised</option>
+            <option value="funders">👥 Number of backers</option>
+            <option value="goal">🎯 % of goal reached</option>
+          </select>
+        </div>
+
+        <div class="podium" id="startup-podium"></div>
+        <div class="lb-list" id="startup-list"></div>
+      </div>
+
+      <!-- Funders tab -->
+      <div id="tab-funders" style="display: none;">
+        <div class="podium" id="funder-podium"></div>
+        <div class="lb-list" id="funder-list"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <div id="footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    app.renderNav('leaderboard');
+    app.renderFooter();
+
+    let startupSort = 'trending';
+
+    function getRankedStartups() {
+      let list = app.getStartups();
+      switch (startupSort) {
+        case 'raised':   list.sort((a, b) => b.amountRaised - a.amountRaised); break;
+        case 'funders':  list.sort((a, b) => b.fundersCount - a.fundersCount); break;
+        case 'goal':     list.sort((a, b) => app.pct(b.amountRaised, b.fundingGoal) - app.pct(a.amountRaised, a.fundingGoal)); break;
+        default:         list.sort((a, b) => app.trendingScore(b) - app.trendingScore(a));
+      }
+      return list.slice(0, 100);
+    }
+
+    function renderStartupPodium(top3) {
+      const labelFor = (s) => {
+        switch (startupSort) {
+          case 'funders':  return app.fmtNum(s.fundersCount) + ' backers';
+          case 'goal':     return app.pct(s.amountRaised, s.fundingGoal) + '% of goal';
+          default:         return app.fmtZARExact(s.amountRaised) + ' raised';
+        }
+      };
+      const cardFor = (s, rank, medal) => `
+        <a class="podium-card rank-${rank}" href="startup.html?id=${s.id}">
+          <div class="podium-medal">${medal}</div>
+          <div class="podium-name">${app.escapeHtml(s.name)}</div>
+          <div class="podium-tagline">${app.escapeHtml(s.tagline.slice(0, 80))}${s.tagline.length > 80 ? '…' : ''}</div>
+          <div class="podium-amount">${labelFor(s)}</div>
+          <div class="podium-sub">${app.catLookup(s.category).icon} ${app.catLookup(s.category).name}</div>
+        </a>
+      `;
+      // Visual podium ordering: 2nd, 1st, 3rd
+      document.getElementById('startup-podium').innerHTML = [
+        top3[1] ? cardFor(top3[1], 2, '🥈') : '<div></div>',
+        top3[0] ? cardFor(top3[0], 1, '🥇') : '<div></div>',
+        top3[2] ? cardFor(top3[2], 3, '🥉') : '<div></div>',
+      ].join('');
+    }
+
+    function renderStartupList() {
+      const ranked = getRankedStartups();
+      renderStartupPodium(ranked.slice(0, 3));
+      const rest = ranked.slice(3);
+      const rowFor = (s, rank) => {
+        const cat = app.catLookup(s.category);
+        const progress = app.pct(s.amountRaised, s.fundingGoal);
+        const rightVal = startupSort === 'funders' ? app.fmtNum(s.fundersCount)
+                     : startupSort === 'goal'    ? progress + '%'
+                     : app.fmtZARExact(s.amountRaised);
+        const rightLbl = startupSort === 'funders' ? 'backers' : startupSort === 'goal' ? 'of goal' : 'raised';
+        return `
+          <a class="lb-row" href="startup.html?id=${s.id}">
+            <div class="lb-rank">#${rank}</div>
+            <div class="info">
+              <div class="info-name">${app.escapeHtml(s.name)} ${s.verified ? '<span style="color: var(--success); font-size:0.9rem;">✓</span>' : ''}</div>
+              <div class="info-meta">${cat.icon} ${cat.name} · 📍 ${app.escapeHtml(s.location)}</div>
+              <div class="info-bar"><div class="info-bar-fill" style="width:${progress}%"></div></div>
+            </div>
+            <div class="lb-amount">
+              <div class="v">${rightVal}</div>
+              <div class="l">${rightLbl}</div>
+            </div>
+          </a>
+        `;
+      };
+      document.getElementById('startup-list').innerHTML = rest.length
+        ? rest.map((s, i) => rowFor(s, i + 4)).join('')
+        : '<div class="empty" style="padding: 40px;">More startups coming soon.</div>';
+    }
+
+    function renderFunders() {
+      const ranked = [...app.FUNDERS].sort((a, b) => b.totalContributed - a.totalContributed);
+      const top3 = ranked.slice(0, 3);
+      const rest = ranked.slice(3, 100);
+
+      const podiumCard = (f, rank, medal) => `
+        <div class="podium-card rank-${rank}">
+          <div class="podium-medal">${medal}</div>
+          <div class="podium-name">${app.escapeHtml(f.name)}</div>
+          <div class="podium-tagline">Backed ${f.startupsCount} startup${f.startupsCount === 1 ? '' : 's'}</div>
+          <div class="podium-amount">${app.fmtZARExact(f.totalContributed)}</div>
+          <div class="podium-sub">total contributed</div>
+        </div>
+      `;
+      document.getElementById('funder-podium').innerHTML = [
+        top3[1] ? podiumCard(top3[1], 2, '🥈') : '<div></div>',
+        top3[0] ? podiumCard(top3[0], 1, '🥇') : '<div></div>',
+        top3[2] ? podiumCard(top3[2], 3, '🥉') : '<div></div>',
+      ].join('');
+
+      document.getElementById('funder-list').innerHTML = rest.map((f, i) => `
+        <div class="lb-row" style="cursor: default;">
+          <div class="lb-rank">#${i + 4}</div>
+          <div class="info" style="display: flex; align-items: center; gap: 14px;">
+            <div class="funder-avatar" style="width:42px; height:42px; font-size: 0.95rem;">${f.initials}</div>
+            <div>
+              <div class="info-name">${app.escapeHtml(f.name)}</div>
+              <div class="info-meta">Backed ${f.startupsCount} startup${f.startupsCount === 1 ? '' : 's'} · Joined ${new Date(f.joined).toLocaleDateString('en-ZA', { month:'short', year:'numeric' })}</div>
+            </div>
+          </div>
+          <div class="lb-amount">
+            <div class="v">${app.fmtZARExact(f.totalContributed)}</div>
+            <div class="l">contributed</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Tab switching
+    document.querySelectorAll('.lb-tab').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.lb-tab').forEach((t) => t.classList.remove('active'));
+        tab.classList.add('active');
+        const isStartups = tab.dataset.tab === 'startups';
+        document.getElementById('tab-startups').style.display = isStartups ? 'block' : 'none';
+        document.getElementById('tab-funders').style.display  = isStartups ? 'none' : 'block';
+      });
+    });
+
+    document.getElementById('startup-sort').addEventListener('change', (e) => {
+      startupSort = e.target.value;
+      renderStartupList();
+    });
+
+    renderStartupList();
+    renderFunders();
+  </script>
+</body>
+</html>
