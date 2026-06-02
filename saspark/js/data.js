@@ -5,18 +5,25 @@
    ============================================================ */
 
 const CATEGORIES = [
-  { id: 'crime-safety', name: 'Crime & Safety',   icon: '🛡️',  color: 'crime'   },
-  { id: 'women',        name: "Women's Safety",   icon: '💜',  color: 'women'   },
-  { id: 'edu',          name: 'Education',        icon: '📚',  color: 'edu'     },
-  { id: 'health',       name: 'Health & Wellness',icon: '❤️‍🩹', color: 'health'  },
-  { id: 'fintech',      name: 'Fintech',          icon: '💳',  color: 'fintech' },
-  { id: 'climate',      name: 'Climate',          icon: '🌱',  color: 'climate' },
-  { id: 'jobs',         name: 'Jobs & Skills',    icon: '💼',  color: 'jobs'    },
-  { id: 'food',         name: 'Food Security',    icon: '🍞',  color: 'food'    },
-  { id: 'housing',      name: 'Housing',          icon: '🏠',  color: 'housing' },
-  { id: 'energy',       name: 'Energy',           icon: '⚡',  color: 'energy'  },
-  { id: 'other',        name: 'Other',            icon: '✨',  color: 'other'   },
+  { id: 'crime-safety', name: 'Crime & Safety',    iconName: 'shield'      },
+  { id: 'women',        name: "Women's Safety",    iconName: 'heart'       },
+  { id: 'edu',          name: 'Education',         iconName: 'book'        },
+  { id: 'health',       name: 'Health & Wellness', iconName: 'activity'    },
+  { id: 'fintech',      name: 'Fintech',           iconName: 'credit-card' },
+  { id: 'climate',      name: 'Climate',           iconName: 'leaf'        },
+  { id: 'jobs',         name: 'Jobs & Skills',     iconName: 'briefcase'   },
+  { id: 'food',         name: 'Food Security',     iconName: 'wheat'       },
+  { id: 'housing',      name: 'Housing',           iconName: 'home'        },
+  { id: 'energy',       name: 'Energy',            iconName: 'zap'         },
+  { id: 'other',        name: 'Other',             iconName: 'sparkles'    },
 ];
+
+/* ─── Cover photography ─────────────────────────────────────
+   Picsum (royalty-free, no API key, loads reliably) seeded by
+   startup slug so each campaign gets a consistent image.
+   Swap these URLs for branded campaign photography in production.
+   ─────────────────────────────────────────────────────────── */
+const coverFor = (slug) => `https://picsum.photos/seed/saspark-${slug}/1200/600`;
 
 const STARTUPS = [
   {

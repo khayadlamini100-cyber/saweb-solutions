@@ -7,41 +7,42 @@
   <meta name="description" content="Browse every startup raising on SaSpark. Filter by cause, sort by trending, and back the founders solving South Africa's biggest problems." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <div id="nav"></div>
 
-  <section style="padding: 110px 0 30px; background: var(--slate-50); border-bottom: 1px solid var(--slate-200);">
+  <section style="padding: 130px 0 40px;">
     <div class="container">
       <span class="eyebrow">Explore</span>
-      <h1 style="margin-top: 14px; font-size: clamp(2rem, 4vw, 3rem);">
-        Find a startup <span class="gradient-text">to back tonight.</span>
+      <h1 style="margin-top: 18px; font-size: clamp(2rem, 4vw, 3.2rem);">
+        Find a startup to back tonight.
       </h1>
-      <p class="muted" style="font-size: 1.05rem; margin-top: 10px; max-width: 640px;">
+      <p class="muted" style="font-size: 1.05rem; margin-top: 14px; max-width: 640px;">
         <span id="result-count">—</span> verified campaigns active. From R1 to as much as you can spare — every contribution moves the needle.
       </p>
     </div>
   </section>
 
-  <section style="padding-top: 36px;">
+  <section style="padding-top: 0;">
     <div class="container">
 
       <div class="toolbar">
         <div class="search">
+          <span class="search-ico" id="search-ico"></span>
           <input type="text" id="search" placeholder="Search by name, problem, or location…" />
         </div>
         <select id="sort">
-          <option value="trending">🔥 Trending</option>
-          <option value="newest">🆕 Newest</option>
-          <option value="closing">⏰ Closing soon</option>
-          <option value="raised">💰 Most funded</option>
-          <option value="funders">👥 Most backers</option>
+          <option value="trending">Trending</option>
+          <option value="newest">Newest</option>
+          <option value="closing">Closing soon</option>
+          <option value="raised">Most funded</option>
+          <option value="funders">Most backers</option>
         </select>
         <select id="verified-only">
           <option value="any">All campaigns</option>
-          <option value="verified">✓ Verified only</option>
+          <option value="verified">Verified only</option>
         </select>
       </div>
 
@@ -49,8 +50,8 @@
 
       <div class="startup-grid" id="grid"></div>
       <div id="empty" class="empty" style="display: none;">
-        <div class="empty-icon">🔍</div>
-        <h3>No startups match those filters yet</h3>
+        <div id="empty-ico"></div>
+        <h3 style="margin-top: 12px;">No startups match those filters</h3>
         <p style="margin-top: 8px;">Try a different category or clear your search.</p>
       </div>
 
@@ -65,6 +66,9 @@
     app.renderNav('explore');
     app.renderFooter();
 
+    document.getElementById('search-ico').innerHTML = app.icon('search', { size: 16 });
+    document.getElementById('empty-ico').innerHTML = app.icon('search', { size: 32 });
+
     const state = {
       cat: app.qs('cat') || 'all',
       query: '',
@@ -72,12 +76,12 @@
       verified: 'any',
     };
 
-    // ─── Chips ───
     function renderChips() {
-      const all = [{ id: 'all', name: 'All causes', icon: '✨' }].concat(app.CATEGORIES);
+      const all = [{ id: 'all', name: 'All causes', iconName: 'sparkles' }].concat(app.CATEGORIES);
       const html = all.map((c) => `
         <button class="cat-chip ${state.cat === c.id ? 'active' : ''}" data-cat="${c.id}">
-          ${c.icon} ${c.name}
+          ${app.icon(c.iconName, { size: 14 })}
+          ${c.name}
         </button>
       `).join('');
       document.getElementById('cat-chips').innerHTML = html;

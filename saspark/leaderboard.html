@@ -7,41 +7,41 @@
   <meta name="description" content="The top 100 trending startups and most generous funders on SaSpark." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <div id="nav"></div>
 
-  <section style="padding: 110px 0 30px; background: var(--slate-50); border-bottom: 1px solid var(--slate-200);">
+  <section style="padding: 130px 0 30px;">
     <div class="container text-center">
-      <span class="eyebrow">🏆 Leaderboard</span>
-      <h1 style="margin-top: 14px; font-size: clamp(2rem, 4vw, 3rem);">
-        The startups and people <span class="gradient-text">shaping South Africa.</span>
+      <span class="eyebrow" style="justify-content: center;">Leaderboard</span>
+      <h1 style="margin-top: 18px; font-size: clamp(2rem, 4vw, 3.2rem);">
+        The startups and people<br />shaping South Africa.
       </h1>
-      <p class="muted" style="font-size: 1.05rem; margin-top: 12px; max-width: 600px; margin-left: auto; margin-right: auto;">
+      <p class="muted" style="font-size: 1.05rem; margin-top: 14px; max-width: 600px; margin-left: auto; margin-right: auto;">
         Updated live. The top 100 trending startups, plus the South Africans putting their money where their mouths are.
       </p>
 
-      <div class="lb-tabs" id="lb-tabs">
-        <button class="lb-tab active" data-tab="startups">🚀 Top 100 startups</button>
-        <button class="lb-tab" data-tab="funders">💰 Top 100 funders</button>
+      <div class="lb-tabs" id="lb-tabs" style="margin-top: 36px;">
+        <button class="lb-tab active" data-tab="startups"><span id="ico-startups"></span> Top 100 startups</button>
+        <button class="lb-tab" data-tab="funders"><span id="ico-funders"></span> Top 100 funders</button>
       </div>
     </div>
   </section>
 
-  <section style="padding-top: 50px;">
+  <section style="padding-top: 20px;">
     <div class="container">
 
       <!-- Startups tab -->
       <div id="tab-startups">
-        <div class="toolbar" style="margin-bottom: 28px;">
-          <div style="font-weight: 700; padding: 0 8px; font-size: 0.9rem; color: var(--slate-700);">Rank by:</div>
+        <div class="toolbar" style="margin-bottom: 36px;">
+          <div style="font-weight: 500; padding: 0 4px; font-size: 0.85rem; color: var(--text-mid); text-transform: uppercase; letter-spacing: 0.1em;">Rank by</div>
           <select id="startup-sort">
-            <option value="trending">🔥 Trending score</option>
-            <option value="raised">💰 Amount raised</option>
-            <option value="funders">👥 Number of backers</option>
-            <option value="goal">🎯 % of goal reached</option>
+            <option value="trending">Trending score</option>
+            <option value="raised">Amount raised</option>
+            <option value="funders">Number of backers</option>
+            <option value="goal">% of goal reached</option>
           </select>
         </div>
 
@@ -65,6 +65,9 @@
   <script>
     app.renderNav('leaderboard');
     app.renderFooter();
+
+    document.getElementById('ico-startups').innerHTML = app.icon('trending-up', { size: 14 });
+    document.getElementById('ico-funders').innerHTML = app.icon('heart', { size: 14 });
 
     let startupSort = 'trending';
 
@@ -91,16 +94,15 @@
         <a class="podium-card rank-${rank}" href="startup.html?id=${s.id}">
           <div class="podium-medal">${medal}</div>
           <div class="podium-name">${app.escapeHtml(s.name)}</div>
-          <div class="podium-tagline">${app.escapeHtml(s.tagline.slice(0, 80))}${s.tagline.length > 80 ? '…' : ''}</div>
+          <div class="podium-tagline">${app.escapeHtml(s.tagline.slice(0, 90))}${s.tagline.length > 90 ? '…' : ''}</div>
           <div class="podium-amount">${labelFor(s)}</div>
-          <div class="podium-sub">${app.catLookup(s.category).icon} ${app.catLookup(s.category).name}</div>
+          <div class="podium-sub">${app.catLookup(s.category).name}</div>
         </a>
       `;
-      // Visual podium ordering: 2nd, 1st, 3rd
       document.getElementById('startup-podium').innerHTML = [
-        top3[1] ? cardFor(top3[1], 2, '🥈') : '<div></div>',
-        top3[0] ? cardFor(top3[0], 1, '🥇') : '<div></div>',
-        top3[2] ? cardFor(top3[2], 3, '🥉') : '<div></div>',
+        top3[1] ? cardFor(top3[1], 2, '02') : '<div></div>',
+        top3[0] ? cardFor(top3[0], 1, app.icon('trophy', { size: 18 })) : '<div></div>',
+        top3[2] ? cardFor(top3[2], 3, '03') : '<div></div>',
       ].join('');
     }
 
@@ -117,10 +119,17 @@
         const rightLbl = startupSort === 'funders' ? 'backers' : startupSort === 'goal' ? 'of goal' : 'raised';
         return `
           <a class="lb-row" href="startup.html?id=${s.id}">
-            <div class="lb-rank">#${rank}</div>
+            <div class="lb-rank">${rank.toString().padStart(2, '0')}</div>
             <div class="info">
-              <div class="info-name">${app.escapeHtml(s.name)} ${s.verified ? '<span style="color: var(--success); font-size:0.9rem;">✓</span>' : ''}</div>
-              <div class="info-meta">${cat.icon} ${cat.name} · 📍 ${app.escapeHtml(s.location)}</div>
+              <div class="info-name">
+                ${app.escapeHtml(s.name)}
+                ${s.verified ? `<span class="verified-mini">${app.icon('check', { size: 12, stroke: 2.4 })}</span>` : ''}
+              </div>
+              <div class="info-meta">
+                ${app.icon(cat.iconName, { size: 12 })} ${cat.name}
+                <span style="opacity: 0.5;">·</span>
+                ${app.icon('map-pin', { size: 12 })} ${app.escapeHtml(s.location)}
+              </div>
               <div class="info-bar"><div class="info-bar-fill" style="width:${progress}%"></div></div>
             </div>
             <div class="lb-amount">
@@ -150,16 +159,16 @@
         </div>
       `;
       document.getElementById('funder-podium').innerHTML = [
-        top3[1] ? podiumCard(top3[1], 2, '🥈') : '<div></div>',
-        top3[0] ? podiumCard(top3[0], 1, '🥇') : '<div></div>',
-        top3[2] ? podiumCard(top3[2], 3, '🥉') : '<div></div>',
+        top3[1] ? podiumCard(top3[1], 2, '02') : '<div></div>',
+        top3[0] ? podiumCard(top3[0], 1, app.icon('trophy', { size: 18 })) : '<div></div>',
+        top3[2] ? podiumCard(top3[2], 3, '03') : '<div></div>',
       ].join('');
 
       document.getElementById('funder-list').innerHTML = rest.map((f, i) => `
         <div class="lb-row" style="cursor: default;">
-          <div class="lb-rank">#${i + 4}</div>
+          <div class="lb-rank">${(i + 4).toString().padStart(2, '0')}</div>
           <div class="info" style="display: flex; align-items: center; gap: 14px;">
-            <div class="funder-avatar" style="width:42px; height:42px; font-size: 0.95rem;">${f.initials}</div>
+            <div class="funder-avatar" style="width:40px; height:40px; font-size: 0.85rem;">${f.initials}</div>
             <div>
               <div class="info-name">${app.escapeHtml(f.name)}</div>
               <div class="info-meta">Backed ${f.startupsCount} startup${f.startupsCount === 1 ? '' : 's'} · Joined ${new Date(f.joined).toLocaleDateString('en-ZA', { month:'short', year:'numeric' })}</div>
@@ -173,7 +182,6 @@
       `).join('');
     }
 
-    // Tab switching
     document.querySelectorAll('.lb-tab').forEach((tab) => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('.lb-tab').forEach((t) => t.classList.remove('active'));

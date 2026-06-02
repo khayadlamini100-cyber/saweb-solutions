@@ -7,25 +7,25 @@
   <meta name="description" content="Submit your startup or business idea to SaSpark and raise funding from the crowd. Free to list — 4% fee on successful campaigns." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <div id="nav"></div>
 
-  <section style="padding: 110px 0 30px; background: var(--slate-50); border-bottom: 1px solid var(--slate-200);">
+  <section style="padding: 130px 0 40px;">
     <div class="container container-narrow text-center">
-      <span class="eyebrow">List your startup</span>
-      <h1 style="margin-top: 14px; font-size: clamp(2rem, 4vw, 3rem);">
-        Pitch your idea. <span class="gradient-text">Raise from the crowd.</span>
+      <span class="eyebrow" style="justify-content: center;">List your startup</span>
+      <h1 style="margin-top: 18px; font-size: clamp(2rem, 4vw, 3.2rem);">
+        Pitch your idea. Raise from the crowd.
       </h1>
-      <p class="muted" style="font-size: 1.05rem; margin-top: 12px;">
+      <p class="muted" style="font-size: 1.05rem; margin-top: 14px;">
         Free to list. We verify your documents in 48 hours and your campaign goes live to thousands of backers.
       </p>
     </div>
   </section>
 
-  <section style="padding-top: 40px;">
+  <section style="padding-top: 20px;">
     <div class="container container-narrow">
 
       <div class="stepper" id="stepper">
@@ -75,15 +75,15 @@
               <input type="text" name="founder" class="form-control" required />
             </div>
             <div class="form-group">
-              <label class="form-label">Cover emoji</label>
-              <input type="text" name="emoji" class="form-control" placeholder="🚀" maxlength="4" />
-              <div class="form-help">A single emoji that represents your startup.</div>
+              <label class="form-label">Cover image URL</label>
+              <input type="url" name="coverImg" class="form-control" placeholder="https://… or leave blank for default" />
+              <div class="form-help">A photo that represents your startup. Leave blank and we'll generate a placeholder.</div>
             </div>
           </div>
 
           <div class="form-nav">
             <span></span>
-            <button type="button" class="btn btn-primary" data-next>Continue →</button>
+            <button type="button" class="btn btn-primary" data-next>Continue</button>
           </div>
         </div>
 
@@ -93,29 +93,29 @@
           <p class="form-desc">Backers want to know: what's broken, how you'll fix it, and what's at stake.</p>
 
           <div class="form-group">
-            <label class="form-label">🚨 The problem <span class="req">*</span></label>
+            <label class="form-label">The problem <span class="req">*</span></label>
             <textarea name="problem" class="form-control" rows="4" placeholder="Be specific. Use real numbers if you have them." required></textarea>
             <div class="form-help">2-4 sentences. State the pain and who suffers from it.</div>
           </div>
 
           <div class="form-group">
-            <label class="form-label">💡 The solution <span class="req">*</span></label>
+            <label class="form-label">The solution <span class="req">*</span></label>
             <textarea name="solution" class="form-control" rows="4" placeholder="What you're building. How it differs from what exists today." required></textarea>
           </div>
 
           <div class="form-group">
-            <label class="form-label">🛠️ The plan <span class="req">*</span></label>
+            <label class="form-label">The plan <span class="req">*</span></label>
             <textarea name="plan" class="form-control" rows="5" placeholder="What happens with the money, broken down by phase. Use new lines for each phase." required></textarea>
           </div>
 
           <div class="form-group">
-            <label class="form-label">📈 The market</label>
+            <label class="form-label">The market</label>
             <textarea name="market" class="form-control" rows="3" placeholder="Who buys this? How big is the opportunity?"></textarea>
           </div>
 
           <div class="form-nav">
-            <button type="button" class="btn btn-ghost" data-prev>← Back</button>
-            <button type="button" class="btn btn-primary" data-next>Continue →</button>
+            <button type="button" class="btn btn-ghost" data-prev>Back</button>
+            <button type="button" class="btn btn-primary" data-next>Continue</button>
           </div>
         </div>
 
@@ -145,15 +145,15 @@
           <div class="form-group">
             <label class="form-label">Banking details (held in trust until milestones)</label>
             <div class="form-row">
-              <input type="text" name="bankName"   class="form-control" placeholder="Bank name (e.g. FNB)" />
-              <input type="text" name="accountNo"  class="form-control" placeholder="Account number" />
+              <input type="text" name="bankName"  class="form-control" placeholder="Bank name (e.g. FNB)" />
+              <input type="text" name="accountNo" class="form-control" placeholder="Account number" />
             </div>
             <div class="form-help">Held in a regulated escrow account by Standard Bank Trust. Released to you when you hit milestones.</div>
           </div>
 
           <div class="form-nav">
-            <button type="button" class="btn btn-ghost" data-prev>← Back</button>
-            <button type="button" class="btn btn-primary" data-next>Continue →</button>
+            <button type="button" class="btn btn-ghost" data-prev>Back</button>
+            <button type="button" class="btn btn-primary" data-next>Continue</button>
           </div>
         </div>
 
@@ -164,9 +164,9 @@
 
           <div class="form-group">
             <label class="form-label">CIPC company registration certificate <span class="req">*</span></label>
-            <label class="upload-zone" data-doc="cipc">
+            <label class="upload-zone" data-doc="cipc" data-icon="file">
               <input type="file" accept=".pdf,.png,.jpg,.jpeg" />
-              <div class="upload-icon">📄</div>
+              <div class="upload-icon-mount"></div>
               <div class="upload-text">Click to upload — or drag &amp; drop</div>
               <div class="upload-sub">PDF, PNG, or JPG up to 10MB</div>
             </label>
@@ -174,19 +174,19 @@
 
           <div class="form-group">
             <label class="form-label">Founder ID document <span class="req">*</span></label>
-            <label class="upload-zone" data-doc="id">
+            <label class="upload-zone" data-doc="id" data-icon="id-card">
               <input type="file" accept=".pdf,.png,.jpg,.jpeg" />
-              <div class="upload-icon">🪪</div>
-              <div class="upload-text">SA ID / Passport</div>
+              <div class="upload-icon-mount"></div>
+              <div class="upload-text">SA ID or Passport</div>
               <div class="upload-sub">Both sides if applicable</div>
             </label>
           </div>
 
           <div class="form-group">
             <label class="form-label">Business plan or pitch deck</label>
-            <label class="upload-zone" data-doc="plan">
+            <label class="upload-zone" data-doc="plan" data-icon="file">
               <input type="file" accept=".pdf,.pptx,.key" />
-              <div class="upload-icon">📊</div>
+              <div class="upload-icon-mount"></div>
               <div class="upload-text">PDF or PPTX</div>
               <div class="upload-sub">Up to 25MB</div>
             </label>
@@ -194,27 +194,27 @@
 
           <div class="form-group">
             <label class="form-label">Tax clearance certificate</label>
-            <label class="upload-zone" data-doc="tax">
+            <label class="upload-zone" data-doc="tax" data-icon="receipt">
               <input type="file" accept=".pdf" />
-              <div class="upload-icon">🧾</div>
-              <div class="upload-text">SARS Tax Clearance</div>
+              <div class="upload-icon-mount"></div>
+              <div class="upload-text">SARS tax clearance</div>
               <div class="upload-sub">PDF only</div>
             </label>
           </div>
 
           <div class="form-group">
             <label class="form-label">Other relevant licences / certifications</label>
-            <label class="upload-zone" data-doc="other">
+            <label class="upload-zone" data-doc="other" data-icon="folder">
               <input type="file" multiple accept=".pdf,.png,.jpg,.jpeg" />
-              <div class="upload-icon">📁</div>
+              <div class="upload-icon-mount"></div>
               <div class="upload-text">e.g. NCR, HPCSA, PSIRA, NRCS, SABS</div>
               <div class="upload-sub">Multiple files allowed</div>
             </label>
           </div>
 
           <div class="form-nav">
-            <button type="button" class="btn btn-ghost" data-prev>← Back</button>
-            <button type="button" class="btn btn-primary" data-next>Continue →</button>
+            <button type="button" class="btn btn-ghost" data-prev>Back</button>
+            <button type="button" class="btn btn-primary" data-next>Continue</button>
           </div>
         </div>
 
@@ -223,10 +223,10 @@
           <h2>Review &amp; submit</h2>
           <p class="form-desc">Check everything looks right. Once you submit, we'll review your documents and email you within 48 hours.</p>
 
-          <div id="review-summary" style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: 14px; padding: 24px; margin-bottom: 24px;"></div>
+          <div id="review-summary" style="background: var(--bg-soft); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 24px;"></div>
 
-          <div style="display: flex; gap: 12px; padding: 16px; background: rgba(124,58,237,0.05); border: 1px solid rgba(124,58,237,0.15); border-radius: 12px; margin-bottom: 24px;">
-            <span style="font-size: 1.4rem;">💡</span>
+          <div style="display: flex; gap: 12px; padding: 16px; background: var(--bg-cream); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 24px;">
+            <span id="info-icon"></span>
             <div style="font-size: 0.9rem; line-height: 1.6;">
               <strong>What happens next:</strong> Our trust team reviews your documents. If anything's missing we'll email you. Once verified, your campaign goes live and you get a shareable link plus a founder dashboard.
             </div>
@@ -234,14 +234,14 @@
 
           <label style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 24px; cursor: pointer;">
             <input type="checkbox" id="agree" style="margin-top: 4px;" />
-            <span style="font-size: 0.88rem; color: var(--slate-700);">
+            <span style="font-size: 0.88rem; color: var(--text-dark); line-height: 1.55;">
               I confirm everything I've submitted is true and accurate. I understand SaSpark holds funds in trust and that misrepresentation may result in legal action and immediate campaign termination.
             </span>
           </label>
 
           <div class="form-nav">
-            <button type="button" class="btn btn-ghost" data-prev>← Back</button>
-            <button type="submit" class="btn btn-primary btn-lg" id="submit-btn">Submit campaign →</button>
+            <button type="button" class="btn btn-ghost" data-prev>Back</button>
+            <button type="submit" class="btn btn-primary btn-lg" id="submit-btn">Submit campaign</button>
           </div>
         </div>
 
@@ -249,9 +249,9 @@
 
       <!-- Success state -->
       <div class="form-card" id="success-card" style="display: none; text-align: center;">
-        <div style="font-size: 4rem; margin-bottom: 12px;">🎉</div>
-        <h2>Your campaign is submitted!</h2>
-        <p class="muted" style="margin: 8px auto 24px; max-width: 460px;">
+        <div id="success-check" style="margin: 0 auto 16px; display: inline-block; padding: 16px; border: 1px solid var(--border); border-radius: 50%;"></div>
+        <h2 style="font-weight: 500;">Your campaign is submitted</h2>
+        <p class="muted" style="margin: 8px auto 28px; max-width: 460px;">
           We'll review your documents and email you within 48 hours. In the meantime, your campaign is visible in preview mode.
         </p>
         <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
@@ -271,10 +271,20 @@
     app.renderNav('list');
     app.renderFooter();
 
-    // populate category select
+    // populate category select (no emoji)
     document.getElementById('cat-select').innerHTML = app.CATEGORIES.map(
-      (c) => `<option value="${c.id}">${c.icon} ${c.name}</option>`
+      (c) => `<option value="${c.id}">${c.name}</option>`
     ).join('');
+
+    // inject upload-zone icons
+    document.querySelectorAll('.upload-zone').forEach((z) => {
+      const ic = z.dataset.icon || 'upload';
+      const mount = z.querySelector('.upload-icon-mount');
+      if (mount) mount.innerHTML = app.icon(ic, { size: 22 });
+    });
+
+    document.getElementById('info-icon').innerHTML = app.icon('info', { size: 18 });
+    document.getElementById('success-check').innerHTML = app.icon('check', { size: 28, stroke: 2 });
 
     const form = document.getElementById('list-form');
     const panes = document.querySelectorAll('.step-pane');
@@ -301,7 +311,7 @@
       for (const el of required) {
         if (!el.value.trim()) {
           el.focus();
-          app.toast('Please fill in all required fields.', 'error');
+          app.toast('Please fill in all required fields.');
           el.style.borderColor = 'var(--danger)';
           setTimeout(() => { el.style.borderColor = ''; }, 1800);
           return false;
@@ -311,9 +321,7 @@
     }
 
     document.querySelectorAll('[data-next]').forEach((b) => {
-      b.addEventListener('click', () => {
-        if (validateStep(current)) showStep(current + 1);
-      });
+      b.addEventListener('click', () => { if (validateStep(current)) showStep(current + 1); });
     });
     document.querySelectorAll('[data-prev]').forEach((b) => {
       b.addEventListener('click', () => showStep(current - 1));
@@ -326,7 +334,7 @@
         if (inp.files.length) {
           zone.classList.add('has-file');
           const names = Array.from(inp.files).map((f) => f.name).join(', ');
-          zone.querySelector('.upload-text').textContent = '✓ ' + names;
+          zone.querySelector('.upload-text').textContent = '✓  ' + names;
           zone.querySelector('.upload-sub').textContent = 'Tap to replace';
         }
       });
@@ -340,10 +348,10 @@
         .map((z) => z.dataset.doc);
 
       document.getElementById('review-summary').innerHTML = `
-        <div style="display: grid; grid-template-columns: 120px 1fr; gap: 12px 18px; font-size: 0.92rem;">
+        <div style="display: grid; grid-template-columns: 130px 1fr; gap: 14px 18px; font-size: 0.92rem;">
           <strong>Name</strong><span>${app.escapeHtml(fd.get('name') || '—')}</span>
           <strong>Tagline</strong><span>${app.escapeHtml(fd.get('tagline') || '—')}</span>
-          <strong>Category</strong><span>${cat.icon} ${cat.name}</span>
+          <strong>Category</strong><span>${cat.name}</span>
           <strong>Location</strong><span>${app.escapeHtml(fd.get('location') || '—')}</span>
           <strong>Founder</strong><span>${app.escapeHtml(fd.get('founder') || '—')}</span>
           <strong>Goal</strong><span>${app.fmtZARExact(+fd.get('fundingGoal') || 0)}</span>
@@ -356,7 +364,7 @@
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       if (!document.getElementById('agree').checked) {
-        app.toast('Please confirm the declaration to submit.', 'error');
+        app.toast('Please confirm the declaration to submit.');
         return;
       }
       const fd = new FormData(form);
@@ -365,7 +373,7 @@
         slug: (fd.get('name') || '').toLowerCase().replace(/[^a-z0-9]+/g, '-'),
         name: fd.get('name'),
         tagline: fd.get('tagline'),
-        emoji: fd.get('emoji') || '🚀',
+        coverImg: fd.get('coverImg') || undefined,
         category: fd.get('category'),
         location: fd.get('location'),
         founder: fd.get('founder'),
@@ -391,7 +399,7 @@
       document.getElementById('stepper').style.display = 'none';
       document.getElementById('success-card').style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      app.toast('Campaign submitted for review!', 'success');
+      app.toast('Campaign submitted for review');
     });
   </script>
 </body>

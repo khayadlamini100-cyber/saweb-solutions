@@ -6,19 +6,17 @@
   <title>Startup — SaSpark</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <div id="nav"></div>
 
   <section class="detail-hero">
-    <div class="container" id="detail-mount">
-      <!-- filled by JS -->
-    </div>
+    <div class="container" id="detail-mount"></div>
   </section>
 
-  <section style="padding-top: 40px;">
+  <section style="padding-top: 50px;">
     <div class="container">
       <div class="detail-layout">
         <div class="detail-main" id="detail-main"></div>
@@ -30,9 +28,9 @@
   <!-- ─── FUND MODAL ─────────────────────────────────────────── -->
   <div class="modal-backdrop" id="fund-modal">
     <div class="modal">
-      <button class="modal-close" id="fund-close">×</button>
+      <button class="modal-close" id="fund-close" aria-label="Close"></button>
       <div id="fund-step-amount">
-        <h2 style="margin-bottom: 6px;">Back this startup</h2>
+        <h2 style="margin-bottom: 6px; font-weight: 500;">Back this startup</h2>
         <p class="muted" style="margin-bottom: 20px;">Minimum R1. Every cent counts.</p>
         <div class="amount-input-wrap">
           <span class="currency">R</span>
@@ -56,54 +54,27 @@
           <label class="form-label">Message to the founder (optional)</label>
           <textarea id="fund-msg" class="form-control" rows="3" maxlength="200" placeholder="Say why you're backing them…"></textarea>
         </div>
-        <button class="btn btn-fund btn-full btn-lg" id="fund-continue">Continue to payment →</button>
-        <p style="font-size: 0.78rem; color: var(--slate-500); text-align: center; margin-top: 14px;">
-          🔒 Held in a regulated trust account. Released to founder when milestones are verified.
+        <button class="btn btn-fund btn-full btn-lg" id="fund-continue">Continue to payment</button>
+        <p style="font-size: 0.78rem; color: var(--text-mid); text-align: center; margin-top: 16px; display: flex; align-items: center; justify-content: center; gap: 6px;" id="trust-note">
+          Held in a regulated trust account. Released when milestones are verified.
         </p>
       </div>
 
       <div id="fund-step-pay" style="display: none;">
-        <h2 style="margin-bottom: 6px;">Choose how to pay</h2>
-        <p class="muted" style="margin-bottom: 20px;">Funding <strong id="fund-confirm-amt" style="color: var(--ink);">R0</strong> to <strong id="fund-confirm-name" style="color: var(--ink);"></strong></p>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;">
-          <button class="pay-method" data-pay="card">💳<br><strong>Card</strong><br><small>Visa / Mastercard</small></button>
-          <button class="pay-method" data-pay="eft">🏦<br><strong>Instant EFT</strong><br><small>FNB, Capitec, Absa…</small></button>
-          <button class="pay-method" data-pay="snap">📱<br><strong>SnapScan</strong><br><small>QR code</small></button>
-          <button class="pay-method" data-pay="zapper">⚡<br><strong>Zapper</strong><br><small>QR code</small></button>
-        </div>
+        <h2 style="margin-bottom: 6px; font-weight: 500;">Choose how to pay</h2>
+        <p class="muted" style="margin-bottom: 20px;">Funding <strong id="fund-confirm-amt" style="color: var(--ink); font-weight: 600;">R0</strong> to <strong id="fund-confirm-name" style="color: var(--ink); font-weight: 600;"></strong></p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;" id="pay-methods"></div>
         <button class="btn btn-ghost btn-full btn-sm" id="fund-back">← Choose another amount</button>
       </div>
 
       <div id="fund-step-success" style="display: none; text-align: center;">
-        <div style="font-size: 4rem; margin-bottom: 10px;">🎉</div>
-        <h2 style="margin-bottom: 8px;">Thank you!</h2>
-        <p class="muted" style="margin-bottom: 24px;">Your contribution of <strong id="success-amt" style="color: var(--lime-deep);"></strong> has been received. The founder will be notified.</p>
+        <div id="success-ico" style="margin: 0 auto 14px; display: inline-block; padding: 14px; border: 1px solid var(--border); border-radius: 50%;"></div>
+        <h2 style="margin-bottom: 8px; font-weight: 500;">Thank you</h2>
+        <p class="muted" style="margin-bottom: 24px;">Your contribution of <strong id="success-amt" style="color: var(--ink); font-weight: 600;"></strong> has been received. The founder will be notified.</p>
         <button class="btn btn-primary btn-full" id="fund-done">Done</button>
       </div>
     </div>
   </div>
-
-  <style>
-    .pay-method {
-      padding: 18px 12px;
-      background: var(--slate-50);
-      border: 2px solid var(--slate-200);
-      border-radius: 12px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      line-height: 1.6;
-      transition: border-color 0.15s, background 0.15s;
-    }
-    .pay-method:hover { border-color: var(--violet); background: var(--white); }
-    .pay-method strong { font-size: 0.95rem; }
-    .pay-method small { color: var(--slate-500); }
-
-    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 14px; }
-    .team-card { display: flex; gap: 12px; padding: 14px; background: var(--slate-50); border-radius: 12px; align-items: center; }
-    .team-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--grad-brand); color: white; display: grid; place-items: center; font-weight: 800; flex-shrink: 0; font-size: 0.9rem; }
-    .team-name { font-weight: 700; font-size: 0.92rem; }
-    .team-role { color: var(--slate-500); font-size: 0.82rem; }
-  </style>
 
   <div id="footer"></div>
 
@@ -113,13 +84,32 @@
     app.renderNav('explore');
     app.renderFooter();
 
+    document.getElementById('fund-close').innerHTML = app.icon('x', { size: 18 });
+    document.getElementById('success-ico').innerHTML = app.icon('check', { size: 28, stroke: 2 });
+    document.getElementById('trust-note').insertAdjacentHTML('afterbegin', app.icon('lock', { size: 12 }) + ' ');
+
+    // Pay methods
+    document.getElementById('pay-methods').innerHTML = [
+      { id: 'card',   icon: 'credit-card', name: 'Card',         sub: 'Visa / Mastercard' },
+      { id: 'eft',    icon: 'bank',        name: 'Instant EFT',  sub: 'FNB, Capitec, Absa…' },
+      { id: 'snap',   icon: 'qr',          name: 'SnapScan',     sub: 'QR code' },
+      { id: 'zapper', icon: 'qr',          name: 'Zapper',       sub: 'QR code' },
+    ].map((p) => `
+      <button class="pay-method" data-pay="${p.id}">
+        ${app.icon(p.icon, { size: 22 })}
+        <div>
+          <strong>${p.name}</strong>
+          <small>${p.sub}</small>
+        </div>
+      </button>
+    `).join('');
+
     const id = app.qs('id') || 's02';
     const s = app.getStartupById(id);
 
     if (!s) {
       document.getElementById('detail-mount').innerHTML = `
         <div class="empty">
-          <div class="empty-icon">🤔</div>
           <h2>Startup not found</h2>
           <p style="margin-top: 8px;">It may have been removed, or the link is broken.</p>
           <a class="btn btn-primary mt-2" href="explore.html">Browse all startups</a>
@@ -133,23 +123,30 @@
     function renderDetail(s) {
       const cat = app.catLookup(s.category);
       document.getElementById('detail-mount').innerHTML = `
-        <a href="explore.html" style="color: var(--slate-500); font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 20px;">← Back to explore</a>
-        <div class="detail-cover cat-${cat.color}">
-          <span class="cat-tag">${cat.icon} ${cat.name}</span>
-          ${s.verified ? '<span class="verified-badge" style="width:36px; height:36px; font-size:1.1rem;" title="Verified">✓</span>' : ''}
-          <span style="font-size: 8rem;">${s.emoji || cat.icon}</span>
+        <a href="explore.html" style="color: var(--text-mid); font-size: 0.9rem; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 24px;">
+          ${app.icon('arrow-left', { size: 14 })} Back to explore
+        </a>
+        <div class="detail-cover">
+          <img src="${s.coverImg}" alt="${app.escapeHtml(s.name)}" />
+          <span class="cat-tag">${app.icon(cat.iconName, { size: 14 })} ${cat.name}</span>
+          ${s.verified ? `<span class="verified-badge" title="Verified">${app.icon('check', { size: 16, stroke: 2.4 })}</span>` : ''}
         </div>
         <h1 class="detail-title">${app.escapeHtml(s.name)}</h1>
         <p class="detail-tagline">${app.escapeHtml(s.tagline)}</p>
         <div class="detail-meta">
-          <span>📍 ${app.escapeHtml(s.location)}</span>
-          <span>👤 Founded by ${app.escapeHtml(s.founder)}</span>
-          <span>📅 Listed ${new Date(s.createdAt).toLocaleDateString('en-ZA', { day:'numeric', month:'short', year:'numeric' })}</span>
-          <span>👀 ${app.fmtNum(s.views)} views</span>
+          <span>${app.icon('map-pin', { size: 14 })} ${app.escapeHtml(s.location)}</span>
+          <span>${app.icon('user', { size: 14 })} Founded by ${app.escapeHtml(s.founder)}</span>
+          <span>${app.icon('calendar', { size: 14 })} Listed ${new Date(s.createdAt).toLocaleDateString('en-ZA', { day:'numeric', month:'short', year:'numeric' })}</span>
+          <span>${app.icon('eye', { size: 14 })} ${app.fmtNum(s.views)} views</span>
         </div>
       `;
 
-      const docsHTML = (s.documents || []).map((d) => `<div class="trust-item"><span class="ti-check">✓</span>${app.escapeHtml(d)}</div>`).join('');
+      const docsHTML = (s.documents || []).map((d) => `
+        <div class="trust-item">
+          <span class="ti-check">${app.icon('check', { size: 12, stroke: 2.4 })}</span>
+          ${app.escapeHtml(d)}
+        </div>
+      `).join('');
 
       const teamHTML = (s.team || []).map((t) => `
         <div class="team-card">
@@ -176,34 +173,34 @@
 
       document.getElementById('detail-main').innerHTML = `
         <div class="tabs">
-          <button class="tab active" data-tab="story">The story</button>
+          <button class="tab active" data-tab="story">Story</button>
           <button class="tab" data-tab="team">Team</button>
           <button class="tab" data-tab="trust">Verification (${(s.documents||[]).length})</button>
           <button class="tab" data-tab="updates">Updates (${(s.updates||[]).length})</button>
         </div>
 
         <div class="tab-panel active" data-panel="story">
-          <h3>🚨 The problem</h3>
+          <h3>${app.icon('info', { size: 16 })} The problem</h3>
           <p>${app.escapeHtml(s.problem).replace(/\n/g, '<br>')}</p>
 
-          <h3>💡 The solution</h3>
+          <h3>${app.icon('sparkles', { size: 16 })} The solution</h3>
           <p>${app.escapeHtml(s.solution).replace(/\n/g, '<br>')}</p>
 
-          <h3>🛠️ The plan</h3>
+          <h3>${app.icon('arrow-right', { size: 16 })} The plan</h3>
           <p style="white-space: pre-line;">${app.escapeHtml(s.plan)}</p>
 
-          <h3>📈 The market</h3>
+          <h3>${app.icon('trending-up', { size: 16 })} The market</h3>
           <p>${app.escapeHtml(s.market || 'Market details to be added by the founder.')}</p>
         </div>
 
         <div class="tab-panel" data-panel="team">
-          <h3>Who's building this</h3>
+          <h3>${app.icon('user', { size: 16 })} Who's building this</h3>
           <p class="muted">The founders behind ${app.escapeHtml(s.name)} — verified identities and track records.</p>
           <div class="team-grid">${teamHTML}</div>
         </div>
 
         <div class="tab-panel" data-panel="trust">
-          <h3>${s.verified ? '✅' : '⚠️'} Verification status</h3>
+          <h3>${app.icon(s.verified ? 'check' : 'info', { size: 16 })} Verification status</h3>
           ${s.verified
             ? '<p>This campaign has been reviewed and verified by the SaSpark trust team. Documents below have been checked.</p>'
             : '<p>This campaign is in early review. We recommend funding only after verification completes.</p>'}
@@ -228,7 +225,6 @@
     function renderSidebar(s) {
       const progress = app.pct(s.amountRaised, s.fundingGoal);
 
-      // Build funders list: seed contributions + locally recorded ones
       const seed = app.RECENT_CONTRIBUTIONS[s.id] || [];
       const local = (s.extraContribs || []).slice().reverse().map((c) => ({ funder: c.funder, amount: c.amount, msg: c.msg }));
       const combined = local.concat(seed).slice(0, 6);
@@ -243,7 +239,7 @@
               <div class="funder-amount">${app.fmtZARExact(c.amount)}</div>
             </li>
           `).join('')
-        : '<li style="color: var(--slate-500); font-size: 0.9rem; text-align: center; padding: 12px 0;">Be the first to back this startup.</li>';
+        : '<li style="color: var(--text-mid); font-size: 0.9rem; text-align: center; padding: 16px 0;">Be the first to back this startup.</li>';
 
       document.getElementById('fund-sidebar').innerHTML = `
         <div class="fund-raised">${app.fmtZARExact(s.amountRaised)}</div>
@@ -253,13 +249,13 @@
           <div class="fund-stat"><div class="n">${app.fmtNum(s.fundersCount)}</div><div class="l">Backers</div></div>
           <div class="fund-stat"><div class="n">${s.daysLeft}</div><div class="l">Days left</div></div>
         </div>
-        ${s.verified ? '<div class="verified-row">Trust team verified</div>' : ''}
+        ${s.verified ? `<div class="verified-row">${app.icon('check', { size: 16, stroke: 2.2 })} Trust team verified</div>` : ''}
         <button class="btn btn-fund btn-full btn-lg" id="fund-cta">Back this startup</button>
-        <div style="text-align: center; font-size: 0.78rem; color: var(--slate-500); margin-top: 10px;">
-          From R1 — pay by card, EFT, or QR code
+        <div style="text-align: center; font-size: 0.78rem; color: var(--text-mid); margin-top: 12px;">
+          From R1 — card, EFT, or QR
         </div>
-        <div style="margin-top: 24px;">
-          <h4 style="margin-bottom: 8px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--slate-500);">Recent backers</h4>
+        <div style="margin-top: 28px;">
+          <h4 style="margin-bottom: 12px; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-mid); font-weight: 500;">Recent backers</h4>
           <ul class="funders-list">${fundersHTML}</ul>
         </div>
       `;
@@ -302,8 +298,7 @@
 
       continueBtn.addEventListener('click', () => {
         const amt = parseInt(amtInput.value, 10);
-        if (!amt || amt < 1) { app.toast('Minimum funding is R1', 'error'); return; }
-        const name = document.getElementById('fund-name').value.trim() || 'Anonymous';
+        if (!amt || amt < 1) { app.toast('Minimum funding is R1'); return; }
         document.getElementById('fund-confirm-amt').textContent = app.fmtZARExact(amt);
         document.getElementById('fund-confirm-name').textContent = s.name;
         stepAmt.style.display = 'none';
@@ -339,7 +334,7 @@
         const fresh = app.getStartupById(s.id);
         renderSidebar(fresh);
         bindFundModal(fresh);
-        app.toast('Thank you for backing ' + fresh.name + '!', 'success');
+        app.toast('Thank you for backing ' + fresh.name);
       });
     }
   </script>
