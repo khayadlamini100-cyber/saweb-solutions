@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+  <defs>
+    <radialGradient id="g2bg" cx="45%" cy="55%" r="70%">
+      <stop offset="0%" stop-color="#1a1306"/>
+      <stop offset="60%" stop-color="#0d0d0a"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </radialGradient>
+    <radialGradient id="g2kb-body" cx="32%" cy="28%" r="60%">
+      <stop offset="0%" stop-color="#4a4a4a"/>
+      <stop offset="40%" stop-color="#2a2a2a"/>
+      <stop offset="100%" stop-color="#111111"/>
+    </radialGradient>
+    <radialGradient id="g2kb-handle" cx="25%" cy="25%" r="70%">
+      <stop offset="0%" stop-color="#5a5a5a"/>
+      <stop offset="100%" stop-color="#1c1c1c"/>
+    </radialGradient>
+    <radialGradient id="g2dbell" cx="32%" cy="28%" r="60%">
+      <stop offset="0%" stop-color="#3e3e3e"/>
+      <stop offset="50%" stop-color="#202020"/>
+      <stop offset="100%" stop-color="#0e0e0e"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="600" height="800" fill="#050505"/>
+  <rect width="600" height="800" fill="url(#g2bg)"/>
+
+  <!-- Floor -->
+  <rect x="0" y="650" width="600" height="150" fill="#0c0b08"/>
+  <line x1="0" y1="650" x2="600" y2="650" stroke="#1a1608" stroke-width="2"/>
+
+  <!-- ===  32KG KETTLEBELL (dominant, center-left) === -->
+
+  <!-- Handle -->
+  <path d="M 158 290 Q 158 228 188 210 Q 230 192 272 210 Q 302 226 302 290"
+        stroke="url(#g2kb-handle)" stroke-width="34" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Handle highlight -->
+  <path d="M 168 290 Q 168 242 194 226 Q 230 211 268 226 Q 291 241 291 290"
+        stroke="rgba(255,255,255,0.06)" stroke-width="12" fill="none" stroke-linecap="round"/>
+
+  <!-- Body (sphere) -->
+  <circle cx="230" cy="460" r="130" fill="url(#g2kb-body)"/>
+  <!-- Body highlight -->
+  <ellipse cx="190" cy="410" rx="55" ry="42" fill="rgba(255,255,255,0.03)"/>
+  <!-- Bottom flat -->
+  <ellipse cx="230" cy="582" rx="92" ry="15" fill="#090909"/>
+  <!-- Equator ring -->
+  <ellipse cx="230" cy="460" rx="130" ry="18" fill="none" stroke="#1e1e1e" stroke-width="2"/>
+
+  <!-- Weight text -->
+  <text x="230" y="450" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="48" fill="#222">32</text>
+  <text x="230" y="488" text-anchor="middle" font-family="Arial Black" font-weight="700" font-size="18" fill="#1a1a1a" letter-spacing="5">KG</text>
+
+  <!-- Shadow KB -->
+  <ellipse cx="230" cy="588" rx="112" ry="18" fill="rgba(0,0,0,0.65)"/>
+
+  <!-- === 20KG DUMBBELL (right, foreground) === -->
+
+  <!-- Left plate -->
+  <path d="M 370 544 Q 370 490 378 480 L 390 478 L 395 480 Q 404 490 404 544 Q 404 598 395 608 L 383 610 L 371 608 Q 370 598 370 544 Z" fill="url(#g2dbell)" stroke="#282828" stroke-width="1"/>
+  <!-- Left plate inner -->
+  <path d="M 377 544 Q 377 497 383 489 Q 389 497 390 544 Q 390 591 383 599 Q 377 591 377 544 Z" fill="#161616"/>
+  <!-- Handle -->
+  <rect x="404" y="514" width="82" height="22" rx="11" fill="#2c2c2c"/>
+  <!-- Handle top highlight -->
+  <rect x="404" y="515" width="82" height="7" rx="3" fill="rgba(255,255,255,0.05)"/>
+  <!-- Knurling lines -->
+  <line x1="418" y1="514" x2="418" y2="536" stroke="#1e1e1e" stroke-width="1.5"/>
+  <line x1="430" y1="514" x2="430" y2="536" stroke="#1e1e1e" stroke-width="1.5"/>
+  <line x1="442" y1="514" x2="442" y2="536" stroke="#1e1e1e" stroke-width="1.5"/>
+  <line x1="454" y1="514" x2="454" y2="536" stroke="#1e1e1e" stroke-width="1.5"/>
+  <line x1="466" y1="514" x2="466" y2="536" stroke="#1e1e1e" stroke-width="1.5"/>
+  <line x1="478" y1="514" x2="478" y2="536" stroke="#1e1e1e" stroke-width="1.5"/>
+  <!-- Right plate -->
+  <path d="M 486 544 Q 486 490 494 480 L 506 478 L 511 480 Q 520 490 520 544 Q 520 598 511 608 L 499 610 L 487 608 Q 486 598 486 544 Z" fill="url(#g2dbell)" stroke="#282828" stroke-width="1"/>
+  <path d="M 493 544 Q 493 497 499 489 Q 505 497 506 544 Q 506 591 499 599 Q 493 591 493 544 Z" fill="#161616"/>
+  <!-- Weight text -->
+  <text x="387" y="548" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="16" fill="#333">20</text>
+  <text x="387" y="564" text-anchor="middle" font-family="Arial" font-size="9" fill="#2a2a2a" letter-spacing="1">KG</text>
+
+  <!-- Shadow dumbbell -->
+  <ellipse cx="445" cy="654" rx="90" ry="12" fill="rgba(0,0,0,0.55)"/>
+
+  <!-- Ambient floor glow -->
+  <ellipse cx="280" cy="658" rx="240" ry="28" fill="rgba(15,12,5,0.8)"/>
+
+  <!-- Cyan accent -->
+  <rect x="0" y="793" width="600" height="7" fill="#00c3ff" opacity="0.5"/>
+
+  <!-- Vignette -->
+  <radialGradient id="g2vig" cx="50%" cy="55%" r="70%">
+    <stop offset="30%" stop-color="transparent"/>
+    <stop offset="100%" stop-color="rgba(0,0,0,0.72)"/>
+  </radialGradient>
+  <rect width="600" height="800" fill="url(#g2vig)"/>
+</svg>

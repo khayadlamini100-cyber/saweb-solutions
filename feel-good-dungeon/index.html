@@ -1,0 +1,1914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Feel Good Dungeon — Professional gym & personal training in Midrand. Group classes, personal training, nutrition support. R350/month, no joining fees.">
+  <title>Feel Good Dungeon | Gym & Personal Training — Midrand</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cyan:    #00c3ff;
+      --cyan-d:  #0099cc;
+      --black:   #0d0d0d;
+      --dark:    #111111;
+      --card:    #181818;
+      --border:  #252525;
+      --white:   #ffffff;
+      --muted:   #888888;
+      --light:   #dddddd;
+      --green:   #4caf50;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
+      padding: 0 5%;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(13,13,13,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+
+    nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.6); }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+    }
+
+    .logo-words {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-words .top {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: 2px;
+      color: var(--white);
+    }
+
+    .logo-words .bot {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.72rem;
+      letter-spacing: 3.5px;
+      color: var(--cyan);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--light);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--cyan); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-cyan {
+      background: var(--cyan);
+      color: #000;
+      padding: 0.65rem 1.6rem;
+      clip-path: polygon(7px 0%, 100% 0%, calc(100% - 7px) 100%, 0% 100%);
+    }
+
+    .btn-cyan:hover { background: #33cfff; transform: translateY(-1px); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--cyan);
+      padding: 0.6rem 1.6rem;
+      border: 2px solid var(--cyan);
+      clip-path: polygon(7px 0%, 100% 0%, calc(100% - 7px) 100%, 0% 100%);
+    }
+
+    .btn-ghost:hover { background: var(--cyan); color: #000; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      transition: all 0.3s;
+    }
+
+    /* ─── MOBILE NAV DRAWER ─── */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: rgba(13,13,13,0.98);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 5% 2rem;
+      z-index: 999;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { color: var(--light); text-decoration: none; font-size: 1.1rem; font-weight: 500; }
+    .mobile-nav a:hover { color: var(--cyan); }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      padding: 7rem 5% 5rem;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(100deg, rgba(13,13,13,0.96) 40%, rgba(13,13,13,0.55) 100%),
+        url('img/hero-bg.svg') center 30% / cover no-repeat;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+    }
+
+    /* Business name lock-up */
+    .hero-brand {
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-brand-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(4.5rem, 11vw, 9rem);
+      line-height: 0.88;
+      text-transform: uppercase;
+      letter-spacing: -2px;
+    }
+
+    .hero-brand-name .feel { color: var(--white); }
+    .hero-brand-name .good { color: var(--cyan); }
+    .hero-brand-name .dungeon {
+      display: block;
+      font-size: clamp(2rem, 4.5vw, 4rem);
+      color: var(--white);
+      letter-spacing: 10px;
+      font-weight: 600;
+      margin-top: 0.3rem;
+      opacity: 0.6;
+    }
+
+    .hero-divider {
+      width: 70px;
+      height: 3px;
+      background: var(--cyan);
+      margin: 1.5rem 0;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      background: rgba(0,195,255,0.08);
+      border: 1px solid rgba(0,195,255,0.25);
+      color: var(--cyan);
+      padding: 0.38rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-pill::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: var(--cyan);
+      border-radius: 50%;
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+      0%,100% { opacity: 1; }
+      50%      { opacity: 0.3; }
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    /* ─── LOCATION SECTION ─── */
+    #location {
+      padding: 0;
+      position: relative;
+      background: var(--dark);
+    }
+
+    .location-wrap {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+    }
+
+    .location-info {
+      padding: 4rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .location-info .s-title { font-size: clamp(1.8rem, 3vw, 2.5rem); margin-bottom: 0; }
+
+    .loc-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .loc-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .loc-ico {
+      width: 40px; height: 40px;
+      min-width: 40px;
+      background: rgba(0,195,255,0.1);
+      border: 1px solid rgba(0,195,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      margin-top: 2px;
+    }
+
+    .loc-row h4 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .loc-row p, .loc-row a {
+      font-size: 0.9rem;
+      color: var(--light);
+      text-decoration: none;
+      line-height: 1.55;
+    }
+
+    .loc-row a:hover { color: var(--cyan); }
+
+    .loc-open-maps {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--cyan);
+      color: #000;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      transition: background 0.2s;
+      width: fit-content;
+    }
+
+    .loc-open-maps:hover { background: #33cfff; }
+
+    /* B&W map */
+    .location-map {
+      position: relative;
+      min-height: 480px;
+      overflow: hidden;
+    }
+
+    .location-map iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      position: absolute;
+      inset: 0;
+      filter: grayscale(100%) contrast(1.1) brightness(0.75);
+    }
+
+    /* subtle cyan top border */
+    .location-map::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--cyan);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .price-strip {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--cyan);
+      width: fit-content;
+      overflow: hidden;
+    }
+
+    .price-block {
+      padding: 1.1rem 1.5rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .price-block:last-child { border-right: none; }
+
+    .price-amt {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 900;
+      color: var(--cyan);
+      line-height: 1;
+    }
+
+    .price-amt sup { font-size: 1rem; font-weight: 700; vertical-align: super; }
+
+    .price-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.4;
+      margin-top: 0.15rem;
+    }
+
+    .price-label strong { display: block; color: var(--light); font-size: 0.85rem; }
+
+    .price-nofee {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--green);
+      padding: 1.1rem 1.5rem;
+    }
+
+    /* ─── TRUST BAR ─── */
+    .trust-bar {
+      background: var(--cyan);
+      padding: 1.1rem 5%;
+      display: flex;
+      justify-content: center;
+      gap: 3.5rem;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .trust-item svg { flex-shrink: 0; }
+
+    .trust-text strong {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #000;
+      line-height: 1;
+    }
+
+    .trust-text span {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: rgba(0,0,0,0.65);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ─── SECTION SHELLS ─── */
+    .section { padding: 6rem 5%; }
+    .section.dark { background: var(--dark); }
+
+    .s-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 0.6rem;
+    }
+
+    .s-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      text-transform: uppercase;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+
+    .s-body {
+      color: var(--muted);
+      font-size: 0.97rem;
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ─── SERVICES ─── */
+    .services-head { text-align: center; margin-bottom: 3.5rem; }
+    .services-head .s-body { margin: 0 auto; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .srv-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2.25rem 1.75rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .srv-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: var(--cyan);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s;
+    }
+
+    .srv-card:hover { border-color: rgba(0,195,255,0.3); transform: translateY(-5px); }
+    .srv-card:hover::after { transform: scaleX(1); }
+
+    .srv-ico {
+      width: 52px; height: 52px;
+      background: rgba(0,195,255,0.08);
+      border: 1px solid rgba(0,195,255,0.18);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.35rem;
+    }
+
+    .srv-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      margin-bottom: 0.65rem;
+    }
+
+    .srv-card p { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
+
+    /* ─── ABOUT ─── */
+    .about-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .about-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .about-img:hover img { transform: scale(1.03); }
+
+    .about-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, transparent 55%, rgba(0,195,255,0.06));
+      pointer-events: none;
+    }
+
+    /* ─── GALLERY STRIP ─── */
+    #gallery {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .gallery-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      height: 420px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.75) saturate(0.8);
+      transition: filter 0.4s ease, transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      filter: brightness(0.9) saturate(1);
+      transform: scale(1.06);
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* cyan line on hover */
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--cyan);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+      z-index: 2;
+    }
+
+    .gallery-item:hover::before { transform: scaleX(1); }
+
+    @media (max-width: 900px) {
+      .gallery-strip { grid-template-columns: repeat(3, 1fr); height: 280px; }
+      .gallery-item:nth-child(4),
+      .gallery-item:nth-child(5) { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .gallery-strip { grid-template-columns: repeat(2, 1fr); height: 220px; }
+      .gallery-item:nth-child(3) { display: none; }
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: -1.25rem;
+      right: -1.25rem;
+      background: var(--cyan);
+      color: #000;
+      padding: 1.35rem;
+      text-align: center;
+      width: 120px;
+    }
+
+    .about-badge strong {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .about-badge span {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin: 2rem 0 2.5rem;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      font-size: 0.93rem;
+      color: var(--light);
+    }
+
+    .checklist li::before {
+      content: '✓';
+      width: 26px; height: 26px;
+      min-width: 26px;
+      background: rgba(0,195,255,0.12);
+      border: 1px solid rgba(0,195,255,0.35);
+      color: var(--cyan);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.8rem;
+    }
+
+    /* ─── PRICING ─── */
+    .pricing-head { text-align: center; margin-bottom: 3.5rem; }
+    .pricing-head .s-body { margin: 0 auto; }
+
+    .pricing-grid {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .p-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2.75rem 2.25rem;
+      flex: 1;
+      min-width: 270px;
+      max-width: 380px;
+      position: relative;
+    }
+
+    .p-card.featured {
+      border-color: var(--cyan);
+      background: linear-gradient(160deg, #181e23, #181818);
+    }
+
+    .p-badge {
+      position: absolute;
+      top: -1px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--cyan);
+      color: #000;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.28rem 1.25rem;
+      white-space: nowrap;
+    }
+
+    .p-name {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .p-price {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--cyan);
+      line-height: 1;
+    }
+
+    .p-price sup { font-size: 1.5rem; vertical-align: super; font-weight: 700; }
+
+    .p-price-alt {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--cyan);
+      line-height: 1.2;
+      padding-top: 0.4rem;
+    }
+
+    .p-period { font-size: 0.82rem; color: var(--muted); margin: 0.3rem 0 2rem; }
+
+    .p-divider { height: 1px; background: var(--border); margin: 0 0 1.5rem; }
+
+    .p-feats {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-bottom: 2rem;
+    }
+
+    .p-feats li {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 0.88rem;
+      color: var(--light);
+    }
+
+    .p-feats .y { color: var(--cyan); font-weight: 700; }
+    .p-feats .n { color: #444; font-weight: 700; }
+
+    .p-cta .btn { width: 100%; clip-path: none; }
+
+    /* ─── COMMUNITY ─── */
+    #community {
+      background: linear-gradient(160deg, #0d1820 0%, var(--black) 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .community-inner { max-width: 680px; margin: 0 auto; }
+    .community-ico { font-size: 3rem; margin-bottom: 1.5rem; }
+
+    /* ─── CONTACT ─── */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .contact-items { display: flex; flex-direction: column; gap: 2rem; }
+
+    .c-item { display: flex; align-items: flex-start; gap: 1.1rem; }
+
+    .c-ico {
+      width: 46px; height: 46px;
+      min-width: 46px;
+      background: rgba(0,195,255,0.08);
+      border: 1px solid rgba(0,195,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .c-item h4 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .c-item p, .c-item a {
+      color: var(--white);
+      font-size: 0.93rem;
+      text-decoration: none;
+      line-height: 1.55;
+    }
+
+    .c-item a:hover { color: var(--cyan); }
+
+    .c-form {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+    }
+
+    .c-form-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 1.75rem;
+    }
+
+    .f-group { margin-bottom: 1.1rem; }
+
+    .f-group label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.45rem;
+    }
+
+    .f-group input,
+    .f-group select,
+    .f-group textarea {
+      width: 100%;
+      background: #202020;
+      border: 1px solid var(--border);
+      color: var(--white);
+      padding: 0.8rem 1rem;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+
+    .f-group input:focus,
+    .f-group select:focus,
+    .f-group textarea:focus { border-color: var(--cyan); }
+
+    .f-group textarea { height: 96px; resize: vertical; }
+    .f-group select option { background: #202020; }
+
+    .f-submit { width: 100%; padding: 0.95rem; font-size: 1rem; clip-path: none; margin-top: 0.5rem; }
+
+    /* ─── MAP PLACEHOLDER ─── */
+    .map-box {
+      width: 100%;
+      height: 200px;
+      background: #161616;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .map-box span { font-size: 2rem; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #080808;
+      border-top: 1px solid var(--border);
+      padding: 2.75rem 5% 1.75rem;
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.75rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--cyan); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      padding-top: 1.75rem;
+    }
+
+    .footer-bottom p { font-size: 0.78rem; color: var(--muted); }
+    .footer-bottom a { color: var(--cyan); text-decoration: none; }
+
+    /* ─── FADE ANIMATIONS ─── */
+    .fade {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .fade.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── BOOKING ─── */
+    #booking { background: var(--black); }
+
+    .booking-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .booking-form-panel .s-body { margin-bottom: 2rem; }
+
+    .time-slots-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.45rem;
+      margin-top: 0.5rem;
+    }
+
+    .time-slot {
+      background: #1e1e1e;
+      border: 1px solid var(--border);
+      color: var(--light);
+      padding: 0.6rem 0.4rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    .time-slot:hover:not(:disabled) { border-color: rgba(0,195,255,0.45); color: var(--cyan); }
+    .time-slot.selected { background: var(--cyan); color: #000; border-color: var(--cyan); }
+    .time-slot:disabled { opacity: 0.28; cursor: not-allowed; }
+
+    .duration-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.45rem;
+      margin-top: 0.5rem;
+    }
+
+    .dur-btn {
+      background: #1e1e1e;
+      border: 1px solid var(--border);
+      color: var(--light);
+      padding: 0.7rem 0.4rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+
+    .dur-btn:hover { border-color: rgba(0,195,255,0.45); color: var(--cyan); }
+    .dur-btn.selected { background: rgba(0,195,255,0.12); border-color: var(--cyan); color: var(--cyan); }
+
+    /* Sessions list */
+    .bookings-panel { display: flex; flex-direction: column; gap: 0; }
+
+    .bookings-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 1rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .bookings-header h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .session-count {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .bookings-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-height: 500px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .bookings-list::-webkit-scrollbar { width: 3px; }
+    .bookings-list::-webkit-scrollbar-track { background: transparent; }
+    .bookings-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .no-bookings {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      border: 1px dashed var(--border);
+    }
+
+    .booking-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid #333;
+      padding: 1.1rem 1.35rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.75rem;
+      align-items: start;
+      transition: border-color 0.2s;
+    }
+
+    .booking-card:hover { border-color: rgba(0,195,255,0.2); border-left-color: inherit; }
+    .booking-card.s-upcoming     { border-left-color: #555; }
+    .booking-card.s-in-progress  { border-left-color: var(--cyan); }
+    .booking-card.s-complete     { border-left-color: var(--green); }
+
+    .bc-date {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.2rem;
+    }
+
+    .bc-meta { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+    .bc-who  { font-size: 0.83rem; color: var(--light); margin-top: 0.3rem; }
+
+    .status-badge {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 0.28rem 0.7rem;
+      white-space: nowrap;
+    }
+
+    .status-badge.upcoming    { background: rgba(255,255,255,0.05); color: var(--muted); }
+    .status-badge.in-progress { background: rgba(0,195,255,0.15);   color: var(--cyan); }
+    .status-badge.complete    { background: rgba(76,175,80,0.15);   color: var(--green); }
+
+    .bc-delete {
+      background: none;
+      border: none;
+      color: #3a3a3a;
+      cursor: pointer;
+      font-size: 0.95rem;
+      padding: 0;
+      margin-top: 0.4rem;
+      transition: color 0.2s;
+      display: block;
+    }
+
+    .bc-delete:hover { color: #e53935; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .about-wrap    { grid-template-columns: 1fr; gap: 4rem; padding: 0; }
+      .contact-wrap  { grid-template-columns: 1fr; gap: 3rem; }
+      .about-badge   { right: 1rem; bottom: 1rem; }
+      .location-wrap { grid-template-columns: 1fr; }
+      .location-info { border-right: none; border-bottom: 1px solid var(--border); padding: 3rem 5%; }
+      .location-map  { min-height: 320px; }
+      .booking-wrap  { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        position: fixed;
+        top: 68px; left: 0; right: 0;
+        background: rgba(13,13,13,0.98);
+        border-bottom: 1px solid var(--border);
+        padding: 1.75rem 5% 2.25rem;
+        z-index: 999;
+      }
+      .hamburger  { display: flex; }
+      .trust-bar  { gap: 1.75rem; }
+      .hero-ctas  { flex-direction: column; align-items: flex-start; }
+      .pricing-grid { flex-direction: column; align-items: center; }
+      .services-grid { grid-template-columns: 1fr; }
+      .hero-brand-name { font-size: clamp(3rem, 12vw, 5rem); }
+      .time-slots-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="mainNav">
+  <a href="#hero" class="nav-logo">
+    <!-- FG circular logo mark -->
+    <svg class="logo-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="21" cy="21" r="21" fill="#00c3ff"/>
+      <!-- Stylised figure lifting -->
+      <circle cx="21" cy="10" r="3.5" fill="#000"/>
+      <!-- barbell arms -->
+      <line x1="9" y1="18" x2="33" y2="18" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="7.5" cy="18" r="3" fill="#000"/>
+      <circle cx="34.5" cy="18" r="3" fill="#000"/>
+      <!-- body -->
+      <path d="M17 18 L15 31 L21 28 L27 31 L25 18" fill="#000"/>
+    </svg>
+    <div class="logo-words">
+      <span class="top">FEEL GOOD</span>
+      <span class="bot">DUNGEON</span>
+    </div>
+  </a>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#services" onclick="closeNav()">Services</a></li>
+    <li><a href="#about"    onclick="closeNav()">About</a></li>
+    <li><a href="#pricing"  onclick="closeNav()">Pricing</a></li>
+    <li><a href="#community" onclick="closeNav()">Community</a></li>
+    <li><a href="#contact"  onclick="closeNav()">Contact</a></li>
+  </ul>
+
+  <a href="#contact" class="btn btn-cyan" style="flex-shrink:0;">Join Now</a>
+
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+
+  <!-- LEFT: Business name + copy -->
+  <div class="hero-content fade">
+    <div class="hero-brand">
+      <div class="hero-brand-name">
+        <span class="feel">FEEL </span><span class="good">GOOD</span>
+        <span class="dungeon">DUNGEON</span>
+      </div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-pill">Midrand · Halfway House</div>
+    <p class="hero-sub">
+      Experienced &amp; professional personal trainers ready to help you lose weight, build muscle, and hit your body goals — no fluff, no lock-in.
+    </p>
+    <div class="hero-ctas">
+      <a href="#contact"  class="btn btn-cyan">Book a Free Consult</a>
+      <a href="#services" class="btn btn-ghost">See Services</a>
+    </div>
+    <div class="price-strip">
+      <div class="price-block">
+        <div class="price-amt"><sup>R</sup>350</div>
+        <div class="price-label"><strong>Month-to-Month</strong>no long contracts</div>
+      </div>
+      <div class="price-nofee">✓ No Joining Fees</div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ═══ TRUST BAR ═══ -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="#000" stroke-width="2"/><path d="M8 14.5l4 4 8-8" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="trust-text"><strong>Group Classes</strong><span>All Fitness Levels</span></div>
+  </div>
+  <div class="trust-item">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="10" r="4" stroke="#000" stroke-width="2"/><path d="M6 24c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#000" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="trust-text"><strong>Personal Training</strong><span>1-on-1 Sessions</span></div>
+  </div>
+  <div class="trust-item">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4C9 4 5 8 5 13c0 5.5 9 15 9 15s9-9.5 9-15c0-5-4-9-9-9z" stroke="#000" stroke-width="2"/><circle cx="14" cy="13" r="3" fill="#000"/></svg>
+    <div class="trust-text"><strong>Midrand</strong><span>Innovation Worx</span></div>
+  </div>
+  <div class="trust-item">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="4" y="4" width="20" height="20" rx="2" stroke="#000" stroke-width="2"/><path d="M9 14h10M14 9v10" stroke="#000" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="trust-text"><strong>R350 / Month</strong><span>No Joining Fee</span></div>
+  </div>
+</div>
+
+
+<!-- ═══ GALLERY ═══ -->
+<section id="gallery">
+  <div class="gallery-strip">
+    <div class="gallery-item">
+      <img src="img/gym-1.svg" alt="Training" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="img/gym-2.svg" alt="Equipment" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="img/gym-3.svg" alt="Gear" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="img/gym-4.svg" alt="Strength" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="img/gym-5.svg" alt="Intensity" loading="lazy">
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ LOCATION ═══ -->
+<section id="location">
+  <div class="location-wrap">
+    <!-- Info panel -->
+    <div class="location-info fade">
+      <div>
+        <div class="s-label">Find Us</div>
+        <h2 class="s-title">Where to<br>Find Us</h2>
+      </div>
+      <div class="loc-details">
+        <div class="loc-row">
+          <div class="loc-ico">📍</div>
+          <div>
+            <h4>Address</h4>
+            <p>Innovation Worx, 16th Road<br>Scale End, Halfway House<br>Midrand, 1685</p>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="loc-ico">📞</div>
+          <div>
+            <h4>Phone</h4>
+            <a href="tel:0691619116">069 161 9116</a>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="loc-ico">✉️</div>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:info@fgdungeon.co.za">info@fgdungeon.co.za</a>
+          </div>
+        </div>
+      </div>
+      <a href="https://maps.google.com/?q=Innovation+Worx+16th+Road+Halfway+House+Midrand"
+         target="_blank" rel="noopener" class="loc-open-maps">
+        Get Directions ↗
+      </a>
+    </div>
+    <!-- B&W Map -->
+    <div class="location-map">
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=28.099%2C-26.003%2C28.149%2C-25.963&amp;layer=mapnik&amp;marker=-25.983%2C28.129"
+        title="Feel Good Dungeon location"
+        loading="lazy"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ SERVICES ═══ -->
+<section id="services" class="section dark">
+  <div class="services-head fade">
+    <div class="s-label">What We Offer</div>
+    <h2 class="s-title">Programs Built<br>For Results</h2>
+    <p class="s-body">Whatever your goal, our Dungeon Champs have a program for you — fully qualified coaches across every specialist area.</p>
+  </div>
+  <div class="services-grid">
+    <div class="srv-card fade">
+      <div class="srv-ico">⚡</div>
+      <h3>Group Fitness Classes</h3>
+      <p>Circuit training mixing cardio, strength, core, and agility. Classes start on time — every minute structured to deliver maximum results.</p>
+    </div>
+    <div class="srv-card fade">
+      <div class="srv-ico">🎯</div>
+      <h3>Personal Training</h3>
+      <p>One-on-one sessions built around your body, goals, and current fitness level. Your dedicated trainer builds and adjusts your plan every step of the way.</p>
+    </div>
+    <div class="srv-card fade">
+      <div class="srv-ico">💪</div>
+      <h3>Muscle Building</h3>
+      <p>Structured strength and resistance programs designed to build lean muscle and improve your physique progressively and sustainably.</p>
+    </div>
+    <div class="srv-card fade">
+      <div class="srv-ico">🥗</div>
+      <h3>Nutrition &amp; Diet Support</h3>
+      <p>Training is only half the equation. Our coaches give you practical, real-world nutrition and diet guidance to fuel your results inside and outside the gym.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ ABOUT ═══ -->
+<section class="section" id="about">
+  <div class="about-wrap">
+    <div class="about-visual fade">
+      <div class="about-img">
+        <img src="img/about.svg" alt="Training at Feel Good Dungeon" loading="lazy">
+      </div>
+      <div class="about-badge">
+        <strong>R350</strong>
+        <span>per month</span>
+      </div>
+    </div>
+
+    <div class="fade">
+      <div class="s-label">Who We Are</div>
+      <h2 class="s-title">The Dungeon<br>Difference</h2>
+      <p class="s-body">
+        Located at Innovation Worx in Midrand, Feel Good Dungeon is a community-driven fitness facility where results aren't optional — they're the only outcome. Our coaches, the Dungeon Champs, are passionate, fully qualified, and dedicated to your progress from day one.
+      </p>
+      <ul class="checklist">
+        <li>Fully qualified &amp; experienced Dungeon Champ coaches</li>
+        <li>Group classes and personal training for every fitness level</li>
+        <li>Full fitness, health &amp; nutrition assessment on sign-up</li>
+        <li>Welcoming, motivating, and results-focused community</li>
+        <li>Month-to-month membership — zero lock-in contracts</li>
+        <li>No joining fees, ever</li>
+      </ul>
+      <a href="#contact" class="btn btn-cyan">Start Your Journey</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ PRICING ═══ -->
+<section id="pricing" class="section dark">
+  <div class="pricing-head fade">
+    <div class="s-label">Membership</div>
+    <h2 class="s-title">Simple Pricing.<br>No Surprises.</h2>
+    <p class="s-body">One clear price. No joining fees. Cancel anytime.</p>
+  </div>
+  <div class="pricing-grid">
+    <!-- GROUP MEMBERSHIP -->
+    <div class="p-card fade">
+      <div class="p-name">Group Membership</div>
+      <div class="p-price"><sup>R</sup>350</div>
+      <div class="p-period">per month · no contract · no joining fee</div>
+      <div class="p-divider"></div>
+      <ul class="p-feats">
+        <li><span class="y">✓</span> Unlimited group fitness classes</li>
+        <li><span class="y">✓</span> All fitness levels welcome</li>
+        <li><span class="y">✓</span> Structured circuit training (cardio, strength, core &amp; agility)</li>
+        <li><span class="y">✓</span> Community Saturday workouts (last Sat of month)</li>
+        <li><span class="y">✓</span> No joining fee</li>
+        <li><span class="y">✓</span> Cancel anytime</li>
+      </ul>
+      <div class="p-cta">
+        <a href="#contact" class="btn btn-ghost" style="width:100%;clip-path:none;">Get Started →</a>
+      </div>
+    </div>
+
+    <!-- PERSONAL TRAINING -->
+    <div class="p-card featured fade">
+      <div class="p-badge">Most Popular</div>
+      <div class="p-name">Personal Training</div>
+      <div class="p-price-alt">Contact Us<br>for Pricing</div>
+      <div class="p-period">tailored to your goals &amp; schedule</div>
+      <div class="p-divider"></div>
+      <ul class="p-feats">
+        <li><span class="y">✓</span> Dedicated 1-on-1 trainer</li>
+        <li><span class="y">✓</span> Custom training &amp; nutrition program</li>
+        <li><span class="y">✓</span> Regular progress assessments</li>
+        <li><span class="y">✓</span> Diet &amp; lifestyle coaching</li>
+        <li><span class="y">✓</span> Flexible scheduling</li>
+        <li><span class="y">✓</span> Group classes included</li>
+      </ul>
+      <div class="p-cta">
+        <a href="#contact" class="btn btn-cyan" style="width:100%;clip-path:none;">Book a Consult →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ BOOKING ═══ -->
+<section id="booking" class="section">
+  <div class="booking-wrap">
+
+    <!-- Form -->
+    <div class="booking-form-panel fade">
+      <div class="s-label">Personal Training</div>
+      <h2 class="s-title">Book a Session</h2>
+      <p class="s-body">Pick a date, choose your time, and one of our Dungeon Champs will be ready for you.</p>
+
+      <form id="bookingForm" novalidate>
+
+        <div class="f-group">
+          <label for="bookingDate">Date</label>
+          <input id="bookingDate" name="date" type="date">
+        </div>
+
+        <div class="f-group">
+          <label>Available Times</label>
+          <div class="time-slots-grid" id="timeSlots">
+            <!-- populated by JS -->
+          </div>
+        </div>
+
+        <div class="f-group">
+          <label>Session Length</label>
+          <div class="duration-grid">
+            <button type="button" class="dur-btn" data-val="30">30 min</button>
+            <button type="button" class="dur-btn" data-val="45">45 min</button>
+            <button type="button" class="dur-btn selected" data-val="60">60 min</button>
+            <button type="button" class="dur-btn" data-val="90">90 min</button>
+          </div>
+        </div>
+
+        <div class="f-group">
+          <label for="bookingName">Booked By</label>
+          <input id="bookingName" name="name" type="text" placeholder="Your full name" required>
+        </div>
+
+        <button type="submit" class="btn btn-cyan f-submit" style="margin-top:0.5rem;">Book Session →</button>
+      </form>
+    </div>
+
+    <!-- Sessions list -->
+    <div class="bookings-panel fade">
+      <div class="bookings-header">
+        <h3>Your Sessions</h3>
+        <span class="session-count" id="sessionCount">0 sessions</span>
+      </div>
+      <div class="bookings-list" id="bookingsList">
+        <div class="no-bookings">No sessions booked yet.<br>Fill in the form to get started.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══ COMMUNITY ═══ -->
+<section id="community" class="section">
+  <div class="community-inner fade">
+    <div class="community-ico">🏆</div>
+    <div class="s-label">Community</div>
+    <h2 class="s-title">More Than<br>Just a Gym</h2>
+    <p class="s-body" style="margin: 1rem auto 2.5rem;">
+      Every last Saturday of the month we host our signature community workout and drinks session. It's where the Dungeon family gathers, pushes hard, and celebrates every win together.
+    </p>
+    <a href="#contact" class="btn btn-cyan">Join the Family</a>
+  </div>
+</section>
+
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" class="section dark">
+  <div class="contact-wrap">
+    <div>
+      <div class="s-label">Get In Touch</div>
+      <h2 class="s-title">Make an<br>Appointment</h2>
+      <p class="s-body" style="margin-bottom:3rem;">
+        Ready to start? Call, email, or fill in the form and one of our Dungeon Champs will reach out quickly.
+      </p>
+      <div class="contact-items">
+        <div class="c-item fade">
+          <div class="c-ico">📍</div>
+          <div>
+            <h4>Location</h4>
+            <p>Innovation Worx, 16th Road<br>Scale End, Halfway House<br>Midrand, 1685</p>
+          </div>
+        </div>
+        <div class="c-item fade">
+          <div class="c-ico">📞</div>
+          <div>
+            <h4>Phone</h4>
+            <a href="tel:0691619116">069 161 9116</a>
+          </div>
+        </div>
+        <div class="c-item fade">
+          <div class="c-ico">✉️</div>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:info@fgdungeon.co.za">info@fgdungeon.co.za</a>
+          </div>
+        </div>
+        <div class="c-item fade">
+          <div class="c-ico">🌐</div>
+          <div>
+            <h4>Website</h4>
+            <a href="https://www.fgdungeon.co.za" target="_blank" rel="noopener">www.fgdungeon.co.za</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-box">
+        <span>🗺️</span>
+        <p>Innovation Worx · 16th Road, Scale End, Midrand</p>
+      </div>
+    </div>
+
+    <div class="c-form fade">
+      <div class="c-form-title">Book a Free Consult</div>
+      <form id="fgForm" onsubmit="handleSubmit(event)" novalidate>
+        <div class="f-group">
+          <label for="name">Full Name</label>
+          <input id="name" name="name" type="text" placeholder="Your full name" required>
+        </div>
+        <div class="f-group">
+          <label for="phone">Phone Number</label>
+          <input id="phone" name="phone" type="tel" placeholder="e.g. 082 123 4567" required>
+        </div>
+        <div class="f-group">
+          <label for="email">Email Address</label>
+          <input id="email" name="email" type="email" placeholder="you@email.com">
+        </div>
+        <div class="f-group">
+          <label for="interest">I'm Interested In</label>
+          <select id="interest" name="interest">
+            <option value="">Select a service...</option>
+            <option>Group Fitness Classes</option>
+            <option>Personal Training</option>
+            <option>Nutrition &amp; Diet Support</option>
+            <option>Weight Loss Program</option>
+            <option>General Enquiry</option>
+          </select>
+        </div>
+        <div class="f-group">
+          <label for="msg">Tell Us About Your Goals</label>
+          <textarea id="msg" name="message" placeholder="e.g. I want to lose weight and build muscle..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-cyan f-submit">Send Enquiry →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-top">
+    <a href="#hero" class="nav-logo">
+      <svg width="36" height="36" viewBox="0 0 42 42" fill="none">
+        <circle cx="21" cy="21" r="21" fill="#00c3ff"/>
+        <circle cx="21" cy="10" r="3.5" fill="#000"/>
+        <line x1="9" y1="18" x2="33" y2="18" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="7.5" cy="18" r="3" fill="#000"/>
+        <circle cx="34.5" cy="18" r="3" fill="#000"/>
+        <path d="M17 18 L15 31 L21 28 L27 31 L25 18" fill="#000"/>
+      </svg>
+      <div class="logo-words">
+        <span class="top">FEEL GOOD</span>
+        <span class="bot">DUNGEON</span>
+      </div>
+    </a>
+    <nav class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#community">Community</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="tel:0691619116" class="btn btn-cyan">069 161 9116</a>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Feel Good Dungeon · Innovation Worx, Midrand</p>
+    <p>Website by <a href="https://saweb.co.za" target="_blank" rel="noopener">SaWeb Solutions</a></p>
+  </div>
+</footer>
+
+
+<script>
+  // ── Scroll-reveal ──
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+  // ── Nav scroll shadow ──
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // ── Mobile nav ──
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  function closeNav() {
+    document.getElementById('navLinks').classList.remove('open');
+  }
+
+  // ── Smooth anchors ──
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); closeNav(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+  // ── Form submit ──
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const name = e.target.name.value.trim();
+    const phone = e.target.phone.value.trim();
+    if (!name || !phone) {
+      alert('Please enter your name and phone number.');
+      return;
+    }
+    btn.textContent = '✓ Sent! We\'ll be in touch soon.';
+    btn.style.background = '#4caf50';
+    btn.disabled = true;
+    // TODO: wire up to formspree / email backend
+  }
+
+  // ── Booking System ──
+  const SLOTS = {
+    weekday:  ['06:00','07:00','08:00','09:00','10:00','11:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00'],
+    saturday: ['07:00','08:00','09:00','10:00','11:00','12:00'],
+    sunday:   []
+  };
+
+  let selTime = null;
+  let selDur  = 60;
+
+  function todayStr() {
+    const d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+
+  function nextDayStr(dateStr) {
+    const d = new Date(dateStr + 'T12:00:00');
+    d.setDate(d.getDate() + 1);
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+
+  // Find first date from dateStr onward that has at least one available slot
+  function firstAvailableDate(from) {
+    let candidate = from;
+    for (let i = 0; i < 14; i++) {
+      const dow  = new Date(candidate + 'T12:00:00').getDay();
+      const pool = dow === 0 ? SLOTS.sunday : dow === 6 ? SLOTS.saturday : SLOTS.weekday;
+      if (!pool.length) { candidate = nextDayStr(candidate); continue; }
+      if (candidate !== todayStr()) return candidate;
+      // today: check if any future slot exists
+      const nowMins = new Date().getHours() * 60 + new Date().getMinutes();
+      const hasFuture = pool.some(t => { const [h,m] = t.split(':').map(Number); return (h*60+m) > nowMins; });
+      if (hasFuture) return candidate;
+      candidate = nextDayStr(candidate);
+    }
+    return candidate;
+  }
+
+  function renderTimeSlots(dateStr) {
+    const wrap = document.getElementById('timeSlots');
+    if (!wrap) return;
+    const dow  = new Date(dateStr + 'T12:00:00').getDay();
+    const times = dow === 0 ? SLOTS.sunday : dow === 6 ? SLOTS.saturday : SLOTS.weekday;
+    const isToday  = dateStr === todayStr();
+    const nowMins  = new Date().getHours() * 60 + new Date().getMinutes();
+
+    if (!times.length) {
+      wrap.innerHTML = '<p style="color:var(--muted);font-size:0.85rem;padding:0.5rem 0;grid-column:1/-1">Closed on Sundays</p>';
+      selTime = null;
+      return;
+    }
+
+    // If today and all slots past, jump to next available day
+    if (isToday) {
+      const hasFuture = times.some(t => { const [h,m] = t.split(':').map(Number); return (h*60+m) > nowMins; });
+      if (!hasFuture) {
+        const next = firstAvailableDate(nextDayStr(dateStr));
+        const bDate = document.getElementById('bookingDate');
+        if (bDate) bDate.value = next;
+        renderTimeSlots(next);
+        return;
+      }
+    }
+
+    wrap.innerHTML = times.map(t => {
+      const [h, m] = t.split(':').map(Number);
+      const past   = isToday && (h * 60 + m) <= nowMins;
+      const active = t === selTime ? ' selected' : '';
+      return `<button type="button" class="time-slot${active}" onclick="pickTime('${t}')" ${past ? 'disabled' : ''}>${t}</button>`;
+    }).join('');
+
+    // Auto-select first available slot
+    selTime = null;
+    const first = times.find(t => {
+      const [h,m] = t.split(':').map(Number);
+      return !isToday || (h*60+m) > nowMins;
+    });
+    if (first) pickTime(first);
+  }
+
+  function pickTime(t) {
+    selTime = t;
+    document.querySelectorAll('.time-slot').forEach(b => b.classList.toggle('selected', b.textContent.trim() === t));
+  }
+
+  function pickDur(val) {
+    selDur = val;
+    document.querySelectorAll('.dur-btn').forEach(b => b.classList.toggle('selected', +b.dataset.val === val));
+  }
+
+  document.querySelectorAll('.dur-btn').forEach(b => b.addEventListener('click', () => pickDur(+b.dataset.val)));
+
+  // Inline error helper (no alert() — doesn't work in iframes)
+  function showBkError(msg) {
+    let el = document.getElementById('bkError');
+    if (!el) {
+      el = document.createElement('p');
+      el.id = 'bkError';
+      el.style.cssText = 'color:#ff5252;font-size:0.82rem;margin-bottom:0.75rem;';
+      document.getElementById('bookingForm').querySelector('button[type="submit"]').before(el);
+    }
+    el.textContent = msg;
+  }
+  function clearBkError() {
+    const el = document.getElementById('bkError');
+    if (el) el.textContent = '';
+  }
+
+  // Init date input
+  const bDate = document.getElementById('bookingDate');
+  if (bDate) {
+    bDate.min = todayStr();
+    const startDate = firstAvailableDate(todayStr());
+    bDate.value = startDate;
+    renderTimeSlots(startDate);
+    bDate.addEventListener('change', () => { clearBkError(); renderTimeSlots(bDate.value); });
+  }
+
+  // Booking storage
+  function loadBk() { try { return JSON.parse(localStorage.getItem('fg_bk') || '[]'); } catch { return []; } }
+  function saveBk(b) { localStorage.setItem('fg_bk', JSON.stringify(b)); }
+
+  function getStatus(b) {
+    const now   = new Date();
+    const start = new Date(b.date + 'T' + b.time);
+    const end   = new Date(start.getTime() + b.dur * 60000);
+    if (now < start)               return 'upcoming';
+    if (now >= start && now <= end) return 'in-progress';
+    return 'complete';
+  }
+
+  function fmtDate(d) {
+    return new Date(d + 'T12:00:00').toLocaleDateString('en-ZA', { weekday:'short', day:'numeric', month:'long', year:'numeric' });
+  }
+
+  function addMins(time, mins) {
+    const [h, m] = time.split(':').map(Number);
+    const tot = h * 60 + m + mins;
+    return String(Math.floor(tot/60)%24).padStart(2,'0') + ':' + String(tot%60).padStart(2,'0');
+  }
+
+  function renderBk() {
+    const list  = document.getElementById('bookingsList');
+    const count = document.getElementById('sessionCount');
+    if (!list) return;
+    const all = loadBk();
+    if (count) count.textContent = all.length + ' session' + (all.length !== 1 ? 's' : '');
+    if (!all.length) {
+      list.innerHTML = '<div class="no-bookings">No sessions booked yet.<br>Fill in the form to get started.</div>';
+      return;
+    }
+    const sorted = [...all].sort((a,b) => (a.date+a.time).localeCompare(b.date+b.time));
+    const labels = { 'upcoming':'Upcoming', 'in-progress':'In Progress', 'complete':'Complete' };
+    list.innerHTML = sorted.map(b => {
+      const st = getStatus(b);
+      return `<div class="booking-card s-${st}">
+        <div>
+          <div class="bc-date">${fmtDate(b.date)}</div>
+          <div class="bc-meta">${b.time} – ${addMins(b.time, b.dur)} &nbsp;·&nbsp; ${b.dur} min</div>
+          <div class="bc-who">👤 ${b.name}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.5rem;">
+          <span class="status-badge ${st}">${labels[st]}</span>
+          <button class="bc-delete" onclick="deleteBk('${b.id}')" title="Remove">✕</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function deleteBk(id) {
+    saveBk(loadBk().filter(b => b.id !== id));
+    renderBk();
+  }
+
+  // Form submit
+  const bForm = document.getElementById('bookingForm');
+  if (bForm) {
+    bForm.addEventListener('submit', e => {
+      e.preventDefault();
+      clearBkError();
+      const name = document.getElementById('bookingName').value.trim();
+      const date = document.getElementById('bookingDate').value;
+      if (!name)    { showBkError('Please enter your name.');    return; }
+      if (!date)    { showBkError('Please select a date.');      return; }
+      if (!selTime) { showBkError('Please select a time slot.'); return; }
+
+      const all = loadBk();
+      all.push({ id: Math.random().toString(36).slice(2), name, date, time: selTime, dur: selDur });
+      saveBk(all);
+      renderBk();
+
+      document.getElementById('bookingName').value = '';
+      const startDate = firstAvailableDate(todayStr());
+      bDate.value = startDate;
+      renderTimeSlots(startDate);
+
+      const btn = bForm.querySelector('button[type="submit"]');
+      btn.textContent = '✓ Session Booked!';
+      btn.style.background = 'var(--green)';
+      setTimeout(() => { btn.textContent = 'Book Session →'; btn.style.background = ''; }, 2500);
+
+      document.getElementById('bookingsList').scrollIntoView({ behavior:'smooth', block:'nearest' });
+    });
+  }
+
+  renderBk();
+  setInterval(renderBk, 30000);
+</script>
+
+</body>
+</html>

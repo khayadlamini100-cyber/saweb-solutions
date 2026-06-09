@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+  <defs>
+    <radialGradient id="g3bg" cx="50%" cy="45%" r="70%">
+      <stop offset="0%" stop-color="#1c1c1c"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </radialGradient>
+    <radialGradient id="g3kb" cx="30%" cy="25%" r="62%">
+      <stop offset="0%" stop-color="#484848"/>
+      <stop offset="55%" stop-color="#222"/>
+      <stop offset="100%" stop-color="#101010"/>
+    </radialGradient>
+    <radialGradient id="g3hex" cx="30%" cy="25%" r="62%">
+      <stop offset="0%" stop-color="#424242"/>
+      <stop offset="55%" stop-color="#1e1e1e"/>
+      <stop offset="100%" stop-color="#0e0e0e"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="600" height="800" fill="#050505"/>
+  <rect width="600" height="800" fill="url(#g3bg)"/>
+
+  <!-- Dark floor plane (top-down view) -->
+  <rect x="0" y="0" width="600" height="800" fill="#0a0a0a"/>
+  <!-- Rubber mat texture lines horizontal -->
+  <line x1="0" y1="100" x2="600" y2="100" stroke="#0d0d0d" stroke-width="1"/>
+  <line x1="0" y1="200" x2="600" y2="200" stroke="#0d0d0d" stroke-width="1"/>
+  <line x1="0" y1="300" x2="600" y2="300" stroke="#0d0d0d" stroke-width="1"/>
+  <line x1="0" y1="400" x2="600" y2="400" stroke="#0d0d0d" stroke-width="1"/>
+  <line x1="0" y1="500" x2="600" y2="500" stroke="#0d0d0d" stroke-width="1"/>
+  <line x1="0" y1="600" x2="600" y2="600" stroke="#0d0d0d" stroke-width="1"/>
+  <line x1="0" y1="700" x2="600" y2="700" stroke="#0d0d0d" stroke-width="1"/>
+  <!-- Vertical -->
+  <line x1="100" y1="0" x2="100" y2="800" stroke="#0d0d0d" stroke-width="1"/>
+  <line x1="200" y1="0" x2="200" y2="800" stroke="#0d0d0d" stroke-width="1"/>
+  <line x1="300" y1="0" x2="300" y2="800" stroke="#0d0d0d" stroke-width="1"/>
+  <line x1="400" y1="0" x2="400" y2="800" stroke="#0d0d0d" stroke-width="1"/>
+  <line x1="500" y1="0" x2="500" y2="800" stroke="#0d0d0d" stroke-width="1"/>
+
+  <!-- Spotlight radial over layout -->
+  <rect width="600" height="800" fill="url(#g3bg)"/>
+
+  <!-- === FLATLAY COMPOSITION: top-down === -->
+
+  <!-- KETTLEBELL (upper left) -->
+  <!-- Handle -->
+  <path d="M 82 95 Q 82 55 104 45 Q 134 34 162 45 Q 184 55 184 95" stroke="url(#g3kb)" stroke-width="26" fill="none" stroke-linecap="round"/>
+  <!-- Body circle -->
+  <circle cx="133" cy="185" r="80" fill="url(#g3kb)"/>
+  <!-- Equator -->
+  <ellipse cx="133" cy="185" rx="80" ry="12" fill="none" stroke="#1c1c1c" stroke-width="1.5"/>
+  <!-- Weight -->
+  <text x="133" y="179" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="28" fill="#222">24</text>
+  <text x="133" y="200" text-anchor="middle" font-family="Arial" font-size="11" fill="#1a1a1a" letter-spacing="3">KG</text>
+  <!-- Shadow -->
+  <ellipse cx="133" cy="190" rx="78" ry="10" fill="rgba(0,0,0,0.4)"/>
+
+  <!-- HEX DUMBBELL pair (center, larger) -->
+  <!-- Left hex plate -->
+  <polygon points="262,305 288,270 328,270 354,305 328,340 288,340" fill="url(#g3hex)" stroke="#2a2a2a" stroke-width="1.5"/>
+  <polygon points="271,305 292,278 324,278 345,305 324,332 292,332" fill="#181818"/>
+  <!-- Handle -->
+  <rect x="352" y="293" width="70" height="24" rx="12" fill="#282828"/>
+  <rect x="352" y="295" width="70" height="8" rx="4" fill="rgba(255,255,255,0.04)"/>
+  <line x1="365" y1="293" x2="365" y2="317" stroke="#1c1c1c" stroke-width="1.5"/>
+  <line x1="377" y1="293" x2="377" y2="317" stroke="#1c1c1c" stroke-width="1.5"/>
+  <line x1="389" y1="293" x2="389" y2="317" stroke="#1c1c1c" stroke-width="1.5"/>
+  <line x1="401" y1="293" x2="401" y2="317" stroke="#1c1c1c" stroke-width="1.5"/>
+  <!-- Right hex plate -->
+  <polygon points="420,305 446,270 486,270 512,305 486,340 446,340" fill="url(#g3hex)" stroke="#2a2a2a" stroke-width="1.5"/>
+  <polygon points="429,305 450,278 482,278 503,305 482,332 450,332" fill="#181818"/>
+  <!-- Weight label -->
+  <text x="308" y="310" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="18" fill="#2e2e2e">32</text>
+  <!-- Shadow under dumbbell -->
+  <ellipse cx="385" cy="342" rx="130" ry="12" fill="rgba(0,0,0,0.45)"/>
+
+  <!-- SMALL HEX DUMBBELL (lower right, rotated) -->
+  <g transform="rotate(18, 470, 560)">
+    <polygon points="420,545 440,517 472,517 492,545 472,573 440,573" fill="#1c1c1c" stroke="#242424" stroke-width="1.5"/>
+    <polygon points="427,545 445,524 467,524 485,545 467,566 445,566" fill="#141414"/>
+    <rect x="490" y="536" width="52" height="18" rx="9" fill="#222"/>
+    <polygon points="540,545 560,517 592,517 612,545 592,573 560,573" fill="#1c1c1c" stroke="#242424" stroke-width="1.5"/>
+    <polygon points="547,545 565,524 587,524 605,545 587,566 565,566" fill="#141414"/>
+    <text x="466" y="549" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="13" fill="#282828">16</text>
+  </g>
+
+  <!-- RESISTANCE BAND (coiled, lower left) -->
+  <g opacity="0.85">
+    <ellipse cx="105" cy="580" rx="72" ry="22" fill="none" stroke="#1e2e1e" stroke-width="16"/>
+    <ellipse cx="105" cy="564" rx="60" ry="17" fill="none" stroke="#182218" stroke-width="12"/>
+    <ellipse cx="105" cy="551" rx="46" ry="13" fill="none" stroke="#1e2e1e" stroke-width="10"/>
+    <ellipse cx="105" cy="540" rx="32" ry="9" fill="none" stroke="#182218" stroke-width="8"/>
+  </g>
+  <ellipse cx="105" cy="585" rx="80" ry="14" fill="rgba(0,0,0,0.4)"/>
+
+  <!-- CHALK BAG (upper right) -->
+  <rect x="430" y="80" width="118" height="148" rx="10" fill="#181818" stroke="#222" stroke-width="1"/>
+  <rect x="440" y="90" width="98" height="45" rx="6" fill="#1c1c1c"/>
+  <text x="489" y="120" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="14" fill="#252525" letter-spacing="1">CHALK</text>
+  <!-- Chalk powder effect -->
+  <ellipse cx="489" cy="145" rx="42" ry="32" fill="rgba(255,255,255,0.025)"/>
+  <ellipse cx="489" cy="155" rx="28" ry="18" fill="rgba(255,255,255,0.015)"/>
+
+  <!-- Cyan accent -->
+  <rect x="0" y="793" width="600" height="7" fill="#00c3ff" opacity="0.5"/>
+
+  <!-- Vignette -->
+  <radialGradient id="g3vig" cx="50%" cy="50%" r="68%">
+    <stop offset="30%" stop-color="transparent"/>
+    <stop offset="100%" stop-color="rgba(0,0,0,0.72)"/>
+  </radialGradient>
+  <rect width="600" height="800" fill="url(#g3vig)"/>
+</svg>

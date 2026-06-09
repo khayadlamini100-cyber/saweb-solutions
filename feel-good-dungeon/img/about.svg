@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+  <defs>
+    <radialGradient id="a-glow" cx="60%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#1e1e1e"/>
+      <stop offset="100%" stop-color="#060606"/>
+    </radialGradient>
+    <linearGradient id="a-fig" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="40%" stop-color="#2e2e2e"/>
+      <stop offset="100%" stop-color="#111"/>
+    </linearGradient>
+    <linearGradient id="a-side" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#080808"/>
+      <stop offset="100%" stop-color="#1a1a1a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="800" fill="#060606"/>
+  <rect width="600" height="800" fill="url(#a-glow)"/>
+
+  <!-- Floor line -->
+  <rect x="0" y="680" width="600" height="120" fill="#0a0a0a"/>
+  <line x1="0" y1="680" x2="600" y2="680" stroke="#1a1a1a" stroke-width="2"/>
+
+  <!-- === TRAINING FIGURE — standing dumbbell curl, side profile === -->
+
+  <!-- Head -->
+  <ellipse cx="310" cy="130" rx="38" ry="42" fill="#1c1c1c"/>
+
+  <!-- Neck -->
+  <rect x="296" y="168" width="28" height="28" fill="#181818"/>
+
+  <!-- Torso — broad shoulders tapered to waist -->
+  <path d="M 230 195 Q 225 210 232 320 Q 238 370 262 395 L 362 395 Q 386 370 392 320 Q 400 210 395 195 Q 370 180 310 178 Q 250 180 230 195 Z" fill="url(#a-fig)"/>
+
+  <!-- Left arm — relaxed at side, slightly bent -->
+  <path d="M 235 205 Q 210 240 205 300 Q 202 340 215 370 Q 220 385 230 390" stroke="#1e1e1e" stroke-width="38" fill="none" stroke-linecap="round"/>
+  <!-- Left forearm — down holding dumbbell -->
+  <path d="M 218 368 Q 215 410 218 450" stroke="#1c1c1c" stroke-width="30" fill="none" stroke-linecap="round"/>
+  <!-- Left dumbbell -->
+  <rect x="195" y="448" width="20" height="42" rx="4" fill="#222" stroke="#2e2e2e" stroke-width="1"/>
+  <ellipse cx="205" cy="448" rx="22" ry="10" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1"/>
+  <ellipse cx="205" cy="490" rx="22" ry="10" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1"/>
+
+  <!-- Right arm — raised curl, elbow bent -->
+  <path d="M 388 205 Q 415 235 428 280 Q 432 305 420 325 Q 410 340 395 345" stroke="#222" stroke-width="38" fill="none" stroke-linecap="round"/>
+  <!-- Right forearm — curled up toward shoulder -->
+  <path d="M 397 343 Q 378 310 360 285 Q 348 268 345 248" stroke="#1e1e1e" stroke-width="30" fill="none" stroke-linecap="round"/>
+  <!-- Right dumbbell — held at top of curl -->
+  <rect x="328" y="198" width="20" height="42" rx="4" fill="#2a2a2a" stroke="#363636" stroke-width="1.5"/>
+  <ellipse cx="338" cy="198" rx="26" ry="11" fill="#252525" stroke="#333" stroke-width="1.5"/>
+  <ellipse cx="338" cy="240" rx="26" ry="11" fill="#252525" stroke="#333" stroke-width="1.5"/>
+  <!-- Dumbbell knurling -->
+  <line x1="329" y1="210" x2="347" y2="210" stroke="#1e1e1e" stroke-width="2"/>
+  <line x1="329" y1="220" x2="347" y2="220" stroke="#1e1e1e" stroke-width="2"/>
+  <line x1="329" y1="230" x2="347" y2="230" stroke="#1e1e1e" stroke-width="2"/>
+
+  <!-- Left leg -->
+  <path d="M 264 392 Q 255 470 258 560 Q 260 610 265 680" stroke="#181818" stroke-width="55" fill="none" stroke-linecap="round"/>
+  <!-- Right leg -->
+  <path d="M 358 392 Q 368 470 365 560 Q 362 610 357 680" stroke="#161616" stroke-width="55" fill="none" stroke-linecap="round"/>
+
+  <!-- Shoes -->
+  <path d="M 238 674 Q 238 682 255 684 L 300 684 Q 312 683 312 674" fill="#141414" stroke="#1c1c1c" stroke-width="1"/>
+  <path d="M 328 674 Q 328 682 345 684 L 390 684 Q 402 683 402 674" fill="#141414" stroke="#1c1c1c" stroke-width="1"/>
+
+  <!-- Muscle definition on arm — highlight -->
+  <path d="M 348 250 Q 356 268 362 285" stroke="rgba(255,255,255,0.06)" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <!-- Torso highlight -->
+  <path d="M 280 195 Q 272 260 275 340" stroke="rgba(255,255,255,0.03)" stroke-width="20" fill="none"/>
+
+  <!-- Side rim light (right edge glow — like studio lighting) -->
+  <linearGradient id="a-rim" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="transparent"/>
+    <stop offset="85%" stop-color="transparent"/>
+    <stop offset="100%" stop-color="rgba(0,195,255,0.06)"/>
+  </linearGradient>
+  <rect width="600" height="800" fill="url(#a-rim)"/>
+
+  <!-- Floor shadow under figure -->
+  <ellipse cx="305" cy="682" rx="120" ry="14" fill="rgba(0,0,0,0.7)"/>
+
+  <!-- Cyan accent bar -->
+  <rect x="0" y="793" width="600" height="7" fill="#00c3ff" opacity="0.55"/>
+
+  <!-- Text below figure -->
+  <text x="300" y="748" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="13" fill="#1e1e1e" letter-spacing="8">PERSONAL TRAINING</text>
+
+  <!-- Deep vignette -->
+  <radialGradient id="a-vig" cx="50%" cy="45%" r="65%">
+    <stop offset="35%" stop-color="transparent"/>
+    <stop offset="100%" stop-color="rgba(0,0,0,0.7)"/>
+  </radialGradient>
+  <rect width="600" height="800" fill="url(#a-vig)"/>
+</svg>
