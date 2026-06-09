@@ -3,19 +3,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="Zl69DH9oGuojTEgqBaOH73RM3VzEXxdgBu75rriPrbs" />
+  <script>
+    // Theme: follow device setting by default, default to light if no preference,
+    // remember manual user toggle. Applied before paint to avoid flash.
+    (function() {
+      try {
+        const saved      = localStorage.getItem('saweb-theme');
+        const mq         = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+        const prefersDark = mq && mq.matches;
+        const theme = saved || (prefersDark ? 'dark' : 'light');
+        if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+
+        // If user hasn't manually toggled, follow device theme changes live.
+        if (!saved && mq && typeof mq.addEventListener === 'function') {
+          mq.addEventListener('change', e => {
+            if (localStorage.getItem('saweb-theme')) return; // user has since chosen — respect that
+            document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+          });
+        }
+      } catch(e) {}
+    })();
+  </script>
   <title>SaWeb Solutions — Websites & Digital Marketing for South African Businesses</title>
   <meta name="description" content="SaWeb Solutions builds professional websites and runs powerful digital marketing campaigns for South African businesses. Get more customers with Meta Ads, TikTok Ads, SEO, logo design and more." />
   <meta name="keywords" content="website design South Africa, digital marketing South Africa, Meta ads, TikTok ads, SEO, logo design, web development" />
   <meta name="author" content="SaWeb Solutions" />
+  <link rel="canonical" href="https://sawebsolutions.org.za/" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta property="og:title" content="SaWeb Solutions — Websites & Digital Marketing" />
   <meta property="og:description" content="Professional websites and digital marketing for South African businesses. Packages from R599/mo." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sawebsolutions.org.za/" />
+  <meta property="og:image" content="https://sawebsolutions.org.za/SaWebLogo.png" />
+  <meta property="og:site_name" content="SaWeb Solutions" />
+  <meta property="og:locale" content="en_ZA" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SaWeb Solutions — Websites & Digital Marketing" />
+  <meta name="twitter:description" content="Professional websites and digital marketing for South African businesses. Packages from R599/mo." />
+  <meta name="twitter:image" content="https://sawebsolutions.org.za/SaWebLogo.png" />
   <meta name="theme-color" content="#1a6bff" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "SaWeb Solutions",
+    "alternateName": "SaWeb",
+    "url": "https://sawebsolutions.org.za/",
+    "logo": "https://sawebsolutions.org.za/SaWebLogo.png",
+    "image": "https://sawebsolutions.org.za/SaWebLogo.png",
+    "description": "SaWeb Solutions builds professional websites and runs digital marketing campaigns for South African businesses. Web design, SEO, Meta Ads, TikTok Ads, logo design and more.",
+    "email": "sawebsolutionsss@gmail.com",
+    "telephone": "+27-67-812-3539",
+    "priceRange": "R599 - R4999",
+    "areaServed": { "@type": "Country", "name": "South Africa" },
+    "address": { "@type": "PostalAddress", "addressCountry": "ZA" },
+    "sameAs": [
+      "https://www.facebook.com/share/1ELYnQFs6w/?mibextid=wwXIfr",
+      "https://www.instagram.com/sawebsolutionss",
+      "https://www.linkedin.com/company/sawebsolutions/",
+      "https://wa.me/27678123539"
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -32,8 +87,26 @@
       --off-white:  #f0f8ff;
       --text-dark:  #0d1b2a;
       --text-mid:   #3a4a5c;
+      --pure-white: #ffffff;          /* literal white, never themed */
+      --nav-bg:     rgba(255,255,255,0.97);
+      --nav-bg-solid: #ffffff;
+      --card-soft:  rgba(255,255,255,0.5);
+      --line-soft:  rgba(13,27,42,0.08);
       --glow-blue:  0 0 30px rgba(26,107,255,0.5), 0 0 60px rgba(26,107,255,0.2);
       --glow-teal:  0 0 30px rgba(0,212,200,0.5), 0 0 60px rgba(0,212,200,0.2);
+      color-scheme: light;
+    }
+
+    [data-theme="dark"] {
+      --white:      #0d1b2a;          /* "page surface" — swaps to dark navy */
+      --off-white:  #142035;          /* "alternate surface" */
+      --text-dark:  #e8f0f8;          /* primary ink — swaps to light */
+      --text-mid:   #98a8be;          /* secondary ink */
+      --nav-bg:     rgba(13,27,42,0.92);
+      --nav-bg-solid: #0d1b2a;
+      --card-soft:  rgba(255,255,255,0.04);
+      --line-soft:  rgba(255,255,255,0.08);
+      color-scheme: dark;
     }
 
     html { scroll-behavior: smooth; }
@@ -56,15 +129,67 @@
       padding: 0 4%;
       display: flex; align-items: center; justify-content: space-between;
       height: 68px;
-      background: rgba(255,255,255,0.97);
+      background: var(--nav-bg);
       backdrop-filter: blur(18px);
       border-bottom: 1px solid rgba(26,107,255,0.12);
-      transition: background 0.3s, box-shadow 0.3s;
+      transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
     }
     nav.scrolled {
-      background: rgba(255,255,255,1);
+      background: var(--nav-bg-solid);
       box-shadow: 0 2px 24px rgba(26,107,255,0.1);
     }
+    [data-theme="dark"] nav { border-bottom-color: rgba(255,255,255,0.06); }
+
+    /* ── Theme toggle button ───────────────────────────── */
+    .theme-toggle {
+      background: transparent;
+      border: 1.5px solid rgba(13,27,42,0.12);
+      width: 40px; height: 40px; border-radius: 12px;
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--text-dark);
+      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+      margin-right: 14px;
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover { background: rgba(26,107,255,0.08); border-color: var(--blue); color: var(--blue); transform: translateY(-1px); }
+    .theme-toggle .icon { width: 18px; height: 18px; stroke-width: 2; }
+    .theme-toggle .icon-moon { display: none; }
+    [data-theme="dark"] .theme-toggle { border-color: rgba(255,255,255,0.18); }
+    [data-theme="dark"] .theme-toggle:hover { background: rgba(0,212,200,0.12); border-color: var(--teal); color: var(--teal); }
+    [data-theme="dark"] .theme-toggle .icon-sun { display: none; }
+    [data-theme="dark"] .theme-toggle .icon-moon { display: block; }
+
+    /* ── Dark mode card surface elevation ─────────────── */
+    [data-theme="dark"] .pkg-card,
+    [data-theme="dark"] .testi-card,
+    [data-theme="dark"] .service-card,
+    [data-theme="dark"] .mkt-calc {
+      background: var(--off-white);
+      border-color: rgba(255,255,255,0.06);
+    }
+    [data-theme="dark"] .pkg-card.featured {
+      /* keep the featured gradient bg as-is */
+      background: linear-gradient(160deg, var(--blue-dark) 0%, var(--blue-deep) 100%);
+    }
+    [data-theme="dark"] .mkt-field input,
+    [data-theme="dark"] .mkt-field select,
+    [data-theme="dark"] .mkt-field textarea {
+      background: var(--off-white);
+      border-color: rgba(255,255,255,0.1);
+      color: var(--text-dark);
+    }
+    [data-theme="dark"] .mkt-svc-chip {
+      background: var(--off-white);
+      border-color: rgba(255,255,255,0.08);
+      color: var(--text-dark);
+    }
+    [data-theme="dark"] .pkg-tabs { border-color: rgba(255,255,255,0.1); }
+    [data-theme="dark"] .pkg-tab-btn:not(.active) { color: var(--text-mid); }
+    [data-theme="dark"] .pkg-tab-btn:not(.active):hover { background: rgba(26,107,255,0.1); }
+    [data-theme="dark"] .hero-badge { background: rgba(0,212,200,0.08); border-color: rgba(0,212,200,0.2); }
+    [data-theme="dark"] .hamburger span { background: var(--text-dark); }
+    [data-theme="dark"] .footer-bottom { border-color: rgba(255,255,255,0.06); }
+    [data-theme="dark"] body { background: var(--white); color: var(--text-dark); }
 
     .nav-logo {
       text-decoration: none; flex-shrink: 0;
@@ -106,8 +231,8 @@
       background: none; border: none; padding: 4px;
     }
     .hamburger span {
-      display: block; width: 24px; height: 2px;
-      background: var(--white); border-radius: 2px;
+      display: block; width: 26px; height: 2.5px;
+      background: var(--text-dark); border-radius: 2px;
       transition: all 0.3s;
     }
     .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
@@ -676,6 +801,7 @@
       background: rgba(0,212,200,0.15); border-color: var(--teal);
       color: var(--teal); transform: translateY(-3px);
     }
+    .social-btn .icon { width: 20px; height: 20px; stroke-width: 1.75; }
 
     /* Form */
     .form-card {
@@ -820,9 +946,19 @@
     .footer-col ul li a { font-size: 0.85rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
     .footer-col ul li a:hover { color: var(--teal); }
 
-    .footer-bottom {
+    .footer-trust {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 1.8rem; padding: 1.3rem 0;
       border-top: 1px solid rgba(255,255,255,0.06);
-      padding-top: 1.5rem;
+      margin-top: 1.5rem;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.3px;
+      color: rgba(255,255,255,0.55);
+    }
+    .footer-trust span { display: inline-flex; align-items: center; gap: 7px; }
+    .footer-trust .icon { width: 15px; height: 15px; color: var(--teal); stroke-width: 2; }
+
+    .footer-bottom {
+      padding-top: 1.2rem;
       display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
     }
     .footer-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
@@ -880,6 +1016,214 @@
       to   { opacity:1; transform: translateX(0); }
     }
 
+    /* ── CHECKOUT & QUOTE MODALS ─────────────────────────── */
+    .checkout-overlay,
+    .quote-modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 3000;
+      background: rgba(6,15,30,0.92); backdrop-filter: blur(12px);
+      align-items: flex-start; justify-content: center;
+      padding: 1.5rem 1rem; overflow-y: auto;
+    }
+    .checkout-overlay.open,
+    .quote-modal-overlay.open { display: flex; }
+
+    .checkout-box {
+      background: linear-gradient(160deg, #0e2044, #0d3580);
+      border: 1px solid rgba(0,212,200,0.35);
+      border-radius: 28px; padding: 2.4rem 2.2rem;
+      max-width: 500px; width: 100%; margin: auto;
+      box-shadow: 0 0 80px rgba(0,212,200,0.22);
+      animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1) both;
+      position: relative;
+    }
+    .quote-modal-box {
+      background: var(--white); border-radius: 28px; padding: 2.4rem 2.2rem;
+      max-width: 580px; width: 100%; margin: auto;
+      box-shadow: 0 20px 80px rgba(0,0,0,0.4);
+      animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1) both;
+      position: relative;
+    }
+    .modal-x {
+      position: absolute; top: 1.2rem; right: 1.4rem;
+      border: none; cursor: pointer;
+      width: 32px; height: 32px; border-radius: 50%;
+      font-size: 1rem; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .modal-x.light { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+    .modal-x.light:hover { background: rgba(255,255,255,0.18); }
+    .modal-x.dark  { background: rgba(0,0,0,0.07); color: var(--text-mid); }
+    .modal-x.dark:hover  { background: rgba(0,0,0,0.14); }
+
+    .checkout-box h3 { font-size: 1.35rem; font-weight: 800; color: var(--white); margin-bottom: 0.25rem; }
+    .checkout-box .co-sub { font-size: 0.86rem; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
+
+    .checkout-order-box {
+      background: rgba(0,212,200,0.09); border: 1px solid rgba(0,212,200,0.28);
+      border-radius: 16px; padding: 1.1rem 1.3rem; margin-bottom: 1.5rem;
+      display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .co-svc-name  { font-size: 0.95rem; font-weight: 700; color: var(--white); }
+    .co-svc-desc  { font-size: 0.74rem; color: rgba(255,255,255,0.48); margin-top: 3px; max-width: 240px; }
+    .co-svc-price { font-size: 1.55rem; font-weight: 900; color: var(--teal); white-space: nowrap; }
+
+    .checkout-box .fg { margin-bottom: 0.9rem; }
+    .checkout-box .fg label { font-size: 0.74rem; font-weight: 700; color: rgba(255,255,255,0.48); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 5px; }
+    .checkout-box .fg input { width: 100%; padding: 11px 14px; border-radius: 12px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); color: var(--white); font-size: 0.9rem; font-family: inherit; outline: none; transition: border-color 0.2s; }
+    .checkout-box .fg input:focus { border-color: var(--teal); background: rgba(255,255,255,0.1); }
+    .checkout-box .fg input::placeholder { color: rgba(255,255,255,0.28); }
+    .co-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    .co-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 1.2rem 0; }
+
+    .pay-btn {
+      width: 100%; padding: 14px; border: none; border-radius: 50px; cursor: pointer;
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      color: var(--white); font-size: 0.98rem; font-weight: 700; font-family: inherit;
+      box-shadow: 0 6px 28px rgba(0,212,200,0.4); transition: transform 0.22s, box-shadow 0.22s;
+      display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 0.8rem;
+    }
+    .pay-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 36px rgba(0,212,200,0.6); }
+    .pay-note { font-size: 0.72rem; color: rgba(255,255,255,0.3); text-align: center; }
+    .pay-note a { color: rgba(0,212,200,0.6); text-decoration: none; }
+
+    /* Design quote items */
+    .quote-item-grid { display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1.3rem; }
+    .quote-item {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      padding: 0.8rem 1rem; border-radius: 14px;
+      border: 1.5px solid rgba(26,107,255,0.12); background: var(--off-white);
+      cursor: pointer; transition: border-color 0.2s, background 0.2s; user-select: none;
+    }
+    .quote-item.selected { border-color: var(--teal); background: rgba(0,212,200,0.06); }
+    .qi-left { display: flex; align-items: center; gap: 10px; flex: 1; }
+    .qi-check {
+      width: 20px; height: 20px; border-radius: 6px; flex-shrink: 0;
+      border: 1.5px solid rgba(26,107,255,0.25); transition: background 0.2s, border-color 0.2s;
+    }
+    .quote-item.selected .qi-check { background: linear-gradient(135deg, var(--teal), var(--blue)); border-color: var(--teal); }
+    .qi-name { font-size: 0.86rem; font-weight: 600; color: var(--text-dark); }
+    .qi-desc { font-size: 0.72rem; color: var(--text-mid); }
+    .qi-price { font-size: 0.9rem; font-weight: 800; color: var(--blue); white-space: nowrap; }
+
+    /* SMM option cards */
+    .smm-option-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(148px,1fr)); gap: 0.65rem; margin-bottom: 1.2rem; }
+    .smm-option {
+      padding: 1rem 0.8rem; border-radius: 16px; text-align: center;
+      border: 1.5px solid rgba(26,107,255,0.12); background: var(--off-white);
+      cursor: pointer; transition: border-color 0.2s, background 0.2s; user-select: none;
+    }
+    .smm-option.selected { border-color: var(--teal); background: rgba(0,212,200,0.06); }
+    .smm-opt-name  { font-size: 0.88rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.2rem; }
+    .smm-opt-desc  { font-size: 0.7rem; color: var(--text-mid); line-height: 1.4; margin-bottom: 0.35rem; }
+    .smm-opt-price { font-size: 1.05rem; font-weight: 900; color: var(--blue); }
+
+    .quote-total-bar {
+      background: linear-gradient(135deg, var(--blue-deep), #0d3580);
+      border-radius: 16px; padding: 1.1rem 1.3rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .qt-label { font-size: 0.75rem; color: rgba(255,255,255,0.48); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 0.2rem; }
+    .qt-price { font-size: 1.8rem; font-weight: 900; color: var(--teal); }
+    .qt-note  { font-size: 0.7rem; color: rgba(255,255,255,0.35); margin-top: 0.2rem; }
+    .quote-modal-box h3 { font-size: 1.28rem; font-weight: 800; color: var(--text-dark); margin-bottom: 0.25rem; }
+    .qm-sub { font-size: 0.85rem; color: var(--text-mid); margin-bottom: 1.5rem; }
+
+    .quote-proceed-btn {
+      width: 100%; padding: 13px; border: none; border-radius: 50px; cursor: pointer;
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      color: var(--white); font-size: 0.95rem; font-weight: 700; font-family: inherit;
+      box-shadow: 0 6px 24px rgba(0,212,200,0.35); transition: transform 0.22s;
+    }
+    .quote-proceed-btn:hover { transform: translateY(-2px); }
+    .quote-proceed-btn:disabled { opacity: 0.38; cursor: not-allowed; transform: none; }
+
+    /* Ads proceed row */
+    .ads-proceed-row {
+      margin-top: 1rem; padding: 0.95rem 1.2rem;
+      background: rgba(0,212,200,0.07); border: 1px solid rgba(0,212,200,0.18); border-radius: 14px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem;
+    }
+    .apr-label { font-size: 0.77rem; color: rgba(255,255,255,0.45); }
+    .apr-val   { font-size: 1.1rem; font-weight: 800; color: var(--white); }
+    .ads-proceed-btn {
+      padding: 9px 22px; border: none; border-radius: 50px; cursor: pointer;
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      color: var(--white); font-size: 0.84rem; font-weight: 700; font-family: inherit;
+      transition: transform 0.2s;
+    }
+    .ads-proceed-btn:hover { transform: translateY(-2px); }
+
+    /* pkg-cta as button (same look) */
+    button.pkg-cta {
+      width: 100%; display: block; text-align: center;
+      padding: 13px; border-radius: 50px; font-weight: 700; font-size: 0.92rem;
+      margin-top: 2rem; transition: transform 0.22s, box-shadow 0.22s;
+      cursor: pointer; font-family: inherit;
+    }
+    button.pkg-cta.light { border: 2px solid rgba(26,107,255,0.25); color: var(--blue); background: transparent; }
+    button.pkg-cta.light:hover { background: rgba(26,107,255,0.06); transform: translateY(-2px); }
+    button.pkg-cta.glow {
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      color: var(--white); border: none; box-shadow: 0 6px 28px rgba(0,212,200,0.4);
+    }
+    button.pkg-cta.glow:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,212,200,0.6); }
+
+    /* ── SUCCESS OVERLAY ────────────────────────────────── */
+    #successOverlay {
+      display: none; position: fixed; inset: 0; z-index: 4000;
+      background: linear-gradient(160deg, #060f1e 0%, #0a2a6e 100%);
+      align-items: center; justify-content: center;
+      flex-direction: column; text-align: center; padding: 2rem;
+      overflow-y: auto;
+    }
+    #successOverlay.open { display: flex; }
+    .confetti-wrap { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+    .cp {
+      position: absolute; border-radius: 2px;
+      animation: fall var(--d,3s) var(--dl,0s) ease-in forwards; opacity: 0;
+    }
+    @keyframes fall {
+      0%   { opacity:1; transform: translateY(-20px) rotate(0deg); }
+      100% { opacity:0; transform: translateY(110vh) rotate(720deg); }
+    }
+    #successOverlay > * { position: relative; z-index: 1; }
+    .success-ring {
+      width: 100px; height: 100px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.6rem;
+      box-shadow: 0 0 60px rgba(0,212,200,0.55);
+      animation: scaleIn 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.15s both;
+    }
+    .check-poly {
+      stroke-dasharray: 60; stroke-dashoffset: 60;
+      animation: drawCheck 0.45s ease 0.65s forwards;
+    }
+    @keyframes drawCheck { to { stroke-dashoffset: 0; } }
+    #successOverlay h2 { font-size: clamp(1.8rem,4vw,2.4rem); font-weight: 900; color: var(--white); margin-bottom: 0.5rem; animation: fadeUp 0.5s ease 0.8s both; }
+    .success-sub { font-size: 0.97rem; color: rgba(255,255,255,0.56); max-width: 400px; line-height: 1.65; margin-bottom: 1.8rem; animation: fadeUp 0.5s ease 0.95s both; }
+    .success-invoice {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(0,212,200,0.22);
+      border-radius: 20px; padding: 1.4rem 1.8rem;
+      margin-bottom: 1.8rem; text-align: left; max-width: 400px; width: 100%;
+      animation: fadeUp 0.5s ease 1.05s both;
+    }
+    .success-invoice h4 { font-size: 0.7rem; font-weight: 700; color: var(--teal); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1rem; }
+    .inv-row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.84rem; }
+    .inv-row:last-child { border: none; }
+    .inv-lbl { color: rgba(255,255,255,0.43); }
+    .inv-val { color: var(--white); font-weight: 600; text-align: right; max-width: 200px; word-break: break-word; }
+    .success-back {
+      display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border: none; font-family: inherit;
+      padding: 13px 34px; border-radius: 50px;
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      color: var(--white); font-size: 0.95rem; font-weight: 700;
+      box-shadow: 0 6px 24px rgba(0,212,200,0.4); transition: transform 0.22s;
+      animation: fadeUp 0.5s ease 1.15s both;
+    }
+    .success-back:hover { transform: translateY(-3px); }
+
     /* ── RESPONSIVE ─────────────────────────────────────── */
     @media (max-width: 900px) {
       .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -890,10 +1234,85 @@
       .hamburger { display: flex; }
       .footer-top { grid-template-columns: 1fr; }
       .float-cta  { bottom: 16px; right: 16px; }
+      .pkg-tabs {
+        width: 100%; max-width: 100%;
+        margin-left: auto; margin-right: auto;
+      }
+      .pkg-tab-btn {
+        flex: 1 1 0;
+        padding: 12px 8px;
+        font-size: 0.82rem;
+        min-width: 0;
+      }
+      .pkg-tab-btn .icon { width: 0.95em; height: 0.95em; }
+      .mkt-form-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .mkt-services-grid { grid-template-columns: 1fr; }
+      .mkt-svc-chip { white-space: normal; }
+      .hero-scroll { display: none; }
     }
+
+    /* ── Icons (Lucide-style outlined SVG) ───────────────── */
+    .icon {
+      width: 1em; height: 1em;
+      display: inline-block;
+      vertical-align: -0.15em;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+    .icon-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+    .service-icon .icon { width: 26px; height: 26px; stroke-width: 1.75; color: var(--teal); }
+    .pkg-features li .check { background: transparent; border: 1.5px solid var(--teal); color: var(--teal); }
+    .pkg-card.featured .pkg-features li .check { border-color: rgba(255,255,255,0.5); color: var(--white); }
+    .pkg-features li .check .icon { width: 11px; height: 11px; stroke-width: 3; }
+    .modal-x .icon { width: 14px; height: 14px; stroke-width: 2.5; }
+    .pay-btn .icon, .ads-proceed-btn .icon, .quote-proceed-btn .icon { width: 1.05em; height: 1.05em; margin-right: 6px; }
+    h2 .icon, h3 .icon, h4 .icon { margin-right: 8px; vertical-align: -0.18em; color: var(--teal); }
   </style>
 </head>
 <body>
+
+<!-- ── ICON SPRITE (Lucide-style outlined, hidden) ─── -->
+<svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+    <symbol id="i-smartphone" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+    <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
+    <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.83-.44-1.13-.29-.29-.44-.65-.44-1.13a1.64 1.64 0 0 1 1.67-1.67h1.99c3.05 0 5.55-2.5 5.55-5.55C21.97 6.01 17.46 2 12 2z"/></symbol>
+    <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></symbol>
+    <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></symbol>
+    <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-trending-up" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+    <symbol id="i-message" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M20.5 3.5A11.5 11.5 0 0 0 3.4 18.7L2 22l3.4-1.4A11.5 11.5 0 1 0 20.5 3.5z"/><path d="M8 9.5c0 4 3.5 7.5 7.5 7.5a3 3 0 0 0 2.5-1.5l-2-1.5-1.5 1c-1.5-.5-3-2-3.5-3.5l1-1.5L11 8a3 3 0 0 0-1.5-.5C8 7.5 8 8.5 8 9.5z" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/><path d="M19 14l.7 2.1 2.1.7-2.1.7L19 19.6l-.7-2.1-2.1-.7 2.1-.7L19 14z"/><path d="M5 5l.5 1.5L7 7l-1.5.5L5 9l-.5-1.5L3 7l1.5-.5L5 5z"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+  </defs>
+</svg>
 
 <!-- ── NAVIGATION ──────────────────────────────────── -->
 <nav id="navbar">
@@ -929,6 +1348,11 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
 
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">
+    <svg class="icon icon-sun"><use href="#i-sun"/></svg>
+    <svg class="icon icon-moon"><use href="#i-moon"/></svg>
+  </button>
+
   <a href="#contact" class="nav-cta">Start a Project</a>
 
   <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -963,7 +1387,7 @@
           <line x1="100" y1="44" x2="195" y2="112" stroke="url(#lgHero)" stroke-width="20" stroke-linecap="round"/>
           <line x1="5" y1="78" x2="100" y2="10" stroke="url(#lgHero)" stroke-width="20" stroke-linecap="round"/>
           <line x1="5" y1="112" x2="100" y2="44" stroke="url(#lgHero)" stroke-width="20" stroke-linecap="round"/>
-          <text x="100" y="143" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="30" font-weight="900" letter-spacing="5" fill="#1a3bcc">SAWEB</text>
+          <text x="100" y="143" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="30" font-weight="900" letter-spacing="5" fill="#1a3bcc">SAWEB<tspan font-size="14" font-weight="700" dy="-12" letter-spacing="0">™</tspan></text>
           <text x="100" y="163" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="400" letter-spacing="8" fill="#00a8a0">SOLUTIONS</text>
         </svg>
       </div>
@@ -1079,36 +1503,36 @@
 
   <!-- Sub-heading: Web -->
   <div class="reveal" style="margin-top:3rem;margin-bottom:1rem;">
-    <span style="font-size:0.78rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--blue);">🌐 Website Development</span>
+    <span style="font-size:0.78rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--blue);"><svg class="icon"><use href="#i-globe"/></svg> Website Development</span>
   </div>
   <div class="services-grid" style="margin-top:0">
     <div class="service-card reveal">
-      <div class="service-icon">🌐</div>
+      <div class="service-icon"><svg class="icon"><use href="#i-globe"/></svg></div>
       <h3>Website Design & Development</h3>
       <p>Beautiful, conversion-focused websites built from scratch with modern code — no templates, no shortcuts.</p>
     </div>
     <div class="service-card reveal">
-      <div class="service-icon">📱</div>
+      <div class="service-icon"><svg class="icon"><use href="#i-smartphone"/></svg></div>
       <h3>Mobile-First Design</h3>
       <p>Your site looks and works flawlessly on every device — from smartphones to large desktops.</p>
     </div>
     <div class="service-card reveal">
-      <div class="service-icon">🛒</div>
+      <div class="service-icon"><svg class="icon"><use href="#i-cart"/></svg></div>
       <h3>E-Commerce & Bookings</h3>
       <p>Accept payments and bookings online with a secure, easy-to-manage shop or reservation system.</p>
     </div>
     <div class="service-card reveal">
-      <div class="service-icon">🔍</div>
+      <div class="service-icon"><svg class="icon"><use href="#i-search"/></svg></div>
       <h3>SEO Optimization</h3>
       <p>Get found on Google. We optimise your site structure, speed, and content so customers find you first.</p>
     </div>
     <div class="service-card reveal">
-      <div class="service-icon">⚡</div>
+      <div class="service-icon"><svg class="icon"><use href="#i-zap"/></svg></div>
       <h3>Speed & Performance</h3>
       <p>Fast-loading sites that keep visitors engaged and rank higher — optimised from the ground up.</p>
     </div>
     <div class="service-card reveal">
-      <div class="service-icon">🔒</div>
+      <div class="service-icon"><svg class="icon"><use href="#i-lock"/></svg></div>
       <h3>Hosting, SSL & Backups</h3>
       <p>Secure hosting, SSL certificates, and daily backups included — your site is always safe and online.</p>
     </div>
@@ -1116,36 +1540,36 @@
 
   <!-- Sub-heading: Marketing -->
   <div class="reveal" style="margin-top:3.5rem;margin-bottom:1rem;">
-    <span style="font-size:0.78rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--teal);">📣 Digital Marketing</span>
+    <span style="font-size:0.78rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--teal);"><svg class="icon"><use href="#i-megaphone"/></svg> Digital Marketing</span>
   </div>
   <div class="services-grid" style="margin-top:0">
     <div class="service-card reveal">
-      <div class="service-icon">📘</div>
+      <div class="service-icon"><svg class="icon"><use href="#i-facebook"/></svg></div>
       <h3>Facebook & Instagram Ads</h3>
       <p>Targeted Meta campaigns that put your business in front of the exact people most likely to buy from you.</p>
     </div>
     <div class="service-card reveal">
-      <div class="service-icon">🎵</div>
+      <div class="service-icon"><svg class="icon"><use href="#i-music"/></svg></div>
       <h3>TikTok Ads</h3>
       <p>High-energy TikTok campaigns that go viral in your local market and drive real foot traffic and sales.</p>
     </div>
     <div class="service-card reveal">
-      <div class="service-icon">📍</div>
+      <div class="service-icon"><svg class="icon"><use href="#i-pin"/></svg></div>
       <h3>Geo-Targeted Ads</h3>
       <p>Reach only the customers in your specific area — suburb, city, or radius — for maximum local impact.</p>
     </div>
     <div class="service-card reveal">
-      <div class="service-icon">🎨</div>
+      <div class="service-icon"><svg class="icon"><use href="#i-palette"/></svg></div>
       <h3>Poster & Flyer Design</h3>
       <p>Professional print-ready and digital designs that make your business look world-class at any budget.</p>
     </div>
     <div class="service-card reveal">
-      <div class="service-icon">✏️</div>
+      <div class="service-icon"><svg class="icon"><use href="#i-pencil"/></svg></div>
       <h3>Logo & Brand Identity</h3>
       <p>A memorable logo and brand kit that gives your business a consistent, professional look everywhere.</p>
     </div>
     <div class="service-card reveal">
-      <div class="service-icon">📊</div>
+      <div class="service-icon"><svg class="icon"><use href="#i-chart"/></svg></div>
       <h3>Social Media Management</h3>
       <p>We manage your pages, create content, and grow your following so you can focus on running your business.</p>
     </div>
@@ -1162,8 +1586,8 @@
 
   <!-- Tab switcher -->
   <div class="pkg-tabs reveal">
-    <button class="pkg-tab-btn active" onclick="switchTab('web', this)">🌐 Website Development</button>
-    <button class="pkg-tab-btn" onclick="switchTab('mkt', this)">📣 Marketing Services</button>
+    <button class="pkg-tab-btn active" onclick="switchTab('web', this)"><svg class="icon"><use href="#i-globe"/></svg> Website Development</button>
+    <button class="pkg-tab-btn" onclick="switchTab('mkt', this)"><svg class="icon"><use href="#i-megaphone"/></svg> Marketing Services</button>
   </div>
 
   <!-- ── WEB DEV PANEL ── -->
@@ -1176,15 +1600,15 @@
         <div class="pkg-price"><sup>R</sup>599<span class="pm">/mo</span></div>
         <p class="pkg-desc">Everything you need to launch your business online with a clean, professional presence.</p>
         <ul class="pkg-features">
-          <li><span class="check">✓</span> Single-Page Website (up to 6 sections)</li>
-          <li><span class="check">✓</span> Mobile Responsive Design</li>
-          <li><span class="check">✓</span> Contact Form</li>
-          <li><span class="check">✓</span> Basic On-Page SEO</li>
-          <li><span class="check">✓</span> 1 Round of Revisions / month</li>
-          <li><span class="check">✓</span> Hosting & SSL Included</li>
-          <li><span class="check">✓</span> 5–7 Day Delivery</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Single-Page Website (up to 6 sections)</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Mobile Responsive Design</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Contact Form</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Basic On-Page SEO</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> 1 Round of Revisions / month</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Hosting & SSL Included</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> 5–7 Day Delivery</li>
         </ul>
-        <a href="#contact" class="pkg-cta light">Get Started</a>
+        <button class="pkg-cta light" onclick="openCheckout('Web Basic',599,'Single-Page Website · Mobile Responsive · SEO · Hosting &amp; SSL','/mo')">Get Started</button>
       </div>
 
       <!-- PROFESSIONAL (featured) -->
@@ -1194,17 +1618,17 @@
         <div class="pkg-price"><sup>R</sup>999<span class="pm">/mo</span></div>
         <p class="pkg-desc">A full multi-page website built to convert visitors into paying customers.</p>
         <ul class="pkg-features">
-          <li><span class="check">✓</span> Up to 5 Custom Pages</li>
-          <li><span class="check">✓</span> Advanced Mobile-First Design</li>
-          <li><span class="check">✓</span> Custom Contact &amp; Booking Forms</li>
-          <li><span class="check">✓</span> Social Media Feed Integration</li>
-          <li><span class="check">✓</span> Google Analytics &amp; Search Console</li>
-          <li><span class="check">✓</span> Full On-Page SEO Optimization</li>
-          <li><span class="check">✓</span> 3 Rounds of Revisions / month</li>
-          <li><span class="check">✓</span> Hosting, SSL &amp; Daily Backups</li>
-          <li><span class="check">✓</span> 7–10 Day Delivery</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Up to 5 Custom Pages</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Advanced Mobile-First Design</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Custom Contact &amp; Booking Forms</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Social Media Feed Integration</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Google Analytics &amp; Search Console</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Full On-Page SEO Optimization</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> 3 Rounds of Revisions / month</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Hosting, SSL &amp; Daily Backups</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> 7–10 Day Delivery</li>
         </ul>
-        <a href="#contact" class="pkg-cta glow">Choose Professional</a>
+        <button class="pkg-cta glow" onclick="openCheckout('Web Professional',999,'Up to 5 Custom Pages · Advanced SEO · Analytics · Hosting &amp; SSL','/mo')">Choose Professional</button>
       </div>
 
       <!-- ELITE -->
@@ -1213,18 +1637,18 @@
         <div class="pkg-price"><sup>R</sup>1299<span class="pm">/mo</span></div>
         <p class="pkg-desc">A fully custom digital powerhouse — built to scale with your growing business.</p>
         <ul class="pkg-features">
-          <li><span class="check">✓</span> Unlimited Pages</li>
-          <li><span class="check">✓</span> E-Commerce / Online Store Setup</li>
-          <li><span class="check">✓</span> Online Booking &amp; Payment System</li>
-          <li><span class="check">✓</span> Advanced SEO Suite + Blog</li>
-          <li><span class="check">✓</span> Speed &amp; Performance Optimization</li>
-          <li><span class="check">✓</span> Security Monitoring &amp; Firewall</li>
-          <li><span class="check">✓</span> Unlimited Revisions</li>
-          <li><span class="check">✓</span> Priority Support (same-day response)</li>
-          <li><span class="check">✓</span> Hosting, SSL &amp; Daily Backups</li>
-          <li><span class="check">✓</span> 10–14 Day Delivery</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Unlimited Pages</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> E-Commerce / Online Store Setup</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Online Booking &amp; Payment System</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Advanced SEO Suite + Blog</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Speed &amp; Performance Optimization</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Security Monitoring &amp; Firewall</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Unlimited Revisions</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Priority Support (same-day response)</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Hosting, SSL &amp; Daily Backups</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> 10–14 Day Delivery</li>
         </ul>
-        <a href="#contact" class="pkg-cta light">Go Elite</a>
+        <button class="pkg-cta light" onclick="openCheckout('Web Elite',1299,'Unlimited Pages · E-Commerce · Booking System · Priority Support','/mo')">Go Elite</button>
       </div>
 
     </div>
@@ -1241,14 +1665,14 @@
         <div class="pkg-price" style="font-size:1.6rem;margin:0.5rem 0 0.3rem">Custom Quote</div>
         <p class="pkg-desc">One-time design work priced per project and complexity.</p>
         <ul class="pkg-features">
-          <li><span class="check">✓</span> Logo Design &amp; Brand Identity</li>
-          <li><span class="check">✓</span> Flyer &amp; Poster Design</li>
-          <li><span class="check">✓</span> Social Media Graphics (packs)</li>
-          <li><span class="check">✓</span> Business Card &amp; Letterhead</li>
-          <li><span class="check">✓</span> Menu &amp; Catalogue Design</li>
-          <li><span class="check">✓</span> 2–3 Day Turnaround</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Logo Design &amp; Brand Identity</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Flyer &amp; Poster Design</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Social Media Graphics (packs)</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Business Card &amp; Letterhead</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Menu &amp; Catalogue Design</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> 2–3 Day Turnaround</li>
         </ul>
-        <a href="#contact" class="pkg-cta light">Get a Quote</a>
+        <button class="pkg-cta light" onclick="openDesignQuote()">Get an Instant Quote</button>
       </div>
 
       <div class="pkg-card featured reveal">
@@ -1257,13 +1681,13 @@
         <div class="pkg-price" style="font-size:1.6rem;margin:0.5rem 0 0.3rem">Budget-Based</div>
         <p class="pkg-desc">Meta, TikTok &amp; Google ads managed for you — your ad spend, our strategy.</p>
         <ul class="pkg-features">
-          <li><span class="check">✓</span> Facebook &amp; Instagram Ads</li>
-          <li><span class="check">✓</span> TikTok Ads</li>
-          <li><span class="check">✓</span> Google Search &amp; Display Ads</li>
-          <li><span class="check">✓</span> Geo-Targeted Campaigns</li>
-          <li><span class="check">✓</span> Ad Creative Design Included</li>
-          <li><span class="check">✓</span> Weekly Performance Reports</li>
-          <li><span class="check">✓</span> Retargeting &amp; Lookalike Audiences</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Facebook &amp; Instagram Ads</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> TikTok Ads</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Google Search &amp; Display Ads</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Geo-Targeted Campaigns</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Ad Creative Design Included</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Weekly Performance Reports</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Retargeting &amp; Lookalike Audiences</li>
         </ul>
         <a href="#mkt-calculator" class="pkg-cta glow" onclick="document.getElementById('mkt-calculator').scrollIntoView({behavior:'smooth'});return false;">Calculate My Budget ↓</a>
       </div>
@@ -1273,14 +1697,14 @@
         <div class="pkg-price" style="font-size:1.6rem;margin:0.5rem 0 0.3rem">Custom Quote</div>
         <p class="pkg-desc">We manage your social presence so you can focus on running your business.</p>
         <ul class="pkg-features">
-          <li><span class="check">✓</span> Facebook &amp; Instagram Management</li>
-          <li><span class="check">✓</span> TikTok Content Strategy</li>
-          <li><span class="check">✓</span> 12–20 Posts per Month</li>
-          <li><span class="check">✓</span> Custom Graphics &amp; Captions</li>
-          <li><span class="check">✓</span> Community Engagement</li>
-          <li><span class="check">✓</span> Monthly Analytics Report</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Facebook &amp; Instagram Management</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> TikTok Content Strategy</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> 12–20 Posts per Month</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Custom Graphics &amp; Captions</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Community Engagement</li>
+          <li><span class="check"><svg class="icon"><use href="#i-check"/></svg></span> Monthly Analytics Report</li>
         </ul>
-        <a href="#contact" class="pkg-cta light">Get a Quote</a>
+        <button class="pkg-cta light" onclick="openSMMQuote()">See Pricing</button>
       </div>
 
     </div>
@@ -1288,7 +1712,7 @@
     <!-- ── BUDGET CALCULATOR ── -->
     <div class="mkt-calc reveal" id="mkt-calculator">
       <div class="mkt-calc-intro">
-        <h3>📊 Marketing Budget Calculator</h3>
+        <h3><svg class="icon"><use href="#i-chart"/></svg> Marketing Budget Calculator</h3>
         <p>Tell us about your business and your budget — we'll estimate exactly what traffic, leads, and sales you can expect. No fixed pricing. You set the budget, we maximise the results.</p>
       </div>
 
@@ -1334,7 +1758,7 @@
         <label class="mkt-svc-chip"><input type="checkbox" value="video"><span class="chip-dot"></span>Video / Reel Ads</label>
       </div>
 
-      <button class="mkt-calc-btn" onclick="runCalc()">⚡ Calculate My Results</button>
+      <button class="mkt-calc-btn" onclick="runCalc()"><svg class="icon"><use href="#i-zap"/></svg> Calculate My Results</button>
 
       <!-- Results panel -->
       <div class="mkt-results" id="mkt-results">
@@ -1346,10 +1770,17 @@
         <div class="mkt-breakdown" id="res-breakdown"></div>
         <div class="mkt-quote-price" id="res-price-box">
           <div>
-            <div class="price-label">Estimated Investment (excl. ad spend)</div>
+            <div class="price-label" id="res-price-label">Estimated Investment (excl. ad spend)</div>
             <div class="price-val" id="res-price">R0</div>
           </div>
           <a href="#contact" class="mkt-quote-cta">Book a Free Strategy Call →</a>
+        </div>
+        <div class="ads-proceed-row" id="ads-proceed-row" style="display:none">
+          <div>
+            <div class="apr-label">Monthly management fee (excl. your ad spend)</div>
+            <div class="apr-val" id="ads-mgmt-val">R0/mo</div>
+          </div>
+          <button class="ads-proceed-btn" onclick="proceedAdsCheckout()">Get Started</button>
         </div>
       </div>
     </div>
@@ -1367,32 +1798,32 @@
 
   <div class="why-grid">
     <div class="why-card reveal">
-      <div class="why-icon">🌐</div>
+      <div class="why-icon"><svg class="icon"><use href="#i-globe"/></svg></div>
       <h3>Web + Marketing Under One Roof</h3>
       <p>Your website and your ads are built to work together — same team, same vision, maximum impact.</p>
     </div>
     <div class="why-card reveal">
-      <div class="why-icon">⚡</div>
+      <div class="why-icon"><svg class="icon"><use href="#i-zap"/></svg></div>
       <h3>Lightning Fast Delivery</h3>
       <p>Sites live in days. Campaigns running in 48 hours. We move fast so you start seeing results sooner.</p>
     </div>
     <div class="why-card reveal">
-      <div class="why-icon">📍</div>
+      <div class="why-icon"><svg class="icon"><use href="#i-pin"/></svg></div>
       <h3>Proudly South African</h3>
       <p>We know the SA market, SA consumers, and SA pricing. Our strategies are built for local success.</p>
     </div>
     <div class="why-card reveal">
-      <div class="why-icon">💰</div>
+      <div class="why-icon"><svg class="icon"><use href="#i-wallet"/></svg></div>
       <h3>Honest, Flexible Pricing</h3>
       <p>Transparent web packages. Marketing budgets you control. Zero hidden fees, zero nasty surprises.</p>
     </div>
     <div class="why-card reveal">
-      <div class="why-icon">🤝</div>
+      <div class="why-icon"><svg class="icon"><use href="#i-users"/></svg></div>
       <h3>Direct, Personal Service</h3>
       <p>You deal directly with the people doing the work — fast responses, real accountability, no middlemen.</p>
     </div>
     <div class="why-card reveal">
-      <div class="why-icon">📈</div>
+      <div class="why-icon"><svg class="icon"><use href="#i-trending-up"/></svg></div>
       <h3>Results-Driven, Always</h3>
       <p>Every decision — from font choice to ad targeting — is made with one goal: more customers for you.</p>
     </div>
@@ -1442,28 +1873,28 @@
 
       <div class="contact-info">
         <a href="tel:0678123539" class="contact-item">
-          <div class="contact-item-icon">📞</div>
+          <div class="contact-item-icon"><svg class="icon"><use href="#i-phone"/></svg></div>
           <span>067 812 3539</span>
         </a>
         <a href="mailto:sawebsolutionsss@gmail.com" class="contact-item">
-          <div class="contact-item-icon">✉️</div>
+          <div class="contact-item-icon"><svg class="icon"><use href="#i-mail"/></svg></div>
           <span>sawebsolutionsss@gmail.com</span>
         </a>
         <div class="contact-item">
-          <div class="contact-item-icon">🕐</div>
+          <div class="contact-item-icon"><svg class="icon"><use href="#i-clock"/></svg></div>
           <span>Mon – Fri, 9am – 5pm</span>
         </div>
         <a href="https://wa.me/27678123539" target="_blank" rel="noopener" class="contact-item">
-          <div class="contact-item-icon">💬</div>
+          <div class="contact-item-icon"><svg class="icon"><use href="#i-message"/></svg></div>
           <span>WhatsApp Us</span>
         </a>
       </div>
 
       <div class="contact-social">
-        <a href="https://www.facebook.com" target="_blank" rel="noopener" class="social-btn" title="Facebook">f</a>
-        <a href="https://www.instagram.com" target="_blank" rel="noopener" class="social-btn" title="Instagram">in</a>
-        <a href="https://www.tiktok.com"    target="_blank" rel="noopener" class="social-btn" title="TikTok">tt</a>
-        <a href="mailto:sawebsolutionsss@gmail.com" class="social-btn" title="Email">@</a>
+        <a href="https://www.facebook.com/share/1ELYnQFs6w/?mibextid=wwXIfr" target="_blank" rel="noopener" class="social-btn" title="Facebook" aria-label="Facebook"><svg class="icon"><use href="#i-facebook"/></svg></a>
+        <a href="https://www.instagram.com/sawebsolutionss" target="_blank" rel="noopener" class="social-btn" title="Instagram" aria-label="Instagram"><svg class="icon"><use href="#i-instagram"/></svg></a>
+        <a href="https://www.linkedin.com/company/sawebsolutions/" target="_blank" rel="noopener" class="social-btn" title="LinkedIn" aria-label="LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a>
+        <a href="mailto:sawebsolutionsss@gmail.com" class="social-btn" title="Email" aria-label="Email"><svg class="icon"><use href="#i-mail"/></svg></a>
       </div>
     </div>
 
@@ -1734,31 +2165,138 @@
       </ul>
     </div>
   </div>
+  <div class="footer-trust">
+    <span><svg class="icon"><use href="#i-lock"/></svg> SSL Encrypted</span>
+    <span><svg class="icon"><use href="#i-check"/></svg> POPIA Compliant</span>
+    <span><svg class="icon"><use href="#i-globe"/></svg> Secure ZA Hosting</span>
+  </div>
   <div class="footer-bottom">
-    <p>&copy; <span id="yr"></span> SaWeb Solutions. All rights reserved.</p>
-    <p>Crafted with ❤️ in South Africa</p>
+    <p>&copy; <span id="yr"></span> SaWeb Solutions (Pty) Ltd. All rights reserved.</p>
+    <p>Crafted with <svg class="icon" style="color:#e74c3c;width:0.9em;height:0.9em" aria-label="love"><use href="#i-heart"/></svg> in South Africa</p>
+    <p style="margin-top:0.4rem;font-size:0.72rem;color:rgba(255,255,255,0.18);letter-spacing:0.5px;">SaWeb Solutions is a registered Private Company (Pty) Ltd &mdash; CIPC Registered.</p>
   </div>
 </footer>
 
 <!-- ── MODAL ───────────────────────────────────────────── -->
 <div class="modal-overlay" id="modal">
   <div class="modal-box">
-    <div class="modal-icon" id="modal-icon">🚀</div>
+    <div class="modal-icon" id="modal-icon"><svg class="icon"><use href="#i-rocket"/></svg></div>
     <h3 id="modal-title">Message Sent!</h3>
     <p id="modal-msg">Thanks for reaching out to SaWeb Solutions. We'll get back to you within 24 hours for your free consultation.</p>
     <button class="modal-close" onclick="closeModal()">Perfect, Thanks!</button>
   </div>
 </div>
 
-<!-- ── FLOATING CTA ────────────────────────────────────── -->
-<a href="#contact" class="float-cta">
-  💬 Let's Talk
-</a>
+
+<!-- ── DESIGN QUOTE MODAL ──────────────────────────────── -->
+<div class="quote-modal-overlay" id="designQuoteModal">
+  <div class="quote-modal-box">
+    <button class="modal-x dark" onclick="closeDesignQuote()" aria-label="Close"><svg class="icon"><use href="#i-x"/></svg></button>
+    <h3><svg class="icon"><use href="#i-palette"/></svg> Design Services Quote</h3>
+    <p class="qm-sub">Select the design work you need — get an instant price estimate and send us your inquiry.</p>
+    <div class="quote-item-grid" id="designItemGrid"></div>
+    <div class="quote-total-bar">
+      <div>
+        <div class="qt-label">Your Quote Estimate</div>
+        <div class="qt-price" id="design-total">R0</div>
+        <div class="qt-note">One-time payment · 2–3 day turnaround · 2 revision rounds included</div>
+      </div>
+    </div>
+    <button class="quote-proceed-btn" id="design-proceed-btn" disabled onclick="proceedDesignCheckout()">
+      Get Started
+    </button>
+  </div>
+</div>
+
+<!-- ── SMM QUOTE MODAL ─────────────────────────────────── -->
+<div class="quote-modal-overlay" id="smmQuoteModal">
+  <div class="quote-modal-box">
+    <button class="modal-x dark" onclick="closeSMMQuote()" aria-label="Close"><svg class="icon"><use href="#i-x"/></svg></button>
+    <h3><svg class="icon"><use href="#i-chart"/></svg> Social Media Management Pricing</h3>
+    <p class="qm-sub">Choose your plan and any add-ons — get a monthly price estimate then send us your inquiry.</p>
+    <p style="font-size:0.75rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.6rem;">Choose your plan:</p>
+    <div class="smm-option-grid" id="smmPlanGrid"></div>
+    <p style="font-size:0.75rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.6rem;">Optional add-ons:</p>
+    <div class="smm-option-grid" id="smmAddonGrid"></div>
+    <div class="quote-total-bar">
+      <div>
+        <div class="qt-label">Monthly Investment</div>
+        <div class="qt-price" id="smm-total">R0</div>
+        <div class="qt-note">Month-to-month · Cancel anytime · First month 50% off for new clients</div>
+      </div>
+    </div>
+    <button class="quote-proceed-btn" id="smm-proceed-btn" disabled onclick="proceedSMMCheckout()">
+      Get Started
+    </button>
+  </div>
+</div>
+
+<!-- ── CHECKOUT MODAL ──────────────────────────────────── -->
+<div class="checkout-overlay" id="checkoutModal">
+  <div class="checkout-box">
+    <button class="modal-x light" onclick="closeCheckout()" aria-label="Close"><svg class="icon"><use href="#i-x"/></svg></button>
+    <h3>Get Started</h3>
+    <p class="co-sub">Fill in your details and we'll reach out on WhatsApp within minutes to discuss the next steps</p>
+    <div class="checkout-order-box">
+      <div>
+        <div class="co-svc-name" id="co-service-name"></div>
+        <div class="co-svc-desc" id="co-service-desc"></div>
+      </div>
+      <div class="co-svc-price" id="co-service-price"></div>
+    </div>
+    <form onsubmit="event.preventDefault(); submitCheckout();">
+      <div class="co-row">
+        <div class="fg"><label>First Name *</label><input type="text" id="co-fname" placeholder="John" required /></div>
+        <div class="fg"><label>Last Name *</label><input type="text" id="co-lname" placeholder="Dlamini" required /></div>
+      </div>
+      <div class="fg"><label>Email Address *</label><input type="email" id="co-email" placeholder="you@email.com" required /></div>
+      <div class="fg"><label>Phone Number</label><input type="tel" id="co-phone" placeholder="067 812 3539" /></div>
+      <hr class="co-divider" />
+      <button type="submit" class="pay-btn">Send Inquiry via WhatsApp</button>
+      <p class="pay-note">We'll reply within minutes during business hours · No payment taken on this form</p>
+    </form>
+  </div>
+</div>
+
+<!-- ── SUCCESS OVERLAY ─────────────────────────────────── -->
+<div id="successOverlay">
+  <div class="confetti-wrap" id="confettiWrap"></div>
+  <div class="success-ring">
+    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" overflow="visible">
+      <polyline class="check-poly" points="10,25 20,35 38,13" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <h2>Inquiry Sent</h2>
+  <p class="success-sub">Thank you. Your inquiry is on its way to SaWeb. We'll reply on WhatsApp within minutes to discuss the next steps.</p>
+  <div class="success-invoice">
+    <h4>Your Inquiry Summary</h4>
+    <div class="inv-row"><span class="inv-lbl">Name</span><span class="inv-val" id="inv-name">—</span></div>
+    <div class="inv-row"><span class="inv-lbl">Email</span><span class="inv-val" id="inv-email">—</span></div>
+    <div class="inv-row"><span class="inv-lbl">Phone</span><span class="inv-val" id="inv-phone">—</span></div>
+    <div class="inv-row"><span class="inv-lbl">Reference</span><span class="inv-val" id="inv-order">—</span></div>
+    <div class="inv-row"><span class="inv-lbl">Service</span><span class="inv-val" id="inv-service">—</span></div>
+    <div class="inv-row"><span class="inv-lbl">Quote</span><span class="inv-val" id="inv-amount">—</span></div>
+  </div>
+  <button class="success-back" onclick="closeSuccess()">← Back to SaWeb Solutions</button>
+</div>
+
 
 <!-- ── SCRIPTS ─────────────────────────────────────────── -->
 <script>
   /* ── Dynamic year ── */
   document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* ── Theme toggle (light / dark) ── */
+  (function() {
+    const toggle = document.getElementById('themeToggle');
+    if (!toggle) return;
+    toggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      const next    = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('saweb-theme', next); } catch(e) {}
+    });
+  })();
 
   /* ── Navbar scroll effect ── */
   const navbar = document.getElementById('navbar');
@@ -1839,11 +2377,11 @@
 
     let success = false;
     try {
-      const res = await fetch('https://formsubmit.co/ajax/khayadlamini100@gmail.com', {
+      const res = await fetch('https://formsubmit.co/ajax/sawebsolutionsss@gmail.com', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          _subject:       '🔔 New Enquiry — SaWeb Solutions Website',
+          _subject:       'New Enquiry — SaWeb Solutions Website',
           'Full Name':    name,
           'Email':        email,
           'Phone Number': phone || 'Not provided',
@@ -1867,22 +2405,205 @@
     if (success) {
       document.getElementById('modal').classList.add('open');
     } else {
-      document.getElementById('modal-icon').textContent = '⚠️';
+      document.getElementById('modal-icon').innerHTML = '<svg class="icon"><use href="#i-alert"/></svg>';
       document.getElementById('modal-title').textContent = 'Something went wrong';
-      document.getElementById('modal-msg').textContent = 'Please email us directly at khayadlamini100@gmail.com or call 067 812 3539.';
+      document.getElementById('modal-msg').textContent = 'Please email us directly at sawebsolutionsss@gmail.com or call 067 812 3539.';
       document.getElementById('modal').classList.add('open');
     }
   }
 
   function closeModal() {
     document.getElementById('modal').classList.remove('open');
-    document.getElementById('modal-icon').textContent  = '🚀';
+    document.getElementById('modal-icon').innerHTML  = '<svg class="icon"><use href="#i-rocket"/></svg>';
     document.getElementById('modal-title').textContent = 'Message Sent!';
     document.getElementById('modal-msg').textContent   = 'Thanks for reaching out to SaWeb Solutions. We\'ll get back to you within 24 hours for your free consultation.';
   }
   document.getElementById('modal').addEventListener('click', e => {
     if (e.target === e.currentTarget) closeModal();
   });
+
+  /* ── DESIGN QUOTE CALCULATOR ────────────────────────── */
+  const DESIGN_ITEMS = [
+    { id:'logo_basic', name:'Logo Design (Basic)',         desc:'1 concept · 2 revisions',               price:650  },
+    { id:'logo_full',  name:'Logo + Full Brand Kit',       desc:'Logo, colour palette, typography',       price:1250 },
+    { id:'flyer_1',    name:'Flyer / Poster (1 design)',   desc:'Print-ready & digital',                  price:280  },
+    { id:'flyer_3',    name:'Flyer Pack (3 designs)',      desc:'Save R190 vs individual pricing',        price:650  },
+    { id:'sm_5',       name:'Social Media Pack (5 posts)', desc:'Branded, ready-to-post graphics',        price:450  },
+    { id:'sm_10',      name:'Social Media Pack (10 posts)',desc:'Best value · branded content',           price:800  },
+    { id:'biz_card',   name:'Business Card Design',        desc:'Double-sided · print-ready',             price:280  },
+    { id:'menu',       name:'Menu / Catalogue Design',     desc:'Up to 10 pages',                        price:750  },
+  ];
+  const selectedDesignItems = new Set();
+
+  (function buildDesignGrid() {
+    const grid = document.getElementById('designItemGrid');
+    DESIGN_ITEMS.forEach(item => {
+      const el = document.createElement('div');
+      el.className = 'quote-item';
+      el.dataset.id = item.id;
+      el.innerHTML = `<div class="qi-left"><div class="qi-check"></div><div><div class="qi-name">${item.name}</div><div class="qi-desc">${item.desc}</div></div></div><div class="qi-price">R${item.price.toLocaleString('en-ZA')}</div>`;
+      el.addEventListener('click', () => {
+        if (selectedDesignItems.has(item.id)) { selectedDesignItems.delete(item.id); el.classList.remove('selected'); }
+        else { selectedDesignItems.add(item.id); el.classList.add('selected'); }
+        updateDesignTotal();
+      });
+      grid.appendChild(el);
+    });
+  })();
+
+  function updateDesignTotal() {
+    const total = DESIGN_ITEMS.filter(i => selectedDesignItems.has(i.id)).reduce((s,i) => s + i.price, 0);
+    document.getElementById('design-total').textContent = total > 0 ? 'R' + total.toLocaleString('en-ZA') : 'R0';
+    document.getElementById('design-proceed-btn').disabled = total === 0;
+  }
+  function openDesignQuote()  { document.getElementById('designQuoteModal').classList.add('open');    document.body.style.overflow='hidden'; }
+  function closeDesignQuote() { document.getElementById('designQuoteModal').classList.remove('open'); document.body.style.overflow=''; }
+  function proceedDesignCheckout() {
+    const items = DESIGN_ITEMS.filter(i => selectedDesignItems.has(i.id));
+    const total = items.reduce((s,i) => s + i.price, 0);
+    if (!total) return;
+    closeDesignQuote();
+    openCheckout('Design Services', total, items.map(i=>i.name).join(' + '), ' (once-off)');
+  }
+
+  /* ── SMM QUOTE PREDICTOR ─────────────────────────────── */
+  const SMM_PLANS = [
+    { id:'starter', name:'Starter',  desc:'1 platform · 12 posts/mo',            price:1200 },
+    { id:'growth',  name:'Growth',   desc:'2 platforms · 16 posts/mo',           price:1850 },
+    { id:'premium', name:'Premium',  desc:'3 platforms · 20 posts + community',  price:2600 },
+  ];
+  const SMM_ADDONS = [
+    { id:'stories', name:'Stories & Reels Strategy', desc:'+R500/mo', price:500 },
+    { id:'report',  name:'Monthly Analytics Report',  desc:'+R200/mo', price:200 },
+    { id:'extra',   name:'Extra Platform',            desc:'+R400/mo', price:400 },
+  ];
+  let selectedSMMPlan = null;
+  const selectedSMMAddons = new Set();
+
+  (function buildSMMGrids() {
+    const planGrid  = document.getElementById('smmPlanGrid');
+    const addonGrid = document.getElementById('smmAddonGrid');
+    SMM_PLANS.forEach(p => {
+      const el = document.createElement('div');
+      el.className = 'smm-option'; el.dataset.plan = p.id;
+      el.innerHTML = `<div class="smm-opt-name">${p.name}</div><div class="smm-opt-desc">${p.desc}</div><div class="smm-opt-price">R${p.price.toLocaleString('en-ZA')}/mo</div>`;
+      el.addEventListener('click', () => {
+        document.querySelectorAll('[data-plan]').forEach(e=>e.classList.remove('selected'));
+        el.classList.add('selected'); selectedSMMPlan = p.id; updateSMMTotal();
+      });
+      planGrid.appendChild(el);
+    });
+    SMM_ADDONS.forEach(a => {
+      const el = document.createElement('div');
+      el.className = 'smm-option'; el.dataset.addon = a.id;
+      el.innerHTML = `<div class="smm-opt-name">${a.name}</div><div class="smm-opt-desc">${a.desc}</div>`;
+      el.addEventListener('click', () => {
+        if (selectedSMMAddons.has(a.id)) { selectedSMMAddons.delete(a.id); el.classList.remove('selected'); }
+        else { selectedSMMAddons.add(a.id); el.classList.add('selected'); }
+        updateSMMTotal();
+      });
+      addonGrid.appendChild(el);
+    });
+  })();
+
+  function updateSMMTotal() {
+    const plan   = SMM_PLANS.find(p => p.id === selectedSMMPlan);
+    const base   = plan ? plan.price : 0;
+    const addons = SMM_ADDONS.filter(a => selectedSMMAddons.has(a.id)).reduce((s,a) => s+a.price, 0);
+    const total  = base + addons;
+    document.getElementById('smm-total').textContent = total > 0 ? 'R' + total.toLocaleString('en-ZA') + '/mo' : 'R0';
+    document.getElementById('smm-proceed-btn').disabled = !selectedSMMPlan;
+  }
+  function openSMMQuote()  { document.getElementById('smmQuoteModal').classList.add('open');    document.body.style.overflow='hidden'; }
+  function closeSMMQuote() { document.getElementById('smmQuoteModal').classList.remove('open'); document.body.style.overflow=''; }
+  function proceedSMMCheckout() {
+    const plan   = SMM_PLANS.find(p => p.id === selectedSMMPlan); if (!plan) return;
+    const addons = SMM_ADDONS.filter(a => selectedSMMAddons.has(a.id));
+    const total  = plan.price + addons.reduce((s,a) => s+a.price, 0);
+    const desc   = [plan.name, ...addons.map(a=>a.name)].join(' + ');
+    closeSMMQuote();
+    openCheckout('Social Media Management', total, desc, '/mo');
+  }
+
+  /* ── ADS CHECKOUT ────────────────────────────────────── */
+  let _adsMgmtFee = 0;
+  function proceedAdsCheckout() {
+    const budget   = parseFloat(document.getElementById('calc-budget').value) || 0;
+    const checked  = [...document.querySelectorAll('.mkt-svc-chip.checked input')].map(i=>({
+      meta:'Facebook & Instagram Ads',tiktok:'TikTok Ads',google:'Google Ads',
+      geo:'Geo-Targeted Ads',poster:'Poster/Flyer Design',logo:'Logo Design',
+      social:'Social Media Management',video:'Video/Reel Ads'
+    }[i.value])).filter(Boolean).join(' + ');
+    openCheckout('Paid Ads Management', _adsMgmtFee, checked + ' · R' + budget.toLocaleString('en-ZA') + '/mo ad spend', '/mo');
+  }
+
+  /* ── CHECKOUT MODAL ──────────────────────────────────── */
+  let _checkoutData = {};
+  function openCheckout(serviceName, price, desc, suffix) {
+    _checkoutData = { serviceName, price, desc, suffix: suffix||'/mo' };
+    document.getElementById('co-service-name').textContent  = serviceName;
+    document.getElementById('co-service-price').textContent = 'R' + price.toLocaleString('en-ZA') + (suffix||'/mo');
+    document.getElementById('co-service-desc').textContent  = desc || '';
+    document.querySelector('#checkoutModal .pay-btn').textContent = 'Send Inquiry via WhatsApp';
+    document.getElementById('checkoutModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCheckout() {
+    document.getElementById('checkoutModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function submitCheckout() {
+    const firstName = document.getElementById('co-fname').value.trim();
+    const lastName  = document.getElementById('co-lname').value.trim();
+    const email     = document.getElementById('co-email').value.trim();
+    const phone     = document.getElementById('co-phone').value.trim();
+    if (!firstName || !lastName || !email) { alert('Please fill in your name and email to continue.'); return; }
+
+    const { serviceName, price, desc, suffix } = _checkoutData;
+    const orderId  = 'SAW-' + Date.now().toString().slice(-6) + '-' + (Math.floor(Math.random()*9000)+1000);
+    const amountStr = price && price > 0
+      ? 'R' + price.toLocaleString('en-ZA') + (suffix || '')
+      : 'Custom quote';
+
+    const msg = encodeURIComponent(
+      `Hi SaWeb! I'd like to enquire about a service.\n\n` +
+      `*Service:* ${serviceName}\n` +
+      (desc ? `*Package:* ${desc}\n` : '') +
+      `*Quote:* ${amountStr}\n` +
+      `*Reference:* ${orderId}\n\n` +
+      `*My details:*\n` +
+      `Name: ${firstName} ${lastName}\n` +
+      `Email: ${email}\n` +
+      `Phone: ${phone || 'Not provided'}\n\n` +
+      `Please get back to me with the next steps. Thank you!`
+    );
+    window.open('https://wa.me/27678123539?text=' + msg, '_blank');
+
+    closeCheckout();
+    document.getElementById('inv-name').textContent    = firstName + ' ' + lastName;
+    document.getElementById('inv-email').textContent   = email;
+    document.getElementById('inv-phone').textContent   = phone || 'Not provided';
+    document.getElementById('inv-order').textContent   = orderId;
+    document.getElementById('inv-service').textContent = serviceName;
+    document.getElementById('inv-amount').textContent  = amountStr;
+    document.getElementById('successOverlay').classList.add('open');
+    spawnConfetti();
+  }
+
+  /* ── SUCCESS OVERLAY ─────────────────────────────────── */
+  function spawnConfetti() {
+    const colors = ['#00d4c8','#1a6bff','#7ed6ff','#fff','#00a8a0','#5b9bff'];
+    const wrap   = document.getElementById('confettiWrap');
+    for (let i = 0; i < 90; i++) {
+      const el = document.createElement('div');
+      el.className = 'cp';
+      const size = Math.random()*10+5;
+      el.style.cssText = `left:${Math.random()*100}%;top:-20px;width:${size}px;height:${size}px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${Math.random()>.5?'50%':'2px'};--d:${(Math.random()*2+2.5).toFixed(1)}s;--dl:${(Math.random()*1.5).toFixed(1)}s;`;
+      wrap.appendChild(el);
+    }
+  }
+  function closeSuccess() { document.getElementById('successOverlay').classList.remove('open'); }
 
   /* ── Package tab switcher ── */
   function switchTab(tab, btn) {
@@ -2028,6 +2749,17 @@
 
     const results = document.getElementById('mkt-results');
     results.classList.add('show');
+
+    // Show ads checkout row if ad services selected
+    const adsRow = document.getElementById('ads-proceed-row');
+    if (hasAds) {
+      _adsMgmtFee = mgmtFee;
+      document.getElementById('ads-mgmt-val').textContent = fmtR(mgmtFee) + '/mo';
+      adsRow.style.display = 'flex';
+    } else {
+      adsRow.style.display = 'none';
+    }
+
     setTimeout(() => results.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
   }
 
