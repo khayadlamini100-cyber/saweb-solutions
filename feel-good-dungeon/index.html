@@ -1150,6 +1150,295 @@
 
     .bc-delete:hover { color: #e53935; }
 
+    /* ─── SCROLL PROGRESS ─── */
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      background: var(--cyan);
+      z-index: 2000;
+      width: 0%;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 8px var(--cyan);
+    }
+
+    /* ─── STATS BAR ─── */
+    .stats-bar {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 3.5rem 5%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      position: relative;
+    }
+
+    .stat-item::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 20%; bottom: 20%;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .stat-item:last-child::after { display: none; }
+
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.8rem, 5vw, 4rem);
+      color: var(--cyan);
+      line-height: 1;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.4rem;
+      display: block;
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 3rem auto 0;
+    }
+
+    .testi-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2rem 1.75rem;
+      position: relative;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .testi-card:hover {
+      border-color: rgba(0,195,255,0.25);
+      transform: translateY(-4px);
+    }
+
+    .testi-stars {
+      color: #f5a623;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      margin-bottom: 1.1rem;
+    }
+
+    .testi-quote {
+      font-size: 0.95rem;
+      line-height: 1.72;
+      color: var(--light);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .testi-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(0,195,255,0.12);
+      border: 2px solid rgba(0,195,255,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--cyan);
+      flex-shrink: 0;
+    }
+
+    .testi-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .testi-tag {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.1rem;
+    }
+
+    .testi-card::before {
+      content: '"';
+      position: absolute;
+      top: 1rem; right: 1.5rem;
+      font-size: 5rem;
+      line-height: 1;
+      color: rgba(0,195,255,0.06);
+      font-family: Georgia, serif;
+      pointer-events: none;
+    }
+
+    /* ─── FAQ ─── */
+    .faq-list {
+      max-width: 780px;
+      margin: 3rem auto 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--white);
+      text-align: left;
+      padding: 1.5rem 0;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      transition: color 0.2s;
+    }
+
+    .faq-q:hover { color: var(--cyan); }
+
+    .faq-icon {
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      color: var(--cyan);
+      transition: transform 0.3s, background 0.2s;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      background: rgba(0,195,255,0.1);
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+    }
+
+    .faq-item.open .faq-a { max-height: 300px; }
+
+    .faq-a p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.72;
+      padding-bottom: 1.5rem;
+    }
+
+    /* ─── WHATSAPP FLOAT ─── */
+    .wa-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 1500;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #25d366;
+      color: #fff;
+      text-decoration: none;
+      padding: 0.85rem 1.4rem 0.85rem 1rem;
+      border-radius: 50px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 24px rgba(37,211,102,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: wa-bounce 3s ease-in-out infinite;
+    }
+
+    .wa-float:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 8px 32px rgba(37,211,102,0.5);
+      animation: none;
+    }
+
+    .wa-float svg { flex-shrink: 0; }
+
+    @keyframes wa-bounce {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+
+    /* ─── BACK TO TOP ─── */
+    .back-top {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      z-index: 1500;
+      width: 44px; height: 44px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--cyan);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.2s, background 0.2s;
+      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    }
+
+    .back-top.visible { opacity: 1; pointer-events: all; }
+    .back-top:hover { background: var(--cyan); color: #000; transform: translateY(-2px); }
+
+    /* ─── RESULTS BANNER ─── */
+    .results-banner {
+      background: var(--cyan);
+      padding: 1.5rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+
+    .rb-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #000;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .rb-dot {
+      width: 8px; height: 8px;
+      background: rgba(0,0,0,0.4);
+      border-radius: 50%;
+    }
+
     /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
       .about-wrap    { grid-template-columns: 1fr; gap: 4rem; padding: 0; }
@@ -1181,10 +1470,27 @@
       .services-grid { grid-template-columns: 1fr; }
       .hero-brand-name { font-size: clamp(3rem, 12vw, 5rem); }
       .time-slots-grid { grid-template-columns: repeat(3, 1fr); }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2)::after { display: none; }
+      .wa-float span { display: none; }
+      .wa-float { padding: 0.9rem; border-radius: 50%; }
+      .results-banner { gap: 1.5rem; }
     }
   </style>
 </head>
 <body>
+
+<!-- Scroll progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- WhatsApp float -->
+<a class="wa-float" href="https://wa.me/27691619116?text=Hi%2C%20I%27d%20like%20to%20find%20out%20more%20about%20Feel%20Good%20Dungeon!" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.853L0 24l6.335-1.51A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.887 0-3.656-.5-5.186-1.373l-.372-.22-3.762.897.938-3.668-.242-.386A9.961 9.961 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+  <span>Chat on WhatsApp</span>
+</a>
+
+<!-- Back to top -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
 <!-- ═══ NAV ═══ -->
 <nav id="mainNav">
@@ -1273,6 +1579,27 @@
   <div class="trust-item">
     <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="4" y="4" width="20" height="20" rx="2" stroke="#000" stroke-width="2"/><path d="M9 14h10M14 9v10" stroke="#000" stroke-width="2" stroke-linecap="round"/></svg>
     <div class="trust-text"><strong>R350 / Month</strong><span>No Joining Fee</span></div>
+  </div>
+</div>
+
+
+<!-- ═══ STATS BAR ═══ -->
+<div class="stats-bar">
+  <div class="stat-item fade">
+    <span class="stat-num" data-target="200">0</span>
+    <span class="stat-label">Members Trained</span>
+  </div>
+  <div class="stat-item fade">
+    <span class="stat-num" data-target="5">0</span>
+    <span class="stat-label">Years Experience</span>
+  </div>
+  <div class="stat-item fade">
+    <span class="stat-num" data-target="3">0</span>
+    <span class="stat-label">Expert Coaches</span>
+  </div>
+  <div class="stat-item fade">
+    <span class="stat-num" data-target="98">0</span>
+    <span class="stat-label">% Client Satisfaction</span>
   </div>
 </div>
 
@@ -1377,6 +1704,16 @@
       <h3>Nutrition &amp; Diet Support</h3>
       <p>Training is only half the equation. Our coaches give you practical, real-world nutrition and diet guidance to fuel your results inside and outside the gym.</p>
     </div>
+    <div class="srv-card fade">
+      <div class="srv-ico">🔥</div>
+      <h3>Weight Loss Programs</h3>
+      <p>Targeted fat-loss programs combining cardio, strength training, and nutrition coaching. Sustainable results — no crash diets, no shortcuts, just real transformation.</p>
+    </div>
+    <div class="srv-card fade">
+      <div class="srv-ico">🏅</div>
+      <h3>Athletic Performance</h3>
+      <p>Speed, power, endurance and agility training for athletes and competitors. Take your sport performance to the next level with structured programming from our Dungeon Champs.</p>
+    </div>
   </div>
 </section>
 
@@ -1464,6 +1801,63 @@
 </section>
 
 
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="section dark" id="testimonials">
+  <div class="services-head fade">
+    <div class="s-label">Real Members</div>
+    <h2 class="s-title">Results Speak<br>For Themselves</h2>
+    <p class="s-body">Don't take our word for it — hear from the Dungeon family.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card fade">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"I'd tried so many gyms before Feel Good Dungeon. In 3 months I lost 12kg and actually enjoy training now. The coaches push you but they actually care about your progress. Best decision I've made."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">TM</div>
+        <div>
+          <div class="testi-name">Thabo M.</div>
+          <div class="testi-tag">Member · Weight Loss</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card fade">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"The personal training is unmatched. My coach built a full program around my goals and adjusts it every session. In 6 months I've gone from barely benching 60kg to 100kg. The community here is incredible."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">KD</div>
+        <div>
+          <div class="testi-name">Kagiso D.</div>
+          <div class="testi-tag">Member · Strength Training</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card fade">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"R350 a month with no joining fee and no contract — and the quality of coaching is better than gyms charging 4x the price. The group classes are intense and fun. I've never felt stronger or more confident."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">SN</div>
+        <div>
+          <div class="testi-name">Siphokazi N.</div>
+          <div class="testi-tag">Member · Group Classes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ RESULTS BANNER ═══ -->
+<div class="results-banner">
+  <div class="rb-item"><span>💪</span> Real Results. Real People.</div>
+  <div class="rb-dot"></div>
+  <div class="rb-item"><span>🎯</span> No Lock-In Contracts</div>
+  <div class="rb-dot"></div>
+  <div class="rb-item"><span>🔥</span> Start This Week</div>
+  <div class="rb-dot"></div>
+  <div class="rb-item"><span>📍</span> Midrand · Halfway House</div>
+</div>
+
+
 <!-- ═══ BOOKING ═══ -->
 <section id="booking" class="section">
   <div class="booking-wrap">
@@ -1532,6 +1926,67 @@
       Every last Saturday of the month we host our signature community workout and drinks session. It's where the Dungeon family gathers, pushes hard, and celebrates every win together.
     </p>
     <a href="#contact" class="btn btn-cyan">Join the Family</a>
+  </div>
+</section>
+
+
+<!-- ═══ FAQ ═══ -->
+<section class="section dark" id="faq">
+  <div class="services-head fade">
+    <div class="s-label">FAQ</div>
+    <h2 class="s-title">Got Questions?<br>We Got Answers.</h2>
+    <p class="s-body">Everything you need to know before stepping into the Dungeon.</p>
+  </div>
+  <div class="faq-list">
+
+    <div class="faq-item fade">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        How much does membership cost?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a"><p>Group membership is R350 per month, month-to-month with no joining fee and no long-term contract. Personal training pricing is tailored to your goals and schedule — contact us for a quote.</p></div>
+    </div>
+
+    <div class="faq-item fade">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Do I need any experience to join?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a"><p>Absolutely not. Feel Good Dungeon welcomes all fitness levels — from complete beginners to seasoned athletes. Every new member gets a full fitness, health and nutrition assessment on sign-up so we know exactly where you're starting from.</p></div>
+    </div>
+
+    <div class="faq-item fade">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        What are the gym hours?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a"><p>We run sessions Monday to Friday from 06:00 to 19:00, and Saturdays from 07:00 to 12:00. Personal training sessions can be booked online and are subject to coach availability within these hours.</p></div>
+    </div>
+
+    <div class="faq-item fade">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Where exactly is Feel Good Dungeon located?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a"><p>We're based at Innovation Worx, 16th Road, Scale End, Halfway House, Midrand 1685. Easily accessible from the N1 and N14. Use our map above for directions.</p></div>
+    </div>
+
+    <div class="faq-item fade">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Can I cancel my membership anytime?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a"><p>Yes — no lock-in, no penalties. Our membership is purely month-to-month. We're confident the results will keep you here, but there's never any obligation.</p></div>
+    </div>
+
+    <div class="faq-item fade">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        What is a Dungeon Champ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a"><p>Dungeon Champs are our fully qualified, experienced coaches. They design your programs, run group classes, provide 1-on-1 personal training, and give you real nutrition and lifestyle guidance. They're not just trainers — they're invested in your long-term progress.</p></div>
+    </div>
+
   </div>
 </section>
 
@@ -1653,20 +2108,56 @@
 
 
 <script>
-  // ── Scroll-reveal ──
+  // ── Scroll progress bar ──
+  const progressBar = document.getElementById('scrollProgress');
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    progressBar.style.width = pct + '%';
+    backTop.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // ── Scroll-reveal + counter trigger ──
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        // animate counters inside this element
+        e.target.querySelectorAll('.stat-num[data-target]').forEach(animateCounter);
+        io.unobserve(e.target);
+      }
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+  // ── Counter animation ──
+  function animateCounter(el) {
+    const target = +el.dataset.target;
+    const suffix = target >= 98 ? '%' : target > 10 ? '+' : target === 3 ? '' : '+';
+    const duration = 1800;
+    const step = duration / target;
+    let current = 0;
+    const timer = setInterval(() => {
+      current++;
+      el.textContent = current + suffix;
+      if (current >= target) clearInterval(timer);
+    }, step);
+  }
 
   // ── Nav scroll shadow ──
   const nav = document.getElementById('mainNav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 30);
   });
+
+  // ── FAQ accordion ──
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
 
   // ── Mobile nav ──
   function toggleNav() {
