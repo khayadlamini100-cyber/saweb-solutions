@@ -644,6 +644,21 @@
       border-top: 1px solid var(--border);
     }
     footer a { color: var(--blue); text-decoration: none; }
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    .footer-brand:hover { opacity: 0.8; }
+    .footer-brand img {
+      height: 20px;
+      width: auto;
+      display: block;
+    }
 
     /* ─── Fade-in animations ─── */
     .fade-up {
@@ -1029,7 +1044,12 @@
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      Built by Khaya Dlamini · <a href="https://sawebsolutions.org.za" target="_blank">SaWeb Solutions</a> · South Africa
+      Built by Khaya Dlamini ·
+      <a href="https://sawebsolutions.org.za" target="_blank" class="footer-brand">
+        <img src="SaWebLogo.png" alt="SaWeb Solutions" />
+        SaWeb Solutions
+      </a>
+      · South Africa
     </div>
   </footer>
 
