@@ -1473,6 +1473,318 @@
       .wa-float span { display: none; }
       .wa-float { padding: 0.9rem; border-radius: 50%; }
       .results-banner { gap: 1.5rem; }
+      .nutri-layout   { grid-template-columns: 1fr; gap: 3rem; }
+      .macro-results  { grid-template-columns: repeat(2, 1fr); }
+      .nutri-programs { grid-template-columns: 1fr; }
+    }
+
+    /* ─── NUTRITION ─── */
+    #nutrition { background: var(--dark); }
+
+    .nutri-intro { text-align: center; margin-bottom: 4rem; }
+    .nutri-intro .s-body { margin: 0 auto; }
+
+    /* Calculator */
+    .nutri-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      max-width: 1200px;
+      margin: 0 auto 5rem;
+      align-items: start;
+    }
+
+    .calc-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+    }
+
+    .calc-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.45rem;
+    }
+
+    .calc-sub {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+      line-height: 1.55;
+    }
+
+    .calc-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .calc-row.full { grid-template-columns: 1fr; }
+
+    .calc-btn {
+      width: 100%;
+      background: var(--cyan);
+      color: #000;
+      border: none;
+      padding: 0.95rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .calc-btn:hover { background: #33cfff; }
+    .calc-btn:active { transform: scale(0.98); }
+
+    /* Results panel */
+    .results-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .results-empty {
+      background: var(--card);
+      border: 1px dashed var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    .results-empty .ico { font-size: 2.5rem; margin-bottom: 0.75rem; display: block; }
+
+    .macro-results {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .macro-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 1.4rem 1.25rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .macro-card.calories { border-top: 2px solid var(--cyan); grid-column: 1 / -1; }
+    .macro-card.protein  { border-top: 2px solid #f06; }
+    .macro-card.carbs    { border-top: 2px solid #f80; }
+    .macro-card.fat      { border-top: 2px solid #8c6; }
+
+    .macro-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--white);
+    }
+
+    .macro-card.calories .macro-num { font-size: 3.4rem; color: var(--cyan); }
+
+    .macro-unit {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    .macro-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.6rem;
+    }
+
+    .macro-bar-wrap {
+      height: 3px;
+      background: var(--border);
+      margin-top: 0.75rem;
+    }
+
+    .macro-bar {
+      height: 100%;
+      width: 0;
+      transition: width 1s ease;
+    }
+
+    .macro-card.protein .macro-bar  { background: #f06; }
+    .macro-card.carbs   .macro-bar  { background: #f80; }
+    .macro-card.fat     .macro-bar  { background: #8c6; }
+
+    .results-note {
+      background: rgba(0,195,255,0.05);
+      border: 1px solid rgba(0,195,255,0.2);
+      padding: 1.1rem 1.25rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .results-note strong { color: var(--cyan); }
+
+    /* Programs */
+    .nutri-programs-head { text-align: center; margin-bottom: 3rem; max-width: 1200px; margin-left: auto; margin-right: auto; }
+
+    .nutri-programs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+    }
+
+    .np-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .np-card:hover { border-color: rgba(0,195,255,0.4); transform: translateY(-4px); }
+
+    .np-card.featured {
+      border-color: var(--cyan);
+      background: linear-gradient(160deg,#181e23,#181818);
+    }
+
+    .np-badge {
+      position: absolute;
+      top: -1px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--cyan);
+      color: #000;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.28rem 1.25rem;
+      white-space: nowrap;
+    }
+
+    .np-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .np-name {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .np-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .np-price {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--cyan);
+      line-height: 1;
+      margin: 0.5rem 0 0.25rem;
+    }
+
+    .np-price sup { font-size: 1.2rem; vertical-align: super; }
+
+    .np-period { font-size: 0.8rem; color: var(--muted); margin-bottom: 1.5rem; }
+
+    .np-divider { height: 1px; background: var(--border); margin-bottom: 1.5rem; }
+
+    .np-feats {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      flex: 1;
+    }
+
+    .np-feats li {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.86rem;
+      color: var(--light);
+    }
+
+    .np-feats .y { color: var(--cyan); font-weight: 700; }
+
+    /* Inquiry form */
+    .nutri-inquiry {
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 3rem 2.5rem;
+    }
+
+    .nutri-inquiry-head { margin-bottom: 2rem; }
+    .nutri-inquiry-head h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .nutri-inquiry-head p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+    .wa-submit {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      background: #25d366;
+      color: #fff;
+      border: none;
+      padding: 1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+
+    .wa-submit:hover { background: #1fba58; }
+
+    @media (max-width: 900px) {
+      .calc-row { grid-template-columns: 1fr; }
+      .nutri-programs { grid-template-columns: 1fr; max-width: 480px; }
+      .nutri-inquiry { padding: 2.25rem 1.5rem; }
     }
   </style>
 </head>
@@ -1514,7 +1826,8 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="#services" onclick="closeNav()">Services</a></li>
     <li><a href="#about"    onclick="closeNav()">About</a></li>
-    <li><a href="#pricing"  onclick="closeNav()">Pricing</a></li>
+    <li><a href="#pricing"   onclick="closeNav()">Pricing</a></li>
+    <li><a href="#nutrition" onclick="closeNav()">Nutrition</a></li>
     <li><a href="#community" onclick="closeNav()">Community</a></li>
     <li><a href="#contact"  onclick="closeNav()">Contact</a></li>
   </ul>
@@ -1911,6 +2224,207 @@
     </div>
 
   </div>
+</section>
+
+
+<!-- ═══ NUTRITION ═══ -->
+<section id="nutrition" class="section dark">
+
+  <div class="nutri-intro fade">
+    <div class="s-label">Nutrition</div>
+    <h2 class="s-title">Fuel Your<br>Results</h2>
+    <p class="s-body">Training hard is only half the equation. Our personalised nutrition programmes are built around your body, your goals, and your lifestyle — so you're fuelling right every single day.</p>
+  </div>
+
+  <!-- MACRO CALCULATOR -->
+  <div class="nutri-layout">
+
+    <!-- Inputs -->
+    <div class="calc-panel fade">
+      <div class="calc-title">Free Macro Calculator</div>
+      <p class="calc-sub">Get an instant estimate of your daily calories and macros. Enter your details and we'll do the math.</p>
+
+      <div class="calc-row">
+        <div class="f-group" style="margin:0">
+          <label for="calcGender">Gender</label>
+          <select id="calcGender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div class="f-group" style="margin:0">
+          <label for="calcAge">Age</label>
+          <input id="calcAge" type="number" min="14" max="90" placeholder="e.g. 28">
+        </div>
+      </div>
+
+      <div class="calc-row">
+        <div class="f-group" style="margin:0">
+          <label for="calcWeight">Weight (kg)</label>
+          <input id="calcWeight" type="number" min="30" max="250" placeholder="e.g. 80">
+        </div>
+        <div class="f-group" style="margin:0">
+          <label for="calcHeight">Height (cm)</label>
+          <input id="calcHeight" type="number" min="100" max="250" placeholder="e.g. 175">
+        </div>
+      </div>
+
+      <div class="calc-row full">
+        <div class="f-group" style="margin:0">
+          <label for="calcActivity">Activity Level</label>
+          <select id="calcActivity">
+            <option value="1.2">Sedentary (office job, little exercise)</option>
+            <option value="1.375">Lightly active (1–3 days/week)</option>
+            <option value="1.55" selected>Moderately active (3–5 days/week)</option>
+            <option value="1.725">Very active (6–7 days/week)</option>
+            <option value="1.9">Extremely active (2× training/day)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="calc-row full">
+        <div class="f-group" style="margin:0">
+          <label for="calcGoal">Goal</label>
+          <select id="calcGoal">
+            <option value="cut">Lose fat (cut)</option>
+            <option value="maintain" selected>Maintain weight</option>
+            <option value="bulk">Build muscle (bulk)</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="calcError" style="display:none;color:#f06;font-size:0.82rem;margin-bottom:0.75rem;padding:0.6rem 0.85rem;border:1px solid rgba(255,0,102,0.3);background:rgba(255,0,102,0.06);"></div>
+
+      <button class="calc-btn" onclick="calculateMacros()">Calculate My Macros →</button>
+    </div>
+
+    <!-- Results -->
+    <div class="results-panel" id="macroResults">
+      <div class="results-empty">
+        <span class="ico">🥗</span>
+        Fill in the form on the left and hit <strong style="color:var(--white)">Calculate</strong> to see your personalised daily macros.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NUTRITION PROGRAMS -->
+  <div class="nutri-programs-head fade">
+    <div class="s-label">Programmes</div>
+    <h2 class="s-title" style="margin-bottom:0.75rem;">Choose Your Plan</h2>
+    <p class="s-body" style="margin:0 auto;">From entry-level meal guides to fully managed nutrition coaching — there's a programme for every stage.</p>
+  </div>
+
+  <div class="nutri-programs">
+
+    <!-- STARTER -->
+    <div class="np-card fade">
+      <div class="np-icon">📋</div>
+      <div class="np-name">One-Off · Digital Delivery</div>
+      <div class="np-title">Starter Meal Guide</div>
+      <div class="np-price"><sup>R</sup>499</div>
+      <div class="np-period">once-off · emailed within 48 hrs</div>
+      <div class="np-divider"></div>
+      <ul class="np-feats">
+        <li><span class="y">✓</span> 4-week structured meal plan</li>
+        <li><span class="y">✓</span> Calorie &amp; macro targets included</li>
+        <li><span class="y">✓</span> Suitable for cut, maintain, or bulk</li>
+        <li><span class="y">✓</span> South African-friendly foods</li>
+        <li><span class="y">✓</span> Grocery shopping list included</li>
+        <li><span class="y">✓</span> PDF format — keep forever</li>
+      </ul>
+      <div class="p-cta">
+        <button class="btn btn-ghost" style="width:100%;clip-path:none;" onclick="prefillProgram('Starter Meal Guide — R499')">Order Now →</button>
+      </div>
+    </div>
+
+    <!-- CUSTOM -->
+    <div class="np-card featured fade">
+      <div class="np-badge">Best Value</div>
+      <div class="np-icon">🎯</div>
+      <div class="np-name">One-Off · Personalised</div>
+      <div class="np-title">Custom Macro Plan</div>
+      <div class="np-price"><sup>R</sup>899</div>
+      <div class="np-period">once-off · delivered in 72 hrs</div>
+      <div class="np-divider"></div>
+      <ul class="np-feats">
+        <li><span class="y">✓</span> Built around your exact macros</li>
+        <li><span class="y">✓</span> Tailored to your body stats &amp; goal</li>
+        <li><span class="y">✓</span> 6-week progressive meal plan</li>
+        <li><span class="y">✓</span> Supplement recommendations</li>
+        <li><span class="y">✓</span> Cheat meal &amp; refeeding guide</li>
+        <li><span class="y">✓</span> 1× follow-up WhatsApp check-in</li>
+      </ul>
+      <div class="p-cta">
+        <button class="btn btn-cyan" style="width:100%;clip-path:none;" onclick="prefillProgram('Custom Macro Plan — R899')">Order Now →</button>
+      </div>
+    </div>
+
+    <!-- COACHING -->
+    <div class="np-card fade">
+      <div class="np-icon">🏆</div>
+      <div class="np-name">Monthly · Ongoing</div>
+      <div class="np-title">Nutrition Coaching</div>
+      <div class="np-price"><sup>R</sup>1,499</div>
+      <div class="np-period">per month · cancel anytime</div>
+      <div class="np-divider"></div>
+      <ul class="np-feats">
+        <li><span class="y">✓</span> Fully managed nutrition plan</li>
+        <li><span class="y">✓</span> Weekly plan updates &amp; adjustments</li>
+        <li><span class="y">✓</span> Unlimited WhatsApp support</li>
+        <li><span class="y">✓</span> Progress tracking &amp; body measurements</li>
+        <li><span class="y">✓</span> Syncs with your training programme</li>
+        <li><span class="y">✓</span> Priority booking for PT sessions</li>
+      </ul>
+      <div class="p-cta">
+        <button class="btn btn-ghost" style="width:100%;clip-path:none;" onclick="prefillProgram('Nutrition Coaching — R1499/month')">Get Started →</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- INQUIRY FORM -->
+  <div class="nutri-inquiry fade" id="nutriInquiry">
+    <div class="nutri-inquiry-head">
+      <h3>Order or Ask a Question</h3>
+      <p>Tell us which programme interests you and what your goals are. We'll get back to you on WhatsApp within a few hours.</p>
+    </div>
+
+    <div class="calc-row">
+      <div class="f-group" style="margin:0">
+        <label for="niName">Full Name</label>
+        <input id="niName" type="text" placeholder="Your name">
+      </div>
+      <div class="f-group" style="margin:0">
+        <label for="niPhone">WhatsApp Number</label>
+        <input id="niPhone" type="tel" placeholder="e.g. 082 123 4567">
+      </div>
+    </div>
+
+    <div class="f-group">
+      <label for="niProgram">Programme</label>
+      <select id="niProgram">
+        <option value="">— Select a programme —</option>
+        <option value="Starter Meal Guide — R499">Starter Meal Guide — R499</option>
+        <option value="Custom Macro Plan — R899">Custom Macro Plan — R899</option>
+        <option value="Nutrition Coaching — R1499/month">Nutrition Coaching — R1,499/month</option>
+        <option value="Just a question">Just asking a question</option>
+      </select>
+    </div>
+
+    <div class="f-group">
+      <label for="niGoal">Your Goal / Question</label>
+      <textarea id="niGoal" placeholder="e.g. I want to lose 10kg, currently 95kg male. Which plan suits me best?"></textarea>
+    </div>
+
+    <div id="niError" style="display:none;color:#f06;font-size:0.82rem;margin-bottom:0.75rem;padding:0.6rem 0.85rem;border:1px solid rgba(255,0,102,0.3);background:rgba(255,0,102,0.06);"></div>
+
+    <button class="wa-submit" onclick="sendNutritionInquiry()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Send via WhatsApp
+    </button>
+  </div>
+
 </section>
 
 
@@ -2397,6 +2911,142 @@
 
   renderBk();
   setInterval(renderBk, 30000);
+
+  // ── Macro Calculator ──
+  function calculateMacros() {
+    const errEl = document.getElementById('calcError');
+    errEl.style.display = 'none';
+
+    const gender   = document.getElementById('calcGender').value;
+    const age      = parseFloat(document.getElementById('calcAge').value);
+    const weight   = parseFloat(document.getElementById('calcWeight').value);
+    const height   = parseFloat(document.getElementById('calcHeight').value);
+    const activity = parseFloat(document.getElementById('calcActivity').value);
+    const goal     = document.getElementById('calcGoal').value;
+
+    if (!age || !weight || !height || age < 14 || weight < 30 || height < 100) {
+      errEl.textContent = 'Please fill in all fields with valid values.';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    // Harris-Benedict BMR
+    let bmr;
+    if (gender === 'male') {
+      bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+    } else {
+      bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+    }
+
+    let tdee = Math.round(bmr * activity);
+
+    // Adjust for goal
+    let calories;
+    if (goal === 'cut')      calories = Math.round(tdee * 0.80);
+    else if (goal === 'bulk') calories = Math.round(tdee * 1.15);
+    else                      calories = tdee;
+
+    // Macros (protein 30%, carbs 40%, fat 30% for cut; 30/45/25 maintain; 35/45/20 bulk)
+    let proteinPct, carbsPct, fatPct;
+    if (goal === 'cut')       { proteinPct = 0.35; carbsPct = 0.40; fatPct = 0.25; }
+    else if (goal === 'bulk') { proteinPct = 0.30; carbsPct = 0.45; fatPct = 0.25; }
+    else                      { proteinPct = 0.30; carbsPct = 0.45; fatPct = 0.25; }
+
+    const proteinG = Math.round((calories * proteinPct) / 4);
+    const carbsG   = Math.round((calories * carbsPct)   / 4);
+    const fatG     = Math.round((calories * fatPct)     / 9);
+
+    // Render
+    const container = document.getElementById('macroResults');
+    container.innerHTML = `
+      <div class="macro-results">
+        <div class="macro-card calories">
+          <div class="macro-num" data-target="${calories}" data-suffix="">0</div>
+          <div class="macro-unit">kcal / day</div>
+          <div class="macro-label">Daily Calories</div>
+        </div>
+        <div class="macro-card protein">
+          <div class="macro-num" data-target="${proteinG}" data-suffix="g">0</div>
+          <div class="macro-unit">grams</div>
+          <div class="macro-label">Protein</div>
+          <div class="macro-bar-wrap"><div class="macro-bar" data-pct="${Math.round(proteinPct*100)}"></div></div>
+        </div>
+        <div class="macro-card carbs">
+          <div class="macro-num" data-target="${carbsG}" data-suffix="g">0</div>
+          <div class="macro-unit">grams</div>
+          <div class="macro-label">Carbohydrates</div>
+          <div class="macro-bar-wrap"><div class="macro-bar" data-pct="${Math.round(carbsPct*100)}"></div></div>
+        </div>
+        <div class="macro-card fat">
+          <div class="macro-num" data-target="${fatG}" data-suffix="g">0</div>
+          <div class="macro-unit">grams</div>
+          <div class="macro-label">Fats</div>
+          <div class="macro-bar-wrap"><div class="macro-bar" data-pct="${Math.round(fatPct*100)}"></div></div>
+        </div>
+      </div>
+      <div class="results-note">
+        <strong>Based on a ${goal === 'cut' ? 'fat loss' : goal === 'bulk' ? 'muscle gain' : 'maintenance'} goal.</strong>
+        These are estimates using the Harris-Benedict formula. For a fully personalised plan built around your lifestyle, pick a programme below or chat with us on WhatsApp.
+      </div>
+    `;
+
+    // Animate counters
+    container.querySelectorAll('.macro-num').forEach(el => {
+      const target = +el.dataset.target;
+      const suffix = el.dataset.suffix;
+      const duration = 1200;
+      const steps = 40;
+      const inc = target / steps;
+      let current = 0;
+      const timer = setInterval(() => {
+        current = Math.min(current + inc, target);
+        el.textContent = Math.round(current) + suffix;
+        if (current >= target) clearInterval(timer);
+      }, duration / steps);
+    });
+
+    // Animate bars after short delay
+    setTimeout(() => {
+      container.querySelectorAll('.macro-bar').forEach(bar => {
+        bar.style.width = bar.dataset.pct + '%';
+      });
+    }, 150);
+
+    container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // ── Pre-fill inquiry from program cards ──
+  function prefillProgram(val) {
+    document.getElementById('niProgram').value = val;
+    document.getElementById('nutriInquiry').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ── Nutrition WhatsApp inquiry ──
+  function sendNutritionInquiry() {
+    const errEl   = document.getElementById('niError');
+    const name    = document.getElementById('niName').value.trim();
+    const phone   = document.getElementById('niPhone').value.trim();
+    const program = document.getElementById('niProgram').value;
+    const goal    = document.getElementById('niGoal').value.trim();
+
+    errEl.style.display = 'none';
+
+    if (!name) { errEl.textContent = 'Please enter your name.'; errEl.style.display = 'block'; return; }
+    if (!phone) { errEl.textContent = 'Please enter your WhatsApp number.'; errEl.style.display = 'block'; return; }
+    if (!program) { errEl.textContent = 'Please select a programme.'; errEl.style.display = 'block'; return; }
+
+    const lines = [
+      'Hi, I\'m interested in a nutrition programme at Feel Good Dungeon.',
+      '',
+      'Name: ' + name,
+      'Number: ' + phone,
+      'Programme: ' + program,
+      goal ? 'Goal / Question: ' + goal : '',
+    ].filter(l => l !== undefined).join('\n').trim();
+
+    const url = 'https://wa.me/27691619116?text=' + encodeURIComponent(lines);
+    window.open(url, '_blank', 'noopener');
+  }
 </script>
 
 </body>
