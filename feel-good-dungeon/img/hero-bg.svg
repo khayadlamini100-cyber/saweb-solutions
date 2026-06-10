@@ -1,148 +1,161 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900">
   <defs>
-    <radialGradient id="hbg" cx="72%" cy="35%" r="75%">
-      <stop offset="0%" stop-color="#1e1e1e"/>
-      <stop offset="45%" stop-color="#0e0e0e"/>
+    <radialGradient id="hbg" cx="72%" cy="35%" r="72%">
+      <stop offset="0%" stop-color="#222"/>
+      <stop offset="50%" stop-color="#0e0e0e"/>
       <stop offset="100%" stop-color="#040404"/>
     </radialGradient>
-    <radialGradient id="hspot" cx="72%" cy="20%" r="50%">
+    <linearGradient id="hbar" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e0e0e0"/>
+      <stop offset="25%" stop-color="#aaa"/>
+      <stop offset="60%" stop-color="#777"/>
+      <stop offset="100%" stop-color="#333"/>
+    </linearGradient>
+    <radialGradient id="hplate" cx="30%" cy="25%" r="65%">
+      <stop offset="0%" stop-color="#555"/>
+      <stop offset="55%" stop-color="#222"/>
+      <stop offset="100%" stop-color="#0e0e0e"/>
+    </radialGradient>
+    <linearGradient id="hrack" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="45%" stop-color="#4a4a4a"/>
+      <stop offset="55%" stop-color="#3a3a3a"/>
+      <stop offset="100%" stop-color="#161616"/>
+    </linearGradient>
+    <radialGradient id="hkb" cx="28%" cy="22%" r="65%">
+      <stop offset="0%" stop-color="#444"/>
+      <stop offset="55%" stop-color="#181818"/>
+      <stop offset="100%" stop-color="#080808"/>
+    </radialGradient>
+    <linearGradient id="hkbh" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#555"/>
+      <stop offset="40%" stop-color="#ccc"/>
+      <stop offset="60%" stop-color="#ddd"/>
+      <stop offset="100%" stop-color="#444"/>
+    </linearGradient>
+    <radialGradient id="hspot" cx="72%" cy="22%" r="48%">
       <stop offset="0%" stop-color="#282828"/>
       <stop offset="100%" stop-color="transparent"/>
     </radialGradient>
-    <linearGradient id="hrack" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#181818"/>
-      <stop offset="40%" stop-color="#363636"/>
-      <stop offset="60%" stop-color="#2e2e2e"/>
-      <stop offset="100%" stop-color="#141414"/>
-    </linearGradient>
-    <linearGradient id="hbar" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#1e1e1e"/>
-      <stop offset="30%" stop-color="#5e5e5e"/>
-      <stop offset="55%" stop-color="#686868"/>
-      <stop offset="100%" stop-color="#1c1c1c"/>
-    </linearGradient>
-    <radialGradient id="hplate" cx="30%" cy="25%" r="65%">
-      <stop offset="0%" stop-color="#424242"/>
-      <stop offset="55%" stop-color="#1e1e1e"/>
-      <stop offset="100%" stop-color="#0c0c0c"/>
-    </radialGradient>
     <linearGradient id="hfloor" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#141208"/>
+      <stop offset="0%" stop-color="#181208"/>
       <stop offset="100%" stop-color="#080808"/>
     </linearGradient>
   </defs>
 
-  <!-- Base -->
   <rect width="1400" height="900" fill="#040404"/>
   <rect width="1400" height="900" fill="url(#hbg)"/>
   <rect width="1400" height="900" fill="url(#hspot)"/>
 
   <!-- Floor -->
-  <rect x="0" y="640" width="1400" height="260" fill="url(#hfloor)"/>
-  <line x1="0" y1="640" x2="1400" y2="640" stroke="#1a1608" stroke-width="2"/>
-  <!-- Floor perspective lines (vanishing point right ~1050px) -->
-  <line x1="1050" y1="640" x2="0" y2="900" stroke="#13110a" stroke-width="1"/>
-  <line x1="1050" y1="640" x2="400" y2="900" stroke="#13110a" stroke-width="1"/>
-  <line x1="1050" y1="640" x2="700" y2="900" stroke="#13110a" stroke-width="1"/>
-  <line x1="1050" y1="640" x2="1400" y2="900" stroke="#13110a" stroke-width="1"/>
-  <line x1="0" y1="720" x2="1400" y2="720" stroke="#110f09" stroke-width="1"/>
-  <line x1="0" y1="800" x2="1400" y2="800" stroke="#110f09" stroke-width="1"/>
+  <rect x="0" y="650" width="1400" height="250" fill="url(#hfloor)"/>
+  <line x1="0" y1="650" x2="1400" y2="650" stroke="#201508" stroke-width="2"/>
+  <!-- Floor perspective lines -->
+  <line x1="1050" y1="650" x2="0" y2="900"    stroke="#14100a" stroke-width="1"/>
+  <line x1="1050" y1="650" x2="500" y2="900"   stroke="#14100a" stroke-width="1"/>
+  <line x1="1050" y1="650" x2="800" y2="900"   stroke="#14100a" stroke-width="1"/>
+  <line x1="1050" y1="650" x2="1400" y2="900"  stroke="#14100a" stroke-width="1"/>
+  <line x1="0" y1="740" x2="1400" y2="740" stroke="#111009" stroke-width="1"/>
+  <line x1="0" y1="820" x2="1400" y2="820" stroke="#111009" stroke-width="1"/>
 
-  <!-- Wall seam / skirting -->
-  <rect x="0" y="636" width="1400" height="6" fill="#0d0d0d"/>
-
-  <!-- === POWER RACK (right side, prominent) === -->
-  <!-- Rear upright -->
-  <rect x="1060" y="60" width="22" height="580" rx="5" fill="#131313" stroke="#1c1c1c" stroke-width="1"/>
+  <!-- === POWER RACK (right, prominent) === -->
+  <!-- Back upright -->
+  <rect x="1068" y="55" width="20" height="596" rx="4" fill="#151515" stroke="#222" stroke-width="1"/>
   <!-- Front upright -->
-  <rect x="940" y="60" width="22" height="580" rx="5" fill="url(#hrack)" stroke="#262626" stroke-width="1.5"/>
-  <!-- Cross beam top -->
-  <rect x="938" y="70" width="146" height="16" rx="4" fill="#222" stroke="#2c2c2c" stroke-width="1"/>
-  <!-- Safety pins / cross members -->
-  <rect x="938" y="220" width="146" height="10" rx="3" fill="#1c1c1c" stroke="#252525" stroke-width="1"/>
-  <rect x="938" y="360" width="146" height="10" rx="3" fill="#1c1c1c" stroke="#252525" stroke-width="1"/>
-  <rect x="938" y="500" width="146" height="10" rx="3" fill="#1c1c1c" stroke="#252525" stroke-width="1"/>
-  <!-- J-hooks -->
-  <rect x="950" y="295" width="30" height="20" rx="5" fill="#2c2c2c" stroke="#383838" stroke-width="1.5"/>
-  <rect x="1040" y="295" width="30" height="20" rx="5" fill="#2c2c2c" stroke="#383838" stroke-width="1.5"/>
+  <rect x="950"  y="55" width="20" height="596" rx="4" fill="url(#hrack)" stroke="#444" stroke-width="1.5"/>
+  <!-- Upright shine -->
+  <rect x="950" y="55" width="5" height="596" rx="2" fill="rgba(255,255,255,0.06)"/>
+  <!-- Top cross beam -->
+  <rect x="948" y="60" width="142" height="18" rx="4" fill="#333" stroke="#555" stroke-width="1"/>
+  <!-- Cross members -->
+  <rect x="948" y="230" width="142" height="10" rx="3" fill="#222" stroke="#3a3a3a" stroke-width="1"/>
+  <rect x="948" y="380" width="142" height="10" rx="3" fill="#222" stroke="#3a3a3a" stroke-width="1"/>
+  <rect x="948" y="510" width="142" height="10" rx="3" fill="#222" stroke="#3a3a3a" stroke-width="1"/>
+  <!-- J-hooks — bright -->
+  <rect x="960" y="308" width="32" height="22" rx="5" fill="#777" stroke="#aaa" stroke-width="1.5"/>
+  <rect x="1047" y="308" width="32" height="22" rx="5" fill="#777" stroke="#aaa" stroke-width="1.5"/>
   <!-- Barbell on rack -->
-  <rect x="850" y="294" width="350" height="16" rx="8" fill="url(#hbar)"/>
-  <!-- Plates on rack barbell -->
-  <ellipse cx="884" cy="302" rx="12" ry="78" fill="#151515" stroke="#1e1e1e" stroke-width="1"/>
-  <ellipse cx="899" cy="302" rx="12" ry="78" fill="#1a1a1a" stroke="#232323" stroke-width="1"/>
-  <ellipse cx="914" cy="302" rx="12" ry="78" fill="url(#hplate)" stroke="#282828" stroke-width="1.5"/>
-  <ellipse cx="914" cy="302" rx="6" ry="40" fill="none" stroke="#242424" stroke-width="2"/>
-  <ellipse cx="1185" cy="302" rx="12" ry="78" fill="#151515" stroke="#1e1e1e" stroke-width="1"/>
-  <ellipse cx="1170" cy="302" rx="12" ry="78" fill="#1a1a1a" stroke="#232323" stroke-width="1"/>
-  <ellipse cx="1155" cy="302" rx="12" ry="78" fill="url(#hplate)" stroke="#282828" stroke-width="1.5"/>
-  <ellipse cx="1155" cy="302" rx="6" ry="40" fill="none" stroke="#242424" stroke-width="2"/>
-  <!-- Rack base feet -->
-  <rect x="930" y="630" width="30" height="18" rx="4" fill="#141414"/>
-  <rect x="1050" y="630" width="30" height="18" rx="4" fill="#141414"/>
+  <rect x="860" y="308" width="360" height="14" rx="7" fill="url(#hbar)"/>
+  <rect x="860" y="309" width="360" height="5" rx="2" fill="rgba(255,255,255,0.18)"/>
+  <!-- Plates -->
+  <ellipse cx="898"  cy="315" rx="12" ry="80" fill="#101010"/>
+  <ellipse cx="913"  cy="315" rx="12" ry="80" fill="#181818"/>
+  <ellipse cx="928"  cy="315" rx="12" ry="80" fill="url(#hplate)"/>
+  <ellipse cx="928"  cy="315" rx="12" ry="80" fill="none" stroke="#777" stroke-width="1.5"/>
+  <ellipse cx="928"  cy="315" rx="6"  ry="42" fill="none" stroke="#555" stroke-width="2"/>
+  <ellipse cx="1178" cy="315" rx="12" ry="80" fill="#101010"/>
+  <ellipse cx="1163" cy="315" rx="12" ry="80" fill="#181818"/>
+  <ellipse cx="1148" cy="315" rx="12" ry="80" fill="url(#hplate)"/>
+  <ellipse cx="1148" cy="315" rx="12" ry="80" fill="none" stroke="#777" stroke-width="1.5"/>
+  <ellipse cx="1148" cy="315" rx="6"  ry="42" fill="none" stroke="#555" stroke-width="2"/>
+  <!-- Rack base -->
+  <rect x="940" y="642" width="28" height="18" rx="4" fill="#1e1e1e" stroke="#333" stroke-width="1"/>
+  <rect x="1059" y="642" width="28" height="18" rx="4" fill="#1e1e1e" stroke="#333" stroke-width="1"/>
 
-  <!-- === DUMBBELL RACK (left mid-ground) === -->
-  <!-- Rack frame -->
-  <rect x="55" y="420" width="310" height="55" rx="6" fill="#0e0e0e" stroke="#161616" stroke-width="1"/>
-  <rect x="55" y="480" width="310" height="45" rx="6" fill="#0c0c0c" stroke="#141414" stroke-width="1"/>
-  <!-- DB pairs on rack top row -->
-  <!-- Pair 1 (small) -->
-  <ellipse cx="90" cy="428" rx="9" ry="28" fill="#1a1a1a" stroke="#222" stroke-width="1"/>
-  <rect x="98" y="420" width="28" height="14" rx="7" fill="#1e1e1e"/>
-  <ellipse cx="134" cy="428" rx="9" ry="28" fill="#1a1a1a" stroke="#222" stroke-width="1"/>
-  <!-- Pair 2 (medium) -->
-  <ellipse cx="168" cy="428" rx="10" ry="32" fill="#1c1c1c" stroke="#242424" stroke-width="1"/>
-  <rect x="177" y="419" width="30" height="16" rx="8" fill="#202020"/>
-  <ellipse cx="215" cy="428" rx="10" ry="32" fill="#1c1c1c" stroke="#242424" stroke-width="1"/>
-  <!-- Pair 3 (large) -->
-  <ellipse cx="252" cy="428" rx="11" ry="36" fill="#1e1e1e" stroke="#262626" stroke-width="1"/>
-  <rect x="262" y="419" width="30" height="18" rx="9" fill="#222"/>
-  <ellipse cx="300" cy="428" rx="11" ry="36" fill="#1e1e1e" stroke="#262626" stroke-width="1"/>
-  <!-- Bottom row (even bigger) -->
-  <ellipse cx="100" cy="490" rx="12" ry="40" fill="#1c1c1c" stroke="#242424" stroke-width="1"/>
-  <rect x="111" y="480" width="30" height="20" rx="10" fill="#202020"/>
-  <ellipse cx="150" cy="490" rx="12" ry="40" fill="#1c1c1c" stroke="#242424" stroke-width="1"/>
-  <ellipse cx="205" cy="490" rx="13" ry="44" fill="#1e1e1e" stroke="#262626" stroke-width="1"/>
-  <rect x="217" y="479" width="30" height="22" rx="11" fill="#222"/>
-  <ellipse cx="256" cy="490" rx="13" ry="44" fill="#1e1e1e" stroke="#262626" stroke-width="1"/>
-  <ellipse cx="312" cy="490" rx="14" ry="46" fill="#202020" stroke="#282828" stroke-width="1"/>
+  <!-- === DUMBBELL RACK (left, middle ground) === -->
+  <!-- Frame -->
+  <rect x="50" y="430" width="320" height="60" rx="6" fill="#0e0e0e" stroke="#222" stroke-width="1"/>
+  <rect x="50" y="495" width="320" height="50" rx="6" fill="#0c0c0c" stroke="#1e1e1e" stroke-width="1"/>
+  <!-- Top row DBs — chrome hex -->
+  <polygon points="80,437  96,413 128,413 144,437 128,461 96,461"  fill="#444" stroke="#888" stroke-width="1.5"/>
+  <rect x="142" y="427" width="30" height="14" rx="7" fill="url(#hbar)"/>
+  <polygon points="170,437 186,413 218,413 234,437 218,461 186,461" fill="#444" stroke="#888" stroke-width="1.5"/>
 
-  <!-- === KETTLEBELL row on floor (left) === -->
-  <!-- KB 1 -->
-  <path d="M 105 600 Q 105 575 118 567 Q 140 558 162 567 Q 175 575 175 600" stroke="#252525" stroke-width="20" fill="none" stroke-linecap="round"/>
-  <circle cx="140" cy="630" r="36" fill="#181818" stroke="#212121" stroke-width="1"/>
-  <ellipse cx="140" cy="660" rx="26" ry="6" fill="#0a0a0a"/>
-  <!-- KB 2 -->
-  <path d="M 198 603 Q 198 580 209 572 Q 228 564 248 572 Q 260 580 260 603" stroke="#222" stroke-width="17" fill="none" stroke-linecap="round"/>
-  <circle cx="229" cy="630" r="30" fill="#161616" stroke="#1e1e1e" stroke-width="1"/>
-  <ellipse cx="229" cy="656" rx="22" ry="5" fill="#090909"/>
-  <!-- KB 3 -->
-  <path d="M 285 606 Q 285 586 294 580 Q 310 573 326 580 Q 336 586 336 606" stroke="#1e1e1e" stroke-width="14" fill="none" stroke-linecap="round"/>
-  <circle cx="310" cy="630" r="26" fill="#151515" stroke="#1c1c1c" stroke-width="1"/>
-  <ellipse cx="310" cy="652" rx="18" ry="4" fill="#090909"/>
+  <polygon points="210,437 228,413 264,413 282,437 264,461 228,461" fill="#4a4a4a" stroke="#999" stroke-width="1.5"/>
+  <rect x="280" y="426" width="30" height="15" rx="7" fill="url(#hbar)"/>
+  <polygon points="308,437 326,413 362,413 380,437 362,461 326,461" fill="#4a4a4a" stroke="#999" stroke-width="1.5"/>
 
-  <!-- Floor shadows all -->
-  <ellipse cx="200" cy="645" rx="250" ry="18" fill="rgba(0,0,0,0.55)"/>
-  <ellipse cx="1000" cy="645" rx="170" ry="18" fill="rgba(0,0,0,0.6)"/>
+  <!-- Bottom row DBs — larger -->
+  <polygon points="72,500  92,472 132,472 152,500 132,528 92,528"  fill="#383838" stroke="#777" stroke-width="1.5"/>
+  <rect x="150" y="488" width="30" height="16" rx="8" fill="url(#hbar)"/>
+  <polygon points="178,500 198,472 238,472 258,500 238,528 198,528" fill="#383838" stroke="#777" stroke-width="1.5"/>
 
-  <!-- Ceiling light fixture (right zone) -->
-  <rect x="970" y="0" width="44" height="20" rx="3" fill="#161616" stroke="#1e1e1e" stroke-width="1"/>
-  <ellipse cx="992" cy="22" rx="100" ry="28" fill="rgba(255,255,220,0.02)"/>
+  <polygon points="240,500 262,472 306,472 328,500 306,528 262,528" fill="#3e3e3e" stroke="#888" stroke-width="1.5"/>
+  <rect x="326" y="487" width="30" height="18" rx="9" fill="url(#hbar)"/>
+  <polygon points="354,500 376,472 420,472 442,500 420,528 376,528" fill="#3e3e3e" stroke="#888" stroke-width="1.5"/>
 
-  <!-- Left zone darkness (for text overlay area) -->
+  <!-- === KETTLEBELL ROW on floor === -->
+  <!-- KB 1 (large) -->
+  <path d="M 105 606 Q 105 580 120 572 Q 144 562 168 572 Q 182 580 182 606" stroke="url(#hkbh)" stroke-width="22" fill="none" stroke-linecap="round"/>
+  <circle cx="143" cy="636" r="36" fill="url(#hkb)"/>
+  <circle cx="143" cy="636" r="36" fill="none" stroke="#555" stroke-width="1.5"/>
+  <path d="M 172 612 Q 181 624 179 636" stroke="rgba(200,200,200,0.1)" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <ellipse cx="143" cy="666" rx="28" ry="6" fill="#060606"/>
+  <!-- KB 2 (medium) -->
+  <path d="M 210 610 Q 210 587 222 580 Q 242 572 262 580 Q 274 587 274 610" stroke="url(#hkbh)" stroke-width="18" fill="none" stroke-linecap="round"/>
+  <circle cx="242" cy="636" r="30" fill="url(#hkb)"/>
+  <circle cx="242" cy="636" r="30" fill="none" stroke="#444" stroke-width="1.5"/>
+  <ellipse cx="242" cy="660" rx="22" ry="5" fill="#060606"/>
+  <!-- KB 3 (small) -->
+  <path d="M 300 614 Q 300 594 310 588 Q 326 582 342 588 Q 353 594 353 614" stroke="url(#hkbh)" stroke-width="15" fill="none" stroke-linecap="round"/>
+  <circle cx="326" cy="636" r="25" fill="url(#hkb)"/>
+  <circle cx="326" cy="636" r="25" fill="none" stroke="#3a3a3a" stroke-width="1.5"/>
+  <ellipse cx="326" cy="655" rx="18" ry="4" fill="#060606"/>
+
+  <!-- Floor shadows -->
+  <ellipse cx="210" cy="656" rx="240" ry="18" fill="rgba(0,0,0,0.6)"/>
+  <ellipse cx="1010" cy="655" rx="175" ry="18" fill="rgba(0,0,0,0.65)"/>
+
+  <!-- Ceiling light (right zone) -->
+  <rect x="975" y="0" width="50" height="20" rx="3" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1"/>
+  <ellipse cx="1000" cy="25" rx="110" ry="32" fill="rgba(255,255,220,0.025)"/>
+  <ellipse cx="1000" cy="15" rx="30" ry="12" fill="rgba(255,255,220,0.04)"/>
+
+  <!-- Left zone darkness gradient (text overlay area) -->
   <linearGradient id="hleft" x1="0%" y1="0%" x2="100%" y2="0%">
     <stop offset="0%" stop-color="rgba(4,4,4,0.97)"/>
-    <stop offset="42%" stop-color="rgba(4,4,4,0.6)"/>
+    <stop offset="42%" stop-color="rgba(4,4,4,0.65)"/>
     <stop offset="100%" stop-color="transparent"/>
   </linearGradient>
   <rect width="1400" height="900" fill="url(#hleft)"/>
 
   <!-- Cyan accent -->
-  <rect x="0" y="893" width="1400" height="7" fill="#00c3ff" opacity="0.4"/>
+  <rect x="0" y="893" width="1400" height="7" fill="#00c3ff" opacity="0.5"/>
 
   <!-- Vignette -->
-  <radialGradient id="hvis" cx="68%" cy="35%" r="72%">
+  <radialGradient id="hvig" cx="68%" cy="35%" r="72%">
     <stop offset="25%" stop-color="transparent"/>
     <stop offset="100%" stop-color="rgba(0,0,0,0.72)"/>
   </radialGradient>
-  <rect width="1400" height="900" fill="url(#hvis)"/>
+  <rect width="1400" height="900" fill="url(#hvig)"/>
 </svg>

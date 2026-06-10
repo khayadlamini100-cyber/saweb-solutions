@@ -1,102 +1,122 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
   <defs>
-    <radialGradient id="g1bg" cx="50%" cy="45%" r="65%">
-      <stop offset="0%" stop-color="#1c1c1c"/>
-      <stop offset="100%" stop-color="#050505"/>
+    <radialGradient id="bg1" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="100%" stop-color="#060606"/>
     </radialGradient>
-    <linearGradient id="g1bar" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#282828"/>
-      <stop offset="30%" stop-color="#666"/>
-      <stop offset="55%" stop-color="#777"/>
-      <stop offset="100%" stop-color="#1e1e1e"/>
+    <!-- Chrome bar gradient -->
+    <linearGradient id="bar1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e8e8e8"/>
+      <stop offset="25%" stop-color="#aaaaaa"/>
+      <stop offset="50%" stop-color="#cccccc"/>
+      <stop offset="75%" stop-color="#888888"/>
+      <stop offset="100%" stop-color="#555555"/>
     </linearGradient>
-    <linearGradient id="g1plate-l" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#111"/>
-      <stop offset="50%" stop-color="#303030"/>
-      <stop offset="100%" stop-color="#1a1a1a"/>
+    <!-- Plate gradient (dark iron with bright edge) -->
+    <radialGradient id="plate1" cx="40%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#4a4a4a"/>
+      <stop offset="60%" stop-color="#222222"/>
+      <stop offset="100%" stop-color="#111111"/>
+    </radialGradient>
+    <!-- Spotlight -->
+    <radialGradient id="spot1" cx="50%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#282828"/>
+      <stop offset="100%" stop-color="#060606"/>
+    </radialGradient>
+    <!-- Floor warm -->
+    <linearGradient id="floor1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a1208"/>
+      <stop offset="100%" stop-color="#0a0806"/>
     </linearGradient>
   </defs>
 
-  <rect width="600" height="800" fill="#050505"/>
-  <rect width="600" height="800" fill="url(#g1bg)"/>
+  <rect width="600" height="800" fill="#060606"/>
+  <rect width="600" height="800" fill="url(#spot1)"/>
 
   <!-- Floor -->
-  <rect x="0" y="580" width="600" height="220" fill="#0b0b0b"/>
-  <line x1="0" y1="580" x2="600" y2="580" stroke="#181818" stroke-width="2"/>
+  <rect x="0" y="580" width="600" height="220" fill="url(#floor1)"/>
+  <line x1="0" y1="580" x2="600" y2="580" stroke="#2a1e0a" stroke-width="2"/>
 
-  <!-- === DEADLIFT SETUP: plates on floor, barbell at hip height === -->
+  <!-- === DEADLIFT BARBELL === -->
 
-  <!-- FLOOR PLATES stacked -->
-  <!-- Left stack on floor -->
-  <ellipse cx="118" cy="545" rx="14" ry="88" fill="#151515" stroke="#1e1e1e" stroke-width="1"/>
-  <ellipse cx="135" cy="545" rx="14" ry="88" fill="#191919" stroke="#222" stroke-width="1"/>
-  <ellipse cx="152" cy="545" rx="14" ry="88" fill="#202020" stroke="#282828" stroke-width="1.5"/>
-  <!-- Inner rings on front plate -->
-  <ellipse cx="152" cy="545" rx="7" ry="44" fill="none" stroke="#2a2a2a" stroke-width="2"/>
-  <ellipse cx="152" cy="545" rx="3" ry="18" fill="none" stroke="#222" stroke-width="1.5"/>
-  <!-- Weight label -->
-  <text x="152" y="549" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="10" fill="#3a3a3a" transform="rotate(90,152,545)">45</text>
+  <!-- Bar -->
+  <rect x="22" y="440" width="556" height="18" rx="9" fill="url(#bar1)"/>
+  <!-- Bar reflection line -->
+  <rect x="22" y="441" width="556" height="4" rx="2" fill="rgba(255,255,255,0.25)"/>
 
-  <!-- Right stack on floor -->
-  <ellipse cx="482" cy="545" rx="14" ry="88" fill="#151515" stroke="#1e1e1e" stroke-width="1"/>
-  <ellipse cx="465" cy="545" rx="14" ry="88" fill="#191919" stroke="#222" stroke-width="1"/>
-  <ellipse cx="448" cy="545" rx="14" ry="88" fill="#202020" stroke="#282828" stroke-width="1.5"/>
-  <ellipse cx="448" cy="545" rx="7" ry="44" fill="none" stroke="#2a2a2a" stroke-width="2"/>
-  <ellipse cx="448" cy="545" rx="3" ry="18" fill="none" stroke="#222" stroke-width="1.5"/>
-  <text x="448" y="549" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="10" fill="#3a3a3a" transform="rotate(-90,448,545)">45</text>
+  <!-- LEFT PLATES -->
+  <!-- Plate shadow (behind) -->
+  <ellipse cx="95"  cy="449" rx="14" ry="82" fill="#0d0d0d"/>
+  <ellipse cx="112" cy="449" rx="14" ry="82" fill="#141414"/>
+  <!-- Front plate -->
+  <ellipse cx="129" cy="449" rx="14" ry="82" fill="url(#plate1)"/>
+  <!-- Plate rim highlight -->
+  <ellipse cx="129" cy="449" rx="14" ry="82" fill="none" stroke="#666" stroke-width="1.5"/>
+  <!-- Inner rings -->
+  <ellipse cx="129" cy="449" rx="8"  ry="46" fill="none" stroke="#444" stroke-width="2"/>
+  <ellipse cx="129" cy="449" rx="3"  ry="17" fill="none" stroke="#555" stroke-width="1.5"/>
+  <!-- Weight text -->
+  <text x="129" y="453" text-anchor="middle" font-family="Arial Black" font-size="9" font-weight="900" fill="#888" transform="rotate(90,129,449)">20 KG</text>
 
-  <!-- Bar resting on plates -->
-  <rect x="30" y="454" width="540" height="18" rx="9" fill="url(#g1bar)"/>
-  <!-- Bar shine top edge -->
-  <rect x="30" y="456" width="540" height="4" rx="2" fill="rgba(255,255,255,0.07)"/>
+  <!-- RIGHT PLATES -->
+  <ellipse cx="505" cy="449" rx="14" ry="82" fill="#0d0d0d"/>
+  <ellipse cx="488" cy="449" rx="14" ry="82" fill="#141414"/>
+  <ellipse cx="471" cy="449" rx="14" ry="82" fill="url(#plate1)"/>
+  <ellipse cx="471" cy="449" rx="14" ry="82" fill="none" stroke="#666" stroke-width="1.5"/>
+  <ellipse cx="471" cy="449" rx="8"  ry="46" fill="none" stroke="#444" stroke-width="2"/>
+  <ellipse cx="471" cy="449" rx="3"  ry="17" fill="none" stroke="#555" stroke-width="1.5"/>
+  <text x="471" y="453" text-anchor="middle" font-family="Arial Black" font-size="9" font-weight="900" fill="#888" transform="rotate(-90,471,449)">20 KG</text>
+
+  <!-- Extra 10kg plates -->
+  <ellipse cx="145" cy="449" rx="9" ry="58" fill="#1c1c1c" stroke="#555" stroke-width="1"/>
+  <ellipse cx="455" cy="449" rx="9" ry="58" fill="#1c1c1c" stroke="#555" stroke-width="1"/>
 
   <!-- Collars -->
-  <rect x="164" y="448" width="24" height="30" rx="5" fill="#353535" stroke="#484848" stroke-width="1.5"/>
-  <rect x="412" y="448" width="24" height="30" rx="5" fill="#353535" stroke="#484848" stroke-width="1.5"/>
+  <rect x="155" y="434" width="24" height="30" rx="5" fill="#888" stroke="#bbb" stroke-width="1"/>
+  <rect x="421" y="434" width="24" height="30" rx="5" fill="#888" stroke="#bbb" stroke-width="1"/>
 
   <!-- Knurling center section -->
-  <rect x="210" y="454" width="180" height="18" fill="rgba(0,0,0,0.15)"/>
-  <line x1="222" y1="454" x2="222" y2="472" stroke="#444" stroke-width="1.2"/>
-  <line x1="234" y1="454" x2="234" y2="472" stroke="#444" stroke-width="1.2"/>
-  <line x1="246" y1="454" x2="246" y2="472" stroke="#444" stroke-width="1.2"/>
-  <line x1="258" y1="454" x2="258" y2="472" stroke="#444" stroke-width="1.2"/>
-  <line x1="270" y1="454" x2="270" y2="472" stroke="#444" stroke-width="1.2"/>
-  <line x1="282" y1="454" x2="282" y2="472" stroke="#444" stroke-width="1.2"/>
-  <line x1="294" y1="454" x2="294" y2="472" stroke="#444" stroke-width="1.2"/>
-  <line x1="306" y1="454" x2="306" y2="472" stroke="#444" stroke-width="1.2"/>
-  <line x1="318" y1="454" x2="318" y2="472" stroke="#444" stroke-width="1.2"/>
-  <line x1="330" y1="454" x2="330" y2="472" stroke="#444" stroke-width="1.2"/>
-  <line x1="342" y1="454" x2="342" y2="472" stroke="#444" stroke-width="1.2"/>
-  <line x1="354" y1="454" x2="354" y2="472" stroke="#444" stroke-width="1.2"/>
-  <line x1="366" y1="454" x2="366" y2="472" stroke="#444" stroke-width="1.2"/>
-  <line x1="378" y1="454" x2="378" y2="472" stroke="#444" stroke-width="1.2"/>
+  <line x1="200" y1="440" x2="200" y2="458" stroke="#999" stroke-width="1.2"/>
+  <line x1="212" y1="440" x2="212" y2="458" stroke="#999" stroke-width="1.2"/>
+  <line x1="224" y1="440" x2="224" y2="458" stroke="#999" stroke-width="1.2"/>
+  <line x1="236" y1="440" x2="236" y2="458" stroke="#999" stroke-width="1.2"/>
+  <line x1="248" y1="440" x2="248" y2="458" stroke="#999" stroke-width="1.2"/>
+  <line x1="260" y1="440" x2="260" y2="458" stroke="#999" stroke-width="1.2"/>
+  <line x1="272" y1="440" x2="272" y2="458" stroke="#999" stroke-width="1.2"/>
+  <line x1="284" y1="440" x2="284" y2="458" stroke="#999" stroke-width="1.2"/>
+  <line x1="296" y1="440" x2="296" y2="458" stroke="#999" stroke-width="1.2"/>
+  <line x1="308" y1="440" x2="308" y2="458" stroke="#999" stroke-width="1.2"/>
+  <line x1="320" y1="440" x2="320" y2="458" stroke="#999" stroke-width="1.2"/>
+  <line x1="332" y1="440" x2="332" y2="458" stroke="#999" stroke-width="1.2"/>
+  <line x1="344" y1="440" x2="344" y2="458" stroke="#999" stroke-width="1.2"/>
+  <line x1="356" y1="440" x2="356" y2="458" stroke="#999" stroke-width="1.2"/>
+  <line x1="368" y1="440" x2="368" y2="458" stroke="#999" stroke-width="1.2"/>
+  <line x1="380" y1="440" x2="380" y2="458" stroke="#999" stroke-width="1.2"/>
+  <line x1="392" y1="440" x2="392" y2="458" stroke="#999" stroke-width="1.2"/>
+  <line x1="404" y1="440" x2="404" y2="458" stroke="#999" stroke-width="1.2"/>
 
-  <!-- Floor shadows -->
-  <ellipse cx="300" cy="583" rx="260" ry="16" fill="rgba(0,0,0,0.6)"/>
+  <!-- Floor shadow -->
+  <ellipse cx="300" cy="584" rx="265" ry="18" fill="rgba(0,0,0,0.7)"/>
 
-  <!-- Chalk dust on floor (scattered marks) -->
-  <ellipse cx="165" cy="588" rx="28" ry="8" fill="#111" opacity="0.8"/>
-  <ellipse cx="430" cy="590" rx="22" ry="7" fill="#111" opacity="0.8"/>
-  <ellipse cx="300" cy="592" rx="35" ry="7" fill="#0f0f0f"/>
+  <!-- Chalk on floor -->
+  <ellipse cx="145" cy="592" rx="32" ry="9" fill="#1e1e1e" opacity="0.8"/>
+  <ellipse cx="455" cy="594" rx="26" ry="7" fill="#1e1e1e" opacity="0.8"/>
 
-  <!-- LARGE TYPOGRAPHIC ELEMENT -->
-  <text x="300" y="310" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="92" fill="#111" letter-spacing="-2">PULL</text>
-  <text x="300" y="390" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="92" fill="#0e0e0e" letter-spacing="-2">DAY</text>
+  <!-- Typography -->
+  <text x="300" y="295" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="96" fill="#161616" letter-spacing="-2">PULL</text>
+  <text x="300" y="392" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="96" fill="#141414" letter-spacing="-2">DAY</text>
+  <rect x="240" y="408" width="120" height="3" fill="#00c3ff" opacity="0.6"/>
 
-  <!-- Horizontal rule accent -->
-  <rect x="200" y="408" width="200" height="2" fill="#1e1e1e"/>
-  <rect x="280" y="404" width="40" height="10" fill="#00c3ff" opacity="0.4"/>
+  <!-- Weight total -->
+  <text x="300" y="720" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="14" fill="#2a2a2a" letter-spacing="6">100 KG</text>
 
-  <!-- Weight total label -->
-  <text x="300" y="720" text-anchor="middle" font-family="Arial" font-weight="300" font-size="12" fill="#222" letter-spacing="8">100 KG</text>
-
-  <!-- Cyan accent -->
-  <rect x="0" y="793" width="600" height="7" fill="#00c3ff" opacity="0.55"/>
+  <!-- Cyan accent bottom -->
+  <rect x="0" y="794" width="600" height="6" fill="#00c3ff" opacity="0.7"/>
 
   <!-- Vignette -->
-  <radialGradient id="g1vig" cx="50%" cy="50%" r="70%">
-    <stop offset="30%" stop-color="transparent"/>
-    <stop offset="100%" stop-color="rgba(0,0,0,0.7)"/>
+  <radialGradient id="vig1" cx="50%" cy="50%" r="70%">
+    <stop offset="35%" stop-color="transparent"/>
+    <stop offset="100%" stop-color="rgba(0,0,0,0.65)"/>
   </radialGradient>
-  <rect width="600" height="800" fill="url(#g1vig)"/>
+  <rect width="600" height="800" fill="url(#vig1)"/>
 </svg>

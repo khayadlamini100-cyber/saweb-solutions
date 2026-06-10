@@ -1,112 +1,129 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
   <defs>
-    <radialGradient id="g3bg" cx="50%" cy="45%" r="70%">
-      <stop offset="0%" stop-color="#1c1c1c"/>
-      <stop offset="100%" stop-color="#050505"/>
+    <radialGradient id="bg3" cx="50%" cy="45%" r="68%">
+      <stop offset="0%" stop-color="#1e1e1e"/>
+      <stop offset="100%" stop-color="#060606"/>
     </radialGradient>
-    <radialGradient id="g3kb" cx="30%" cy="25%" r="62%">
-      <stop offset="0%" stop-color="#484848"/>
-      <stop offset="55%" stop-color="#222"/>
-      <stop offset="100%" stop-color="#101010"/>
+    <radialGradient id="hex3a" cx="28%" cy="22%" r="65%">
+      <stop offset="0%" stop-color="#888"/>
+      <stop offset="45%" stop-color="#444"/>
+      <stop offset="100%" stop-color="#1a1a1a"/>
     </radialGradient>
-    <radialGradient id="g3hex" cx="30%" cy="25%" r="62%">
-      <stop offset="0%" stop-color="#424242"/>
-      <stop offset="55%" stop-color="#1e1e1e"/>
-      <stop offset="100%" stop-color="#0e0e0e"/>
+    <radialGradient id="hex3b" cx="28%" cy="22%" r="65%">
+      <stop offset="0%" stop-color="#777"/>
+      <stop offset="45%" stop-color="#383838"/>
+      <stop offset="100%" stop-color="#161616"/>
     </radialGradient>
+    <linearGradient id="dh3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ccc"/>
+      <stop offset="50%" stop-color="#888"/>
+      <stop offset="100%" stop-color="#555"/>
+    </linearGradient>
+    <radialGradient id="kb3" cx="28%" cy="22%" r="65%">
+      <stop offset="0%" stop-color="#444"/>
+      <stop offset="55%" stop-color="#161616"/>
+      <stop offset="100%" stop-color="#080808"/>
+    </radialGradient>
+    <linearGradient id="kbh3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#666"/>
+      <stop offset="40%" stop-color="#ddd"/>
+      <stop offset="60%" stop-color="#eee"/>
+      <stop offset="100%" stop-color="#555"/>
+    </linearGradient>
   </defs>
 
-  <rect width="600" height="800" fill="#050505"/>
-  <rect width="600" height="800" fill="url(#g3bg)"/>
+  <!-- Rubber mat dark background — top down view -->
+  <rect width="600" height="800" fill="#080808"/>
+  <rect width="600" height="800" fill="url(#bg3)"/>
 
-  <!-- Dark floor plane (top-down view) -->
-  <rect x="0" y="0" width="600" height="800" fill="#0a0a0a"/>
-  <!-- Rubber mat texture lines horizontal -->
-  <line x1="0" y1="100" x2="600" y2="100" stroke="#0d0d0d" stroke-width="1"/>
-  <line x1="0" y1="200" x2="600" y2="200" stroke="#0d0d0d" stroke-width="1"/>
-  <line x1="0" y1="300" x2="600" y2="300" stroke="#0d0d0d" stroke-width="1"/>
-  <line x1="0" y1="400" x2="600" y2="400" stroke="#0d0d0d" stroke-width="1"/>
-  <line x1="0" y1="500" x2="600" y2="500" stroke="#0d0d0d" stroke-width="1"/>
-  <line x1="0" y1="600" x2="600" y2="600" stroke="#0d0d0d" stroke-width="1"/>
-  <line x1="0" y1="700" x2="600" y2="700" stroke="#0d0d0d" stroke-width="1"/>
-  <!-- Vertical -->
-  <line x1="100" y1="0" x2="100" y2="800" stroke="#0d0d0d" stroke-width="1"/>
-  <line x1="200" y1="0" x2="200" y2="800" stroke="#0d0d0d" stroke-width="1"/>
-  <line x1="300" y1="0" x2="300" y2="800" stroke="#0d0d0d" stroke-width="1"/>
-  <line x1="400" y1="0" x2="400" y2="800" stroke="#0d0d0d" stroke-width="1"/>
-  <line x1="500" y1="0" x2="500" y2="800" stroke="#0d0d0d" stroke-width="1"/>
+  <!-- Mat grid texture -->
+  <line x1="0" y1="150" x2="600" y2="150" stroke="#111" stroke-width="1"/>
+  <line x1="0" y1="300" x2="600" y2="300" stroke="#111" stroke-width="1"/>
+  <line x1="0" y1="450" x2="600" y2="450" stroke="#111" stroke-width="1"/>
+  <line x1="0" y1="600" x2="600" y2="600" stroke="#111" stroke-width="1"/>
+  <line x1="0" y1="750" x2="600" y2="750" stroke="#111" stroke-width="1"/>
+  <line x1="150" y1="0" x2="150" y2="800" stroke="#111" stroke-width="1"/>
+  <line x1="300" y1="0" x2="300" y2="800" stroke="#111" stroke-width="1"/>
+  <line x1="450" y1="0" x2="450" y2="800" stroke="#111" stroke-width="1"/>
 
-  <!-- Spotlight radial over layout -->
-  <rect width="600" height="800" fill="url(#g3bg)"/>
+  <!-- Center spotlight glow -->
+  <rect width="600" height="800" fill="url(#bg3)"/>
 
-  <!-- === FLATLAY COMPOSITION: top-down === -->
-
-  <!-- KETTLEBELL (upper left) -->
-  <!-- Handle -->
-  <path d="M 82 95 Q 82 55 104 45 Q 134 34 162 45 Q 184 55 184 95" stroke="url(#g3kb)" stroke-width="26" fill="none" stroke-linecap="round"/>
-  <!-- Body circle -->
-  <circle cx="133" cy="185" r="80" fill="url(#g3kb)"/>
-  <!-- Equator -->
-  <ellipse cx="133" cy="185" rx="80" ry="12" fill="none" stroke="#1c1c1c" stroke-width="1.5"/>
-  <!-- Weight -->
-  <text x="133" y="179" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="28" fill="#222">24</text>
-  <text x="133" y="200" text-anchor="middle" font-family="Arial" font-size="11" fill="#1a1a1a" letter-spacing="3">KG</text>
-  <!-- Shadow -->
-  <ellipse cx="133" cy="190" rx="78" ry="10" fill="rgba(0,0,0,0.4)"/>
-
-  <!-- HEX DUMBBELL pair (center, larger) -->
+  <!-- === LARGE HEX DUMBBELL PAIR (center, dominant) === -->
   <!-- Left hex plate -->
-  <polygon points="262,305 288,270 328,270 354,305 328,340 288,340" fill="url(#g3hex)" stroke="#2a2a2a" stroke-width="1.5"/>
-  <polygon points="271,305 292,278 324,278 345,305 324,332 292,332" fill="#181818"/>
-  <!-- Handle -->
-  <rect x="352" y="293" width="70" height="24" rx="12" fill="#282828"/>
-  <rect x="352" y="295" width="70" height="8" rx="4" fill="rgba(255,255,255,0.04)"/>
-  <line x1="365" y1="293" x2="365" y2="317" stroke="#1c1c1c" stroke-width="1.5"/>
-  <line x1="377" y1="293" x2="377" y2="317" stroke="#1c1c1c" stroke-width="1.5"/>
-  <line x1="389" y1="293" x2="389" y2="317" stroke="#1c1c1c" stroke-width="1.5"/>
-  <line x1="401" y1="293" x2="401" y2="317" stroke="#1c1c1c" stroke-width="1.5"/>
+  <polygon points="198,386 228,338 288,338 318,386 288,434 228,434" fill="url(#hex3a)"/>
+  <polygon points="198,386 228,338 288,338 318,386 288,434 228,434" fill="none" stroke="#aaa" stroke-width="2"/>
+  <polygon points="208,386 235,346 281,346 308,386 281,426 235,426" fill="#1e1e1e"/>
+  <!-- Chrome handle -->
+  <rect x="316" y="370" width="68" height="32" rx="16" fill="url(#dh3)"/>
+  <rect x="316" y="371" width="68" height="10" rx="5" fill="rgba(255,255,255,0.2)"/>
+  <!-- Knurling -->
+  <line x1="332" y1="370" x2="332" y2="402" stroke="#aaa" stroke-width="1.5"/>
+  <line x1="344" y1="370" x2="344" y2="402" stroke="#aaa" stroke-width="1.5"/>
+  <line x1="356" y1="370" x2="356" y2="402" stroke="#aaa" stroke-width="1.5"/>
+  <line x1="368" y1="370" x2="368" y2="402" stroke="#aaa" stroke-width="1.5"/>
   <!-- Right hex plate -->
-  <polygon points="420,305 446,270 486,270 512,305 486,340 446,340" fill="url(#g3hex)" stroke="#2a2a2a" stroke-width="1.5"/>
-  <polygon points="429,305 450,278 482,278 503,305 482,332 450,332" fill="#181818"/>
+  <polygon points="382,386 412,338 472,338 502,386 472,434 412,434" fill="url(#hex3a)"/>
+  <polygon points="382,386 412,338 472,338 502,386 472,434 412,434" fill="none" stroke="#aaa" stroke-width="2"/>
+  <polygon points="392,386 419,346 465,346 492,386 465,426 419,426" fill="#1e1e1e"/>
   <!-- Weight label -->
-  <text x="308" y="310" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="18" fill="#2e2e2e">32</text>
-  <!-- Shadow under dumbbell -->
-  <ellipse cx="385" cy="342" rx="130" ry="12" fill="rgba(0,0,0,0.45)"/>
+  <text x="258" y="391" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="20" fill="#888">32</text>
+  <text x="258" y="408" text-anchor="middle" font-family="Arial" font-size="10" fill="#666" letter-spacing="2">KG</text>
+  <!-- Shadow -->
+  <ellipse cx="350" cy="440" rx="148" ry="14" fill="rgba(0,0,0,0.5)"/>
 
-  <!-- SMALL HEX DUMBBELL (lower right, rotated) -->
-  <g transform="rotate(18, 470, 560)">
-    <polygon points="420,545 440,517 472,517 492,545 472,573 440,573" fill="#1c1c1c" stroke="#242424" stroke-width="1.5"/>
-    <polygon points="427,545 445,524 467,524 485,545 467,566 445,566" fill="#141414"/>
-    <rect x="490" y="536" width="52" height="18" rx="9" fill="#222"/>
-    <polygon points="540,545 560,517 592,517 612,545 592,573 560,573" fill="#1c1c1c" stroke="#242424" stroke-width="1.5"/>
-    <polygon points="547,545 565,524 587,524 605,545 587,566 565,566" fill="#141414"/>
-    <text x="466" y="549" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="13" fill="#282828">16</text>
+  <!-- === KETTLEBELL (upper left) === -->
+  <!-- Handle -->
+  <path d="M 68 110 Q 68 68 92 56 Q 122 44 152 56 Q 174 68 174 110"
+        stroke="url(#kbh3)" stroke-width="26" fill="none" stroke-linecap="round"/>
+  <path d="M 78 110 Q 78 74 98 64 Q 122 54 148 64 Q 165 74 165 110"
+        stroke="rgba(255,255,255,0.12)" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <!-- Body -->
+  <circle cx="121" cy="200" r="76" fill="url(#kb3)"/>
+  <circle cx="121" cy="200" r="76" fill="none" stroke="#555" stroke-width="1.5"/>
+  <!-- Rim light -->
+  <path d="M 188 155 Q 200 178 198 200 Q 196 222 182 245" stroke="rgba(200,200,200,0.12)" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <!-- Flat bottom -->
+  <ellipse cx="121" cy="270" rx="56" ry="9" fill="#050505"/>
+  <!-- Weight -->
+  <text x="121" y="194" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="28" fill="#555">24</text>
+  <text x="121" y="212" text-anchor="middle" font-family="Arial" font-size="10" fill="#444" letter-spacing="2">KG</text>
+  <ellipse cx="121" cy="274" rx="64" ry="10" fill="rgba(0,0,0,0.5)"/>
+
+  <!-- === SMALL HEX DUMBBELL (lower right, angled) === -->
+  <g transform="rotate(-15,490,620)">
+    <polygon points="445,610 465,578 505,578 525,610 505,642 465,642" fill="url(#hex3b)"/>
+    <polygon points="445,610 465,578 505,578 525,610 505,642 465,642" fill="none" stroke="#888" stroke-width="1.5"/>
+    <polygon points="452,610 470,585 500,585 518,610 500,635 470,635" fill="#181818"/>
+    <rect x="523" y="601" width="52" height="18" rx="9" fill="url(#dh3)"/>
+    <polygon points="573,610 593,578 633,578 653,610 633,642 593,642" fill="url(#hex3b)"/>
+    <polygon points="573,610 593,578 633,578 653,610 633,642 593,642" fill="none" stroke="#888" stroke-width="1.5"/>
+    <polygon points="580,610 598,585 628,585 646,610 628,635 598,635" fill="#181818"/>
+    <text x="476" y="614" text-anchor="middle" font-family="Arial Black" font-size="14" font-weight="900" fill="#666">16</text>
   </g>
 
-  <!-- RESISTANCE BAND (coiled, lower left) -->
-  <g opacity="0.85">
-    <ellipse cx="105" cy="580" rx="72" ry="22" fill="none" stroke="#1e2e1e" stroke-width="16"/>
-    <ellipse cx="105" cy="564" rx="60" ry="17" fill="none" stroke="#182218" stroke-width="12"/>
-    <ellipse cx="105" cy="551" rx="46" ry="13" fill="none" stroke="#1e2e1e" stroke-width="10"/>
-    <ellipse cx="105" cy="540" rx="32" ry="9" fill="none" stroke="#182218" stroke-width="8"/>
-  </g>
-  <ellipse cx="105" cy="585" rx="80" ry="14" fill="rgba(0,0,0,0.4)"/>
+  <!-- === RESISTANCE BANDS (lower left) === -->
+  <ellipse cx="100" cy="610" rx="78" ry="26" fill="none" stroke="#1e3a1e" stroke-width="18"/>
+  <ellipse cx="100" cy="592" rx="64" ry="20" fill="none" stroke="#163014" stroke-width="14"/>
+  <ellipse cx="100" cy="578" rx="50" ry="15" fill="none" stroke="#1e3a1e" stroke-width="11"/>
+  <!-- Band highlight -->
+  <ellipse cx="100" cy="610" rx="78" ry="26" fill="none" stroke="rgba(80,180,80,0.1)" stroke-width="4"/>
 
   <!-- CHALK BAG (upper right) -->
-  <rect x="430" y="80" width="118" height="148" rx="10" fill="#181818" stroke="#222" stroke-width="1"/>
-  <rect x="440" y="90" width="98" height="45" rx="6" fill="#1c1c1c"/>
-  <text x="489" y="120" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="14" fill="#252525" letter-spacing="1">CHALK</text>
-  <!-- Chalk powder effect -->
-  <ellipse cx="489" cy="145" rx="42" ry="32" fill="rgba(255,255,255,0.025)"/>
-  <ellipse cx="489" cy="155" rx="28" ry="18" fill="rgba(255,255,255,0.015)"/>
+  <rect x="432" y="60" width="128" height="160" rx="10" fill="#1c1c1c" stroke="#444" stroke-width="1.5"/>
+  <rect x="442" y="70" width="108" height="55" rx="6" fill="#222" stroke="#555" stroke-width="1"/>
+  <text x="496" y="104" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="15" fill="#666" letter-spacing="1">CHALK</text>
+  <!-- Chalk powder -->
+  <ellipse cx="496" cy="155" rx="45" ry="30" fill="rgba(255,255,255,0.07)"/>
+  <ellipse cx="496" cy="165" rx="30" ry="18" fill="rgba(255,255,255,0.05)"/>
 
   <!-- Cyan accent -->
-  <rect x="0" y="793" width="600" height="7" fill="#00c3ff" opacity="0.5"/>
+  <rect x="0" y="794" width="600" height="6" fill="#00c3ff" opacity="0.6"/>
 
   <!-- Vignette -->
-  <radialGradient id="g3vig" cx="50%" cy="50%" r="68%">
+  <radialGradient id="vig3" cx="50%" cy="50%" r="68%">
     <stop offset="30%" stop-color="transparent"/>
     <stop offset="100%" stop-color="rgba(0,0,0,0.72)"/>
   </radialGradient>
-  <rect width="600" height="800" fill="url(#g3vig)"/>
+  <rect width="600" height="800" fill="url(#vig3)"/>
 </svg>

@@ -1,109 +1,121 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
   <defs>
-    <!-- Dramatic top spotlight -->
-    <radialGradient id="g5spot" cx="50%" cy="0%" r="80%">
-      <stop offset="0%" stop-color="#252525"/>
-      <stop offset="25%" stop-color="#141414"/>
-      <stop offset="65%" stop-color="#070707"/>
-      <stop offset="100%" stop-color="#030303"/>
+    <radialGradient id="spot5" cx="50%" cy="0%" r="85%">
+      <stop offset="0%" stop-color="#2a2a2a"/>
+      <stop offset="30%" stop-color="#141414"/>
+      <stop offset="70%" stop-color="#070707"/>
+      <stop offset="100%" stop-color="#020202"/>
     </radialGradient>
-    <radialGradient id="g5floor" cx="50%" cy="0%" r="100%">
-      <stop offset="0%" stop-color="#1a130a"/>
-      <stop offset="100%" stop-color="#080808"/>
+    <linearGradient id="bar5" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e8e8e8"/>
+      <stop offset="30%" stop-color="#aaa"/>
+      <stop offset="70%" stop-color="#777"/>
+      <stop offset="100%" stop-color="#333"/>
+    </linearGradient>
+    <radialGradient id="plate5" cx="30%" cy="25%" r="65%">
+      <stop offset="0%" stop-color="#555"/>
+      <stop offset="50%" stop-color="#222"/>
+      <stop offset="100%" stop-color="#0e0e0e"/>
     </radialGradient>
-    <linearGradient id="g5fig" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#0e0e0e"/>
-      <stop offset="45%" stop-color="#1e1e1e"/>
+    <linearGradient id="fig5" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#111"/>
+      <stop offset="40%" stop-color="#222"/>
       <stop offset="100%" stop-color="#0c0c0c"/>
     </linearGradient>
-    <radialGradient id="g5plate" cx="30%" cy="25%" r="65%">
-      <stop offset="0%" stop-color="#3e3e3e"/>
-      <stop offset="55%" stop-color="#1c1c1c"/>
-      <stop offset="100%" stop-color="#0c0c0c"/>
+    <radialGradient id="floor5" cx="50%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#1c1208"/>
+      <stop offset="100%" stop-color="#070707"/>
     </radialGradient>
   </defs>
 
-  <rect width="600" height="800" fill="#030303"/>
-  <rect width="600" height="800" fill="url(#g5spot)"/>
+  <rect width="600" height="800" fill="#020202"/>
+  <rect width="600" height="800" fill="url(#spot5)"/>
 
-  <!-- Arched room walls -->
-  <path d="M -20 0 L -20 600 Q -20 720 300 760 Q 620 720 620 600 L 620 0 Z" fill="#080808"/>
-  <!-- Arch detail line -->
-  <path d="M 0 595 Q 0 710 300 748 Q 600 710 600 595" fill="none" stroke="#111" stroke-width="2"/>
-  <path d="M 25 585 Q 25 695 300 730 Q 575 695 575 585" fill="none" stroke="#0e0e0e" stroke-width="1"/>
+  <!-- Arched ceiling -->
+  <path d="M -20 0 L -20 580 Q -20 720 300 760 Q 620 720 620 580 L 620 0 Z" fill="#070707"/>
+  <path d="M 0 575 Q 0 700 300 738 Q 600 700 600 575" fill="none" stroke="#181818" stroke-width="2"/>
+  <path d="M 30 568 Q 30 688 300 724 Q 570 688 570 568" fill="none" stroke="#111" stroke-width="1"/>
 
-  <!-- Ceiling spotlight fixture -->
-  <rect x="270" y="0" width="60" height="22" rx="4" fill="#141414" stroke="#1e1e1e" stroke-width="1"/>
-  <!-- Light halo -->
-  <ellipse cx="300" cy="12" rx="35" ry="12" fill="rgba(255,255,220,0.04)"/>
-  <ellipse cx="300" cy="12" rx="22" ry="8" fill="rgba(255,255,200,0.06)"/>
+  <!-- Spotlight beam -->
+  <path d="M 262 0 L 148 640 L 452 640 L 338 0 Z" fill="rgba(255,255,220,0.012)"/>
+  <path d="M 274 0 L 192 520 L 408 520 L 326 0 Z" fill="rgba(255,255,220,0.012)"/>
 
-  <!-- Spotlight beam cone -->
-  <path d="M 265 0 L 155 620 L 445 620 L 335 0 Z" fill="rgba(255,255,200,0.008)"/>
-  <path d="M 275 0 L 185 500 L 415 500 L 325 0 Z" fill="rgba(255,255,220,0.008)"/>
+  <!-- Ceiling light fixture -->
+  <rect x="272" y="0" width="56" height="20" rx="4" fill="#222" stroke="#333" stroke-width="1"/>
+  <ellipse cx="300" cy="12" rx="28" ry="10" fill="rgba(255,255,220,0.06)"/>
+  <ellipse cx="300" cy="12" rx="14" ry="6" fill="rgba(255,255,220,0.09)"/>
 
   <!-- Floor -->
-  <rect x="0" y="620" width="600" height="180" fill="url(#g5floor)"/>
-  <line x1="0" y1="620" x2="600" y2="620" stroke="#1a1208" stroke-width="2"/>
+  <rect x="0" y="640" width="600" height="160" fill="url(#floor5)"/>
+  <line x1="0" y1="640" x2="600" y2="640" stroke="#201508" stroke-width="2"/>
 
-  <!-- === TRAINING FIGURE — power clean / front squat stance === -->
+  <!-- === OVERHEAD BARBELL === -->
+  <!-- Bar -->
+  <rect x="52" y="130" width="496" height="14" rx="7" fill="url(#bar5)"/>
+  <rect x="52" y="131" width="496" height="5" rx="2" fill="rgba(255,255,255,0.2)"/>
 
-  <!-- Back leg -->
-  <path d="M 256 490 Q 248 550 242 620" stroke="#0e0e0e" stroke-width="50" fill="none" stroke-linecap="round"/>
-  <!-- Front leg -->
-  <path d="M 320 490 Q 338 555 344 620" stroke="#111" stroke-width="50" fill="none" stroke-linecap="round"/>
+  <!-- Left plates -->
+  <ellipse cx="98"  cy="137" rx="11" ry="64" fill="#0e0e0e"/>
+  <ellipse cx="112" cy="137" rx="11" ry="64" fill="#161616"/>
+  <ellipse cx="126" cy="137" rx="11" ry="64" fill="url(#plate5)"/>
+  <ellipse cx="126" cy="137" rx="11" ry="64" fill="none" stroke="#777" stroke-width="1.5"/>
+  <ellipse cx="126" cy="137" rx="5"  ry="34" fill="none" stroke="#555" stroke-width="2"/>
+  <text x="126" y="141" text-anchor="middle" font-family="Arial Black" font-size="8" fill="#888" transform="rotate(90,126,137)">20KG</text>
+
+  <!-- Right plates -->
+  <ellipse cx="502" cy="137" rx="11" ry="64" fill="#0e0e0e"/>
+  <ellipse cx="488" cy="137" rx="11" ry="64" fill="#161616"/>
+  <ellipse cx="474" cy="137" rx="11" ry="64" fill="url(#plate5)"/>
+  <ellipse cx="474" cy="137" rx="11" ry="64" fill="none" stroke="#777" stroke-width="1.5"/>
+  <ellipse cx="474" cy="137" rx="5"  ry="34" fill="none" stroke="#555" stroke-width="2"/>
+  <text x="474" y="141" text-anchor="middle" font-family="Arial Black" font-size="8" fill="#888" transform="rotate(-90,474,137)">20KG</text>
+
+  <!-- Collars -->
+  <rect x="138" y="123" width="18" height="28" rx="4" fill="#999" stroke="#ccc" stroke-width="1"/>
+  <rect x="444" y="123" width="18" height="28" rx="4" fill="#999" stroke="#ccc" stroke-width="1"/>
+
+  <!-- === TRAINING FIGURE silhouette — overhead press === -->
+  <!-- Head -->
+  <circle cx="300" cy="218" r="34" fill="#181818"/>
+  <!-- Neck -->
+  <rect x="286" y="248" width="28" height="24" fill="#161616"/>
 
   <!-- Torso -->
-  <path d="M 218 260 Q 212 310 220 400 Q 228 450 260 490 L 320 490 Q 355 450 364 400 Q 374 310 370 260 Q 348 240 294 238 Q 240 240 218 260 Z" fill="url(#g5fig)"/>
-  <!-- Torso rim light right side -->
-  <path d="M 368 265 Q 374 330 364 420 Q 355 462 325 490" stroke="rgba(255,255,255,0.04)" stroke-width="10" fill="none"/>
+  <path d="M 218 268 Q 212 320 220 415 Q 228 460 265 490 L 335 490 Q 372 460 380 415 Q 390 320 382 268 Q 360 250 300 248 Q 240 250 218 268 Z" fill="url(#fig5)"/>
+  <!-- Right side rim light (from spotlight) -->
+  <path d="M 378 272 Q 390 340 378 430 Q 368 466 338 490" stroke="rgba(255,255,220,0.06)" stroke-width="16" fill="none" stroke-linecap="round"/>
 
-  <!-- Left arm — extended overhead holding barbell -->
-  <path d="M 222 270 Q 185 230 160 180 Q 148 155 152 128" stroke="#131313" stroke-width="32" fill="none" stroke-linecap="round"/>
-  <!-- Right arm — extended overhead -->
-  <path d="M 366 270 Q 405 228 432 178 Q 446 152 440 126" stroke="#131313" stroke-width="32" fill="none" stroke-linecap="round"/>
+  <!-- Left arm — raised, extended to bar -->
+  <path d="M 222 278 Q 186 240 158 194 Q 146 166 148 140" stroke="#1a1a1a" stroke-width="30" fill="none" stroke-linecap="round"/>
+  <!-- Right arm — raised, extended to bar -->
+  <path d="M 378 278 Q 414 238 442 192 Q 456 165 452 140" stroke="#1a1a1a" stroke-width="30" fill="none" stroke-linecap="round"/>
 
-  <!-- OVERHEAD BARBELL -->
-  <!-- Bar -->
-  <rect x="60" y="118" width="480" height="15" rx="7" fill="#484848"/>
-  <rect x="60" y="120" width="480" height="4" rx="2" fill="rgba(255,255,255,0.07)"/>
-  <!-- Left plates -->
-  <ellipse cx="110" cy="125" rx="11" ry="62" fill="#161616" stroke="#1e1e1e" stroke-width="1"/>
-  <ellipse cx="124" cy="125" rx="11" ry="62" fill="#1c1c1c" stroke="#242424" stroke-width="1"/>
-  <ellipse cx="138" cy="125" rx="11" ry="62" fill="url(#g5plate)" stroke="#2a2a2a" stroke-width="1.5"/>
-  <ellipse cx="138" cy="125" rx="6" ry="34" fill="none" stroke="#252525" stroke-width="2"/>
-  <!-- Right plates -->
-  <ellipse cx="490" cy="125" rx="11" ry="62" fill="#161616" stroke="#1e1e1e" stroke-width="1"/>
-  <ellipse cx="476" cy="125" rx="11" ry="62" fill="#1c1c1c" stroke="#242424" stroke-width="1"/>
-  <ellipse cx="462" cy="125" rx="11" ry="62" fill="url(#g5plate)" stroke="#2a2a2a" stroke-width="1.5"/>
-  <ellipse cx="462" cy="125" rx="6" ry="34" fill="none" stroke="#252525" stroke-width="2"/>
-  <!-- Collars -->
-  <rect x="150" y="112" width="18" height="26" rx="4" fill="#2e2e2e" stroke="#3a3a3a" stroke-width="1"/>
-  <rect x="432" y="112" width="18" height="26" rx="4" fill="#2e2e2e" stroke="#3a3a3a" stroke-width="1"/>
+  <!-- Legs -->
+  <path d="M 266 488 Q 255 560 252 640" stroke="#161616" stroke-width="52" fill="none" stroke-linecap="round"/>
+  <path d="M 334 488 Q 346 560 348 640" stroke="#141414" stroke-width="52" fill="none" stroke-linecap="round"/>
 
-  <!-- Head -->
-  <circle cx="294" cy="218" r="34" fill="#161616"/>
+  <!-- Shoes -->
+  <path d="M 224 633 Q 224 644 244 646 L 290 646 Q 302 644 302 634" fill="#141414" stroke="#1e1e1e" stroke-width="1"/>
+  <path d="M 318 634 Q 318 644 338 646 L 384 646 Q 396 644 396 633" fill="#141414" stroke="#1e1e1e" stroke-width="1"/>
 
-  <!-- Floor shadow figure -->
-  <ellipse cx="294" cy="625" rx="100" ry="15" fill="rgba(0,0,0,0.7)"/>
+  <!-- Floor spotlight pool -->
+  <ellipse cx="300" cy="646" rx="195" ry="24" fill="rgba(255,255,200,0.018)"/>
+  <ellipse cx="300" cy="648" rx="120" ry="14" fill="rgba(0,0,0,0.65)"/>
 
-  <!-- Floor spotlight pool glow -->
-  <ellipse cx="294" cy="640" rx="180" ry="30" fill="rgba(255,255,200,0.015)"/>
-
-  <!-- SIDE MACHINE — rack uprights (depth/atmosphere) -->
-  <rect x="520" y="80" width="14" height="540" rx="4" fill="#0e0e0e" stroke="#141414" stroke-width="1"/>
-  <rect x="546" y="80" width="14" height="540" rx="4" fill="#0e0e0e" stroke="#141414" stroke-width="1"/>
-  <rect x="520" y="200" width="40" height="8" rx="2" fill="#131313"/>
-  <rect x="520" y="300" width="40" height="8" rx="2" fill="#131313"/>
-  <rect x="520" y="400" width="40" height="8" rx="2" fill="#131313"/>
+  <!-- Side rack uprights (atmosphere) -->
+  <rect x="525" y="80" width="12" height="560" rx="4" fill="#111" stroke="#181818" stroke-width="1"/>
+  <rect x="548" y="80" width="12" height="560" rx="4" fill="#0e0e0e" stroke="#141414" stroke-width="1"/>
+  <rect x="525" y="220" width="35" height="8" rx="2" fill="#151515"/>
+  <rect x="525" y="340" width="35" height="8" rx="2" fill="#151515"/>
+  <rect x="525" y="460" width="35" height="8" rx="2" fill="#151515"/>
 
   <!-- Cyan accent -->
-  <rect x="0" y="793" width="600" height="7" fill="#00c3ff" opacity="0.55"/>
+  <rect x="0" y="794" width="600" height="6" fill="#00c3ff" opacity="0.65"/>
 
-  <!-- Hard vignette corners -->
-  <radialGradient id="g5vig" cx="50%" cy="50%" r="72%">
-    <stop offset="30%" stop-color="transparent"/>
+  <!-- Vignette -->
+  <radialGradient id="vig5" cx="50%" cy="50%" r="72%">
+    <stop offset="28%" stop-color="transparent"/>
     <stop offset="100%" stop-color="rgba(0,0,0,0.82)"/>
   </radialGradient>
-  <rect width="600" height="800" fill="url(#g5vig)"/>
+  <rect width="600" height="800" fill="url(#vig5)"/>
 </svg>

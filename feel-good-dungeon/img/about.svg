@@ -1,95 +1,131 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
   <defs>
-    <radialGradient id="a-glow" cx="60%" cy="35%" r="55%">
-      <stop offset="0%" stop-color="#1e1e1e"/>
-      <stop offset="100%" stop-color="#060606"/>
+    <radialGradient id="abg" cx="58%" cy="38%" r="66%">
+      <stop offset="0%" stop-color="#202020"/>
+      <stop offset="55%" stop-color="#0e0e0e"/>
+      <stop offset="100%" stop-color="#050505"/>
     </radialGradient>
-    <linearGradient id="a-fig" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#1a1a1a"/>
-      <stop offset="40%" stop-color="#2e2e2e"/>
+    <!-- Chrome dumbbell -->
+    <linearGradient id="adb" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ddd"/>
+      <stop offset="30%" stop-color="#aaa"/>
+      <stop offset="60%" stop-color="#888"/>
+      <stop offset="100%" stop-color="#444"/>
+    </linearGradient>
+    <radialGradient id="ahex" cx="28%" cy="22%" r="65%">
+      <stop offset="0%" stop-color="#777"/>
+      <stop offset="50%" stop-color="#333"/>
       <stop offset="100%" stop-color="#111"/>
+    </radialGradient>
+    <linearGradient id="afig" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#111"/>
+      <stop offset="35%" stop-color="#1e1e1e"/>
+      <stop offset="100%" stop-color="#0e0e0e"/>
     </linearGradient>
-    <linearGradient id="a-side" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#080808"/>
-      <stop offset="100%" stop-color="#1a1a1a"/>
-    </linearGradient>
+    <radialGradient id="afloor" cx="50%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#1c1208"/>
+      <stop offset="100%" stop-color="#070707"/>
+    </radialGradient>
   </defs>
 
-  <rect width="600" height="800" fill="#060606"/>
-  <rect width="600" height="800" fill="url(#a-glow)"/>
+  <rect width="600" height="800" fill="#050505"/>
+  <rect width="600" height="800" fill="url(#abg)"/>
 
-  <!-- Floor line -->
-  <rect x="0" y="680" width="600" height="120" fill="#0a0a0a"/>
-  <line x1="0" y1="680" x2="600" y2="680" stroke="#1a1a1a" stroke-width="2"/>
+  <!-- Floor -->
+  <rect x="0" y="670" width="600" height="130" fill="url(#afloor)"/>
+  <line x1="0" y1="670" x2="600" y2="670" stroke="#201508" stroke-width="2"/>
 
-  <!-- === TRAINING FIGURE — standing dumbbell curl, side profile === -->
+  <!-- Rim light from right side (studio lighting) -->
+  <linearGradient id="arim" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="transparent"/>
+    <stop offset="80%" stop-color="transparent"/>
+    <stop offset="100%" stop-color="rgba(255,240,200,0.04)"/>
+  </linearGradient>
+  <rect width="600" height="800" fill="url(#arim)"/>
+
+  <!-- === STANDING FIGURE — DUMBBELL CURL === -->
 
   <!-- Head -->
-  <ellipse cx="310" cy="130" rx="38" ry="42" fill="#1c1c1c"/>
+  <ellipse cx="308" cy="128" rx="37" ry="42" fill="#1e1e1e"/>
+  <!-- Hair / top -->
+  <ellipse cx="308" cy="108" rx="37" ry="22" fill="#161616"/>
 
   <!-- Neck -->
-  <rect x="296" y="168" width="28" height="28" fill="#181818"/>
+  <rect x="294" y="166" width="28" height="26" fill="#1c1c1c"/>
 
-  <!-- Torso — broad shoulders tapered to waist -->
-  <path d="M 230 195 Q 225 210 232 320 Q 238 370 262 395 L 362 395 Q 386 370 392 320 Q 400 210 395 195 Q 370 180 310 178 Q 250 180 230 195 Z" fill="url(#a-fig)"/>
+  <!-- Torso — broad shoulders, v-shape -->
+  <path d="M 224 192 Q 218 230 226 350 Q 232 400 260 432 L 356 432 Q 384 400 390 350 Q 398 230 392 192 Q 370 176 308 175 Q 246 176 224 192 Z" fill="url(#afig)"/>
+  <!-- Torso right rim light -->
+  <path d="M 386 196 Q 398 280 386 370 Q 376 408 350 432" stroke="rgba(255,240,200,0.07)" stroke-width="18" fill="none" stroke-linecap="round"/>
+  <!-- T-shirt sleeve line left -->
+  <path d="M 224 192 Q 198 215 188 250" stroke="#181818" stroke-width="2" fill="none"/>
+  <path d="M 392 192 Q 418 215 428 250" stroke="#181818" stroke-width="2" fill="none"/>
 
-  <!-- Left arm — relaxed at side, slightly bent -->
-  <path d="M 235 205 Q 210 240 205 300 Q 202 340 215 370 Q 220 385 230 390" stroke="#1e1e1e" stroke-width="38" fill="none" stroke-linecap="round"/>
-  <!-- Left forearm — down holding dumbbell -->
-  <path d="M 218 368 Q 215 410 218 450" stroke="#1c1c1c" stroke-width="30" fill="none" stroke-linecap="round"/>
-  <!-- Left dumbbell -->
-  <rect x="195" y="448" width="20" height="42" rx="4" fill="#222" stroke="#2e2e2e" stroke-width="1"/>
-  <ellipse cx="205" cy="448" rx="22" ry="10" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1"/>
-  <ellipse cx="205" cy="490" rx="22" ry="10" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1"/>
+  <!-- LEFT ARM — relaxed, holding dumbbell down -->
+  <path d="M 228 205 Q 198 248 190 310 Q 186 355 194 390" stroke="#1c1c1c" stroke-width="36" fill="none" stroke-linecap="round"/>
+  <!-- Left forearm down -->
+  <path d="M 192 388 Q 190 430 192 468" stroke="#1a1a1a" stroke-width="28" fill="none" stroke-linecap="round"/>
 
-  <!-- Right arm — raised curl, elbow bent -->
-  <path d="M 388 205 Q 415 235 428 280 Q 432 305 420 325 Q 410 340 395 345" stroke="#222" stroke-width="38" fill="none" stroke-linecap="round"/>
-  <!-- Right forearm — curled up toward shoulder -->
-  <path d="M 397 343 Q 378 310 360 285 Q 348 268 345 248" stroke="#1e1e1e" stroke-width="30" fill="none" stroke-linecap="round"/>
-  <!-- Right dumbbell — held at top of curl -->
-  <rect x="328" y="198" width="20" height="42" rx="4" fill="#2a2a2a" stroke="#363636" stroke-width="1.5"/>
-  <ellipse cx="338" cy="198" rx="26" ry="11" fill="#252525" stroke="#333" stroke-width="1.5"/>
-  <ellipse cx="338" cy="240" rx="26" ry="11" fill="#252525" stroke="#333" stroke-width="1.5"/>
-  <!-- Dumbbell knurling -->
-  <line x1="329" y1="210" x2="347" y2="210" stroke="#1e1e1e" stroke-width="2"/>
-  <line x1="329" y1="220" x2="347" y2="220" stroke="#1e1e1e" stroke-width="2"/>
-  <line x1="329" y1="230" x2="347" y2="230" stroke="#1e1e1e" stroke-width="2"/>
+  <!-- LEFT DUMBBELL (down at side) -->
+  <!-- Hex plates -->
+  <polygon points="168,466 186,438 220,438 238,466 220,494 186,494" fill="url(#ahex)"/>
+  <polygon points="168,466 186,438 220,438 238,466 220,494 186,494" fill="none" stroke="#888" stroke-width="1.5"/>
+  <polygon points="176,466 192,445 214,445 230,466 214,487 192,487" fill="#1c1c1c"/>
+  <!-- Handle -->
+  <rect x="236" y="456" width="38" height="20" rx="10" fill="url(#adb)"/>
+  <rect x="236" y="457" width="38" height="6" rx="3" fill="rgba(255,255,255,0.2)"/>
+  <!-- Right hex plate -->
+  <polygon points="272,466 290,438 324,438 342,466 324,494 290,494" fill="url(#ahex)"/>
+  <polygon points="272,466 290,438 324,438 342,466 324,494 290,494" fill="none" stroke="#888" stroke-width="1.5"/>
+  <polygon points="280,466 296,445 318,445 334,466 318,487 296,487" fill="#1c1c1c"/>
+  <!-- Weight text -->
+  <text x="203" y="470" text-anchor="middle" font-family="Arial Black" font-size="12" font-weight="900" fill="#666">20</text>
 
-  <!-- Left leg -->
-  <path d="M 264 392 Q 255 470 258 560 Q 260 610 265 680" stroke="#181818" stroke-width="55" fill="none" stroke-linecap="round"/>
-  <!-- Right leg -->
-  <path d="M 358 392 Q 368 470 365 560 Q 362 610 357 680" stroke="#161616" stroke-width="55" fill="none" stroke-linecap="round"/>
+  <!-- RIGHT ARM — raised curl, peak contraction -->
+  <path d="M 388 205 Q 418 242 432 290 Q 440 325 430 355 Q 420 375 404 385" stroke="#1e1e1e" stroke-width="36" fill="none" stroke-linecap="round"/>
+  <!-- Right forearm curled toward shoulder -->
+  <path d="M 406 383 Q 385 348 362 318 Q 348 298 344 272" stroke="#1c1c1c" stroke-width="28" fill="none" stroke-linecap="round"/>
+
+  <!-- RIGHT DUMBBELL (curled up, peak) — chrome, prominent -->
+  <!-- Left plate -->
+  <polygon points="310,256 330,222 370,222 390,256 370,290 330,290" fill="url(#ahex)"/>
+  <polygon points="310,256 330,222 370,222 390,256 370,290 330,290" fill="none" stroke="#aaa" stroke-width="2"/>
+  <polygon points="318,256 336,230 364,230 382,256 364,282 336,282" fill="#1c1c1c"/>
+  <!-- Chrome handle -->
+  <rect x="388" y="246" width="44" height="20" rx="10" fill="url(#adb)"/>
+  <rect x="388" y="247" width="44" height="7" rx="3" fill="rgba(255,255,255,0.22)"/>
+  <!-- Knurling -->
+  <line x1="398" y1="246" x2="398" y2="266" stroke="#aaa" stroke-width="1.5"/>
+  <line x1="408" y1="246" x2="408" y2="266" stroke="#aaa" stroke-width="1.5"/>
+  <line x1="418" y1="246" x2="418" y2="266" stroke="#aaa" stroke-width="1.5"/>
+  <!-- Right plate -->
+  <polygon points="430,256 450,222 490,222 510,256 490,290 450,290" fill="url(#ahex)"/>
+  <polygon points="430,256 450,222 490,222 510,256 490,290 450,290" fill="none" stroke="#aaa" stroke-width="2"/>
+  <polygon points="438,256 456,230 484,230 502,256 484,282 456,282" fill="#1c1c1c"/>
+  <!-- Weight text right DB -->
+  <text x="350" y="260" text-anchor="middle" font-family="Arial Black" font-size="14" font-weight="900" fill="#888">20</text>
+
+  <!-- Forearm vein/definition highlight (right arm at peak) -->
+  <path d="M 370 318 Q 358 300 348 278" stroke="rgba(255,255,255,0.05)" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+  <!-- LEGS -->
+  <path d="M 262 430 Q 252 520 248 670" stroke="#181818" stroke-width="54" fill="none" stroke-linecap="round"/>
+  <path d="M 354 430 Q 364 520 368 670" stroke="#161616" stroke-width="54" fill="none" stroke-linecap="round"/>
 
   <!-- Shoes -->
-  <path d="M 238 674 Q 238 682 255 684 L 300 684 Q 312 683 312 674" fill="#141414" stroke="#1c1c1c" stroke-width="1"/>
-  <path d="M 328 674 Q 328 682 345 684 L 390 684 Q 402 683 402 674" fill="#141414" stroke="#1c1c1c" stroke-width="1"/>
+  <path d="M 220 662 Q 218 674 240 676 L 288 676 Q 302 674 302 662" fill="#141414" stroke="#222" stroke-width="1"/>
+  <path d="M 326 662 Q 326 674 348 676 L 396 676 Q 410 674 410 662" fill="#141414" stroke="#222" stroke-width="1"/>
 
-  <!-- Muscle definition on arm — highlight -->
-  <path d="M 348 250 Q 356 268 362 285" stroke="rgba(255,255,255,0.06)" stroke-width="14" fill="none" stroke-linecap="round"/>
-  <!-- Torso highlight -->
-  <path d="M 280 195 Q 272 260 275 340" stroke="rgba(255,255,255,0.03)" stroke-width="20" fill="none"/>
+  <!-- Floor shadow -->
+  <ellipse cx="308" cy="674" rx="118" ry="15" fill="rgba(0,0,0,0.7)"/>
 
-  <!-- Side rim light (right edge glow — like studio lighting) -->
-  <linearGradient id="a-rim" x1="0%" y1="0%" x2="100%" y2="0%">
-    <stop offset="0%" stop-color="transparent"/>
-    <stop offset="85%" stop-color="transparent"/>
-    <stop offset="100%" stop-color="rgba(0,195,255,0.06)"/>
-  </linearGradient>
-  <rect width="600" height="800" fill="url(#a-rim)"/>
+  <!-- Cyan accent -->
+  <rect x="0" y="794" width="600" height="6" fill="#00c3ff" opacity="0.65"/>
 
-  <!-- Floor shadow under figure -->
-  <ellipse cx="305" cy="682" rx="120" ry="14" fill="rgba(0,0,0,0.7)"/>
-
-  <!-- Cyan accent bar -->
-  <rect x="0" y="793" width="600" height="7" fill="#00c3ff" opacity="0.55"/>
-
-  <!-- Text below figure -->
-  <text x="300" y="748" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="13" fill="#1e1e1e" letter-spacing="8">PERSONAL TRAINING</text>
-
-  <!-- Deep vignette -->
-  <radialGradient id="a-vig" cx="50%" cy="45%" r="65%">
-    <stop offset="35%" stop-color="transparent"/>
-    <stop offset="100%" stop-color="rgba(0,0,0,0.7)"/>
+  <!-- Vignette -->
+  <radialGradient id="avig" cx="50%" cy="45%" r="65%">
+    <stop offset="32%" stop-color="transparent"/>
+    <stop offset="100%" stop-color="rgba(0,0,0,0.72)"/>
   </radialGradient>
-  <rect width="600" height="800" fill="url(#a-vig)"/>
+  <rect width="600" height="800" fill="url(#avig)"/>
 </svg>
