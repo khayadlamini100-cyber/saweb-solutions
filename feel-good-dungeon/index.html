@@ -1799,6 +1799,97 @@
       .nutri-programs { grid-template-columns: 1fr; max-width: 480px; }
       .nutri-inquiry { padding: 2.25rem 1.5rem; }
     }
+
+    /* ─── DIGITAL SIGN-IN ─── */
+    #checkin {
+      background: #0a0a0a;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .checkin-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .checkin-steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 2rem 0 2.5rem;
+    }
+
+    .checkin-steps li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.95rem;
+      color: var(--light);
+    }
+
+    .step-num {
+      width: 32px; height: 32px;
+      min-width: 32px;
+      background: rgba(0,195,255,0.1);
+      border: 1px solid rgba(0,195,255,0.3);
+      color: var(--cyan);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .qr-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .qr-frame {
+      background: #fff;
+      padding: 18px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+    }
+
+    .qr-frame-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      color: #000;
+      text-align: center;
+    }
+
+    .qr-frame-sub {
+      font-size: 0.6rem;
+      font-family: 'Barlow', sans-serif;
+      color: #555;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .qr-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    @media (max-width: 900px) {
+      .checkin-wrap { grid-template-columns: 1fr; gap: 3.5rem; text-align: center; }
+      .checkin-steps li { justify-content: center; }
+      .qr-panel { margin: 0 auto; }
+    }
   </style>
 </head>
 <body>
@@ -2441,6 +2532,44 @@
 </section>
 
 
+<!-- ═══ DIGITAL SIGN-IN ═══ -->
+<section id="checkin" class="section">
+  <div class="checkin-wrap">
+
+    <!-- Info -->
+    <div class="fade">
+      <div class="s-label">Attendance</div>
+      <h2 class="s-title">No More<br>Paper Forms</h2>
+      <p class="s-body">Members scan the QR code when they arrive. They type their name — done. Date and time are logged automatically every visit.</p>
+
+      <ul class="checkin-steps">
+        <li><span class="step-num">1</span> Member scans the QR code with their phone</li>
+        <li><span class="step-num">2</span> Types their name — takes 10 seconds</li>
+        <li><span class="step-num">3</span> Instantly logged with date &amp; time</li>
+      </ul>
+
+      <div class="qr-actions">
+        <a href="checkin.html" target="_blank" class="btn btn-cyan">Open Sign-In Page →</a>
+        <a href="checkin.html" target="_blank" class="btn btn-ghost">Admin Log</a>
+      </div>
+    </div>
+
+    <!-- QR code -->
+    <div class="qr-panel fade">
+      <div class="qr-frame">
+        <div class="qr-frame-label">SCAN TO SIGN IN</div>
+        <div id="qrCanvas"></div>
+        <div class="qr-frame-sub">FEEL GOOD DUNGEON · MIDRAND</div>
+      </div>
+      <p style="font-size:0.78rem;color:var(--muted);text-align:center;max-width:260px;line-height:1.6;">
+        Print this QR code and stick it at the entrance — members scan it every time they arrive.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
 <!-- ═══ COMMUNITY ═══ -->
 <section id="community" class="section">
   <div class="community-inner fade">
@@ -2924,6 +3053,25 @@
 
   renderBk();
   setInterval(renderBk, 30000);
+
+  // ── QR Code for check-in section ──
+  (function() {
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+    script.onload = function() {
+      const base = window.location.href.replace(/\/[^\/]*(\?.*)?$/, '/');
+      const url  = base + 'checkin.html';
+      new QRCode(document.getElementById('qrCanvas'), {
+        text:         url,
+        width:        220,
+        height:       220,
+        colorDark:    '#000000',
+        colorLight:   '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    };
+    document.head.appendChild(script);
+  })();
 
   // ── Macro Calculator ──
   function calculateMacros() {
